@@ -5,17 +5,19 @@ import SettingsPage from './pages/SettingsPage';
 import CategoryPage from './pages/CategoryPage';
 import NotFoundPage from './pages/NotFoundPage';
 
+import './App.scss'
+
 const App: React.FC = () => {
-  
+
   return (
-    <>
-      <Routes>
-        <Route path='/' element={<MainPage />} />
-        <Route path='/category' element={<CategoryPage />} />
-        <Route path='/settings' element={<SettingsPage />} />
-        <Route path='*' element={<NotFoundPage />} />
-      </Routes>
-    </>
+      <div className='container'>
+        <Routes>
+          <Route path='/' element={<MainPage />} />
+          <Route path='/category' element={<CategoryPage />} />
+          <Route path='/settings' element={<SettingsPage />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+      </div>
   );
 }
 
