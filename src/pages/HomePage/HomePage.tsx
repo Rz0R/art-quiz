@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './HomePage.scss';
 
+import settingsIcon from '../../assets/images/icons/settings-icon.svg';
+
 const logo = require('../../assets/images/logo.png');
 const artistsBtnImg = require('../../assets/images/home-page/artists-quiz.jpg');
 const picturesBtnImg = require('../../assets/images/home-page/pictures-quiz.jpg');
-const settingsIcon = require('../../assets/images/icons/settings-icon.png');
 
 const HomePage: React.FC = () => {
 
@@ -18,7 +19,7 @@ const HomePage: React.FC = () => {
             <div className='quiz-menu'>
                 <Link
                     className='quiz-menu__btn'
-                    to='/category'
+                    to='/category/artists'
                 >
                     <img
                         src={artistsBtnImg}
@@ -28,7 +29,7 @@ const HomePage: React.FC = () => {
                 </Link>
                 <Link
                     className='quiz-menu__btn'
-                    to='/category'
+                    to='/category/pictures'
                 >
                     <img
                         src={picturesBtnImg}
@@ -37,16 +38,13 @@ const HomePage: React.FC = () => {
                     <h3 className='quiz-menu__btn-title'><span>pictures</span> quiz</h3>
                 </Link>
             </div>
-
             <Link
-                className='settings-btn'
+                className='btn btn--settings'
                 to='/settings'
             >
                 <img src={settingsIcon} alt="pictures quiz" />
                 <span>settings</span>
             </Link>
-
-
         </div>
     );
 }

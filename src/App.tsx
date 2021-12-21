@@ -5,7 +5,7 @@ import SettingsPage from './pages/SettingsPage';
 import CategoryPage from './pages/CategoryPage';
 import NotFoundPage from './pages/NotFoundPage';
 
-import './App.scss'
+import './scss/App.scss';
 
 const App: React.FC = () => {
 
@@ -13,7 +13,7 @@ const App: React.FC = () => {
       <div className='container'>
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/category' element={<CategoryPage />} />
+          <Route path='/category/:catId' element={<CategoryPage />} />
           <Route path='/settings' element={<SettingsPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
