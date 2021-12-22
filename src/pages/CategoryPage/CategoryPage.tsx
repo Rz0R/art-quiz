@@ -1,17 +1,52 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
+import { Store } from "../../Store";
 
 import './CategoryPage.scss';
-
 import settingsIcon from '../../assets/images/icons/settings-icon.svg';
 import homeIcon from '../../assets/images/icons/home-icon.svg';
+
 const logo = require('../../assets/images/logo.png');
 
 const CategoryPage: React.FC = () => {
 
+    const store = useContext(Store);
+
     const { catId } = useParams();
     console.log(catId);
+
+    const images: string[] = [];
+
+    let i = 0;
+    let j = 120;
+
+    if (catId !== 'artists') {
+
+        i = 120;
+        j = i * 2;
+    }
+
+    for (i; i < j; i += 10) {
+        console.log(i);
+        const imageSrc = `/assets/img/quiz/${i}.webp`;
+        images.push(imageSrc);
+    }
+
+    const itemsEls = images.map((image, ind) => {
+        return (
+            <Link className="item" to='/'>
+                <div className="item__header">
+                    <div className="item__number">{ind + 1}</div>
+                    <div className="item__score">9/10</div>
+                </div>
+
+                <div className="item__picture">
+                    <img src={image} alt="0" />
+                </div>
+            </Link>
+        );
+    })
 
     return (
         <div className="categories">
@@ -42,41 +77,8 @@ const CategoryPage: React.FC = () => {
 
             </div>
 
-
-
             <div className="list">
-                <Link className="item" to='/'>
-                    <div className="item__header">
-                        <div className="item__number">1</div>
-                        <div className="item__score">9/10</div>
-                    </div>
-
-                    <div className="item__picture">
-                        <img src="/assets/img/quiz/0.webp" alt="0" />
-                    </div>
-                </Link>
-
-                <Link className="item" to='/'>
-                    <div className="item__header">
-                        <div className="item__number">1</div>
-                        <div className="item__score">9/10</div>
-                    </div>
-
-                    <div className="item__picture">
-                        <img src="/assets/img/quiz/0.webp" alt="0" />
-                    </div>
-                </Link>
-
-                <Link className="item" to='/'>
-                    <div className="item__header">
-                        <div className="item__number">1</div>
-                        <div className="item__score">9/10</div>
-                    </div>
-
-                    <div className="item__picture">
-                        <img src="/assets/img/quiz/0.webp" alt="0" />
-                    </div>
-                </Link>
+                {itemsEls}
             </div>
         </div>
     );

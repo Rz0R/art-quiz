@@ -10,14 +10,14 @@ import './scss/App.scss';
 const App: React.FC = () => {
 
   return (
-      <div className='container'>
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/category/:catId' element={<CategoryPage />} />
-          <Route path='/settings' element={<SettingsPage />} />
-          <Route path='*' element={<NotFoundPage />} />
-        </Routes>
-      </div>
+    <div className='container'>
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/category/:catId' element={<CategoryPage />} />
+        <Route path='/settings' element={<SettingsPage />} />
+        <Route path='*' element={<NotFoundPage />} />
+      </Routes>
+    </div>
   );
 }
 
