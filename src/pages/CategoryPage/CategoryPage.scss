@@ -39,38 +39,4 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-
-    .item {
-        background-color: rgba(255, 255, 255, 0.5);
-        width: calc(33.3333% - 7px);
-        color: $sec-clr;
-        border-top-left-radius: 25px;
-        transition: transform 0.5s ease;
-
-        &__header {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 10px 10px 20px;
-        }
-
-        &__number {
-            font-size: 36px;
-            font-weight: 700;
-        }
-
-        &__score {
-            font-size: 18px;
-        }
-
-        &__picture {
-            img {
-                filter: grayscale(1);
-                width: 100%;
-            }
-        }
-
-        &:hover {
-            transform: scale(1.05);
-        }
-    }
 }

@@ -8,10 +8,10 @@ interface Props {
 const StoreProvider = ({ children }: Props) => {
 
     interface IData {
-        'eng-data' : string[],
+        'eng-data': string[],
     }
 
-    const [data, setData] = useState<IData>({"eng-data": []});
+    const [data, setData] = useState<IData | {}>({});
     const url: string = '/data/images.json';
 
     useEffect(() => {
