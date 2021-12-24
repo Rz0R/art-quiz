@@ -9,8 +9,8 @@ import logo from '../../assets/images/logo.png';
 
 const CategoryPage: React.FC = () => {
 
-    const { catId } = useParams();
-    
+    const { catId = 'artists' } = useParams();
+
     const images: string[] = [];
 
     let i = 0;
@@ -29,6 +29,7 @@ const CategoryPage: React.FC = () => {
 
     const itemsEls = images.map((image, ind) => (
         <GroupItem
+            categoryId={catId}
             groupNumber={(ind + 1).toString()}
             image={image}
         />))
