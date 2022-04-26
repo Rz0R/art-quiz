@@ -9,7 +9,6 @@ import NotFoundPage from './pages/NotFoundPage';
 import './scss/App.scss';
 
 const App: React.FC = () => {
-
   return (
     <div className='container'>
       <Routes>
@@ -21,6 +20,6 @@ const App: React.FC = () => {
       </Routes>
     </div>
   );
-}
+};
 
 export default App;

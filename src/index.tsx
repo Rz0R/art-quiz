@@ -1,17 +1,14 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import { StoreProvider } from "./Store";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 
-const root = createRoot(document.getElementById("root") as HTMLElement);
+const root = createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
   <React.StrictMode>
-    <StoreProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </StoreProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
