@@ -1,12 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import SettingsPage from './pages/SettingsPage';
-import CategoryPage from './pages/CategoryPage';
-import GamePage from './pages/GamePage';
-import NotFoundPage from './pages/NotFoundPage';
-
-import './scss/App.scss';
+import HomePage from './components/HomePage';
+import SettingsPage from './components/SettingsPage';
+import CategoryPage from './components/CategoryPage';
+import GamePage from './components/GamePage';
+import NotFoundPage from './components/NotFoundPage';
 
 const App: React.FC = () => {
   return (
