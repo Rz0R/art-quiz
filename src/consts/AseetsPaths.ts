@@ -1,5 +1,6 @@
 const imagesPath = '/assets/img';
 const iconsPath = '/assets/icons';
+export const quizImagePath = '/assets/quiz';
 
 export const logo = `${imagesPath}/logo.png`;
 export const settingsIcon = `${iconsPath}/settings-icon.svg`;
