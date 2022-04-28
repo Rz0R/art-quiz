@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { logo, artistsBtnImg, picturesBtnImg, settingsIcon } from '../../consts/AseetsPaths';
+import { logo, artistsBtnImg, picturesBtnImg, settingsIcon } from '../../consts/assetsPaths';
 
 const HomePage: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import GroupItem from './GroupItem';
-import { logo, settingsIcon, homeIcon } from '../../consts/AseetsPaths';
+import { logo, settingsIcon, homeIcon } from '../../consts/assetsPaths';
 
 const CategoryPage: React.FC = () => {
   const { catId = 'artists' } = useParams();

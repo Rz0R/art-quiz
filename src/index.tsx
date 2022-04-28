@@ -1,25 +1,26 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+import { rootReducer } from './store/rootReducer';
 import { BrowserRouter } from 'react-router-dom';
-import { QuizData } from './services/quizData';
-import { URL } from './consts/const';
+import App from './App';
+import { loadQuizDataAction } from './store/serviceActions';
 
-const quizData = new QuizData(URL);
+const store = configureStore({
+  reducer: rootReducer,
+});
 
-const quizDataLoad = async () => {
-  await quizData.initData();
-  console.log(quizData.getQuestionsByCategory(23));
-};
-
-quizDataLoad();
+store.dispatch(loadQuizDataAction());
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );

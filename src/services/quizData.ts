@@ -1,4 +1,5 @@
 import { GROUP_QUANTITY, QUESTIONS_IN_GROUP, NUMBER_OF_POSSIBLE_ANSWERS, QuestionsText } from '../consts/const';
+import { URL } from '../consts/const';
 
 interface IQuestion {
   author: string;
@@ -7,7 +8,7 @@ interface IQuestion {
   imageNum: string;
 }
 
-export class QuizData {
+class QuizData {
   private allQuestions: IQuestion[] = [];
   private uniqueAuthors: string[] = [];
   private url: string;
@@ -102,3 +103,5 @@ export class QuizData {
     return result;
   };
 }
+
+export const quizData = new QuizData(URL);
