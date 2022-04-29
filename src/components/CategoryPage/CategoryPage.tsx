@@ -17,7 +17,6 @@ const CategoryPage: React.FC = () => {
   }
 
   for (i; i < j; i += 10) {
-    console.log(i);
     const imageSrc = `/assets/img/quiz/${i}.webp`;
     images.push(imageSrc);
   }

@@ -1,11 +1,12 @@
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
-import { Action } from 'redux';
+import { AnyAction } from 'redux';
 import { RootState as State } from '../store/rootReducer';
 
 export enum ActionType {
   LoadQuizData = 'APP/LoadQuizData',
+  LoadQuestions = 'GAME/LoadQuestions',
 }
 
-export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, unknown, Action>;
+export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, unknown, AnyAction>;
 
-export type ThunkAppDispatch = ThunkDispatch<State, unknown, Action>;
+export type ThunkAppDispatch = ThunkDispatch<State, unknown, AnyAction>;

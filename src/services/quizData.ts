@@ -1,15 +1,10 @@
 import { GROUP_QUANTITY, QUESTIONS_IN_GROUP, NUMBER_OF_POSSIBLE_ANSWERS, QuestionsText } from '../consts/const';
 import { URL } from '../consts/const';
-
-interface IQuestion {
-  author: string;
-  name: string;
-  year: string;
-  imageNum: string;
-}
+import { Questions, ArtistQuestions, PaintingQuestions } from '../types/questions';
 
 class QuizData {
-  private allQuestions: IQuestion[] = [];
+  private isDataLoaded = false;
+  private allQuestions: Questions = [];
   private uniqueAuthors: string[] = [];
   private url: string;
 
@@ -18,14 +13,24 @@ class QuizData {
   }
 
   initData = async () => {
-    const response = await fetch(this.url);
-    const data = (await response.json()) as IQuestion[];
+    try {
+      const response = await fetch(this.url);
+      const data = (await response.json()) as Questions;
 
-    this.allQuestions = data;
-    this.uniqueAuthors = [...new Set(data.map((question) => question.author))];
+      this.allQuestions = data;
+      this.uniqueAuthors = [...new Set(data.map((question) => question.author))];
+      this.isDataLoaded = true;
+    } catch (err) {
+      this.isDataLoaded = false;
+      throw err;
+    }
   };
 
-  getQuestionsByCategory = (group: number) => {
+  getQuestionsByCategory = async (group: number) => {
+    if (!this.isDataLoaded) {
+      await this.initData();
+    }
+
     if (group < GROUP_QUANTITY) {
       return this.getArtistCategoryQuestions(group);
     } else if (group >= GROUP_QUANTITY && group < GROUP_QUANTITY * 2) {
@@ -35,7 +40,7 @@ class QuizData {
     }
   };
 
-  private getArtistCategoryQuestions = (group: number) => {
+  private getArtistCategoryQuestions = (group: number): ArtistQuestions => {
     const result = [];
 
     for (let i = group * QUESTIONS_IN_GROUP; i < group * QUESTIONS_IN_GROUP + QUESTIONS_IN_GROUP; i++) {
@@ -56,10 +61,10 @@ class QuizData {
       result.push(question);
     }
 
-    return result;
+    return result as ArtistQuestions;
   };
 
-  private getPaintingCategoryQuestions = (group: number) => {
+  private getPaintingCategoryQuestions = (group: number): PaintingQuestions => {
     const result = [];
 
     for (let i = group * QUESTIONS_IN_GROUP; i < group * QUESTIONS_IN_GROUP + QUESTIONS_IN_GROUP; i++) {
@@ -94,7 +99,7 @@ class QuizData {
 
       const question = {
         question: questionText,
-        imageNums,
+        paintings: imageNums,
       };
 
       result.push(question);
