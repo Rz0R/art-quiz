@@ -1,0 +1,122 @@
+.game {
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .header--game {
+    .header {
+      &__top {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &__question {
+        font-weight: 700;
+        color: $main-clr;
+        font-size: 30px;
+        text-transform: uppercase;
+        text-align: center;
+      }
+    }
+  }
+
+  &__picture {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 2px 2px 15px #000000;
+    position: relative;
+    img {
+      width: 100%;
+    }
+
+    .pagination {
+      position: absolute;
+      display: flex;
+
+      bottom: 10px;
+      height: 20px;
+      justify-content: space-around;
+      left: 25%;
+      width: 50%;
+
+      &__item {
+        border: 1px solid #000;
+        border-radius: 50%;
+        height: 10px;
+        width: 10px;
+
+        &--correct {
+          background-color: rgba($color: $crct-clr, $alpha: 0.9);
+        }
+
+        &--wrong {
+          background-color: rgba($color: $wrng-clr, $alpha: 0.9);
+        }
+      }
+    }
+  }
+
+  &__answers {
+    max-width: 800px;
+
+    .answers {
+      &--wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 10px;
+      }
+
+      &__answer:first-of-type {
+        border-bottom: 1px solid $main-clr;
+        border-right: 1px solid $main-clr;
+      }
+
+      &__answer:nth-of-type(2) {
+        border-bottom: 1px solid $main-clr;
+        border-left: 1px solid $main-clr;
+      }
+
+      &__answer:nth-of-type(3) {
+        border-right: 1px solid $main-clr;
+        border-top: 1px solid $main-clr;
+      }
+
+      &__answer:nth-of-type(4) {
+        border-left: 1px solid $main-clr;
+        border-top: 1px solid $main-clr;
+      }
+
+      &__answer {
+        box-sizing: border-box;
+        padding: 10px 0px;
+        width: 50%;
+        text-align: center;
+        font-weight: 400;
+        font-size: 24px;
+        text-transform: uppercase;
+        color: $main-clr;
+        background-color: rgba($color: $thrd-clr, $alpha: 0.3);
+        transition: all 0.5s ease;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $sec-clr;
+          color: $thrd-clr;
+        }
+
+        &--correct {
+          background-color: rgba($color: $crct-clr, $alpha: 0.5);
+          color: $thrd-clr;
+        }
+
+        &--wrong {
+          background-color: rgba($color: $wrng-clr, $alpha: 0.5);
+          color: $thrd-clr;
+        }
+      }
+    }
+  }
+}

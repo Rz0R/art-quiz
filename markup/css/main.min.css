@@ -77,7 +77,7 @@ h1, h2, h3, h4, h5, h6 {
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  background: url(/assets/img/bg.jpg) center/cover;
+  background-color: #dddddd;
 }
 
 .container {
@@ -224,7 +224,7 @@ body {
   gap: 15px;
 }
 
-.header__title {
+.header--categories .header__title {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -234,7 +234,7 @@ body {
           justify-content: space-between;
 }
 
-.header__title-name {
+.header--categories .header__title-name {
   width: 50%;
   text-align: center;
   font-size: 24px;
@@ -245,7 +245,7 @@ body {
   text-transform: uppercase;
 }
 
-.header__btns {
+.header--categories .header__btns {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -302,5 +302,142 @@ body {
 .list .item:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
+}
+
+.game {
+  padding-top: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+}
+
+.game .header--game .header__top {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.game .header--game .header__question {
+  font-weight: 700;
+  color: #660033;
+  font-size: 30px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.game__picture {
+  border-radius: 15px;
+  overflow: hidden;
+  -webkit-box-shadow: 2px 2px 15px #000000;
+          box-shadow: 2px 2px 15px #000000;
+  position: relative;
+}
+
+.game__picture img {
+  width: 100%;
+}
+
+.game__picture .pagination {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  bottom: 10px;
+  height: 20px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  left: 25%;
+  width: 50%;
+}
+
+.game__picture .pagination__item {
+  border: 1px solid #000;
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+}
+
+.game__picture .pagination__item--correct {
+  background-color: rgba(0, 102, 53, 0.9);
+}
+
+.game__picture .pagination__item--wrong {
+  background-color: rgba(184, 25, 25, 0.9);
+}
+
+.game__answers {
+  max-width: 800px;
+}
+
+.game__answers .answers--wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 0 10px;
+}
+
+.game__answers .answers__answer:first-of-type {
+  border-bottom: 1px solid #660033;
+  border-right: 1px solid #660033;
+}
+
+.game__answers .answers__answer:nth-of-type(2) {
+  border-bottom: 1px solid #660033;
+  border-left: 1px solid #660033;
+}
+
+.game__answers .answers__answer:nth-of-type(3) {
+  border-right: 1px solid #660033;
+  border-top: 1px solid #660033;
+}
+
+.game__answers .answers__answer:nth-of-type(4) {
+  border-left: 1px solid #660033;
+  border-top: 1px solid #660033;
+}
+
+.game__answers .answers__answer {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px 0px;
+  width: 50%;
+  text-align: center;
+  font-weight: 400;
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #660033;
+  background-color: rgba(255, 255, 255, 0.3);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.game__answers .answers__answer:hover {
+  cursor: pointer;
+  background-color: #555555;
+  color: #ffffff;
+}
+
+.game__answers .answers__answer--correct {
+  background-color: rgba(0, 102, 53, 0.5);
+  color: #ffffff;
+}
+
+.game__answers .answers__answer--wrong {
+  background-color: rgba(184, 25, 25, 0.5);
+  color: #ffffff;
 }
 /*# sourceMappingURL=main.min.css.map */
