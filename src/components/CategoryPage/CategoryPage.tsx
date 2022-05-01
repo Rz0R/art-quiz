@@ -25,7 +25,7 @@ const CategoryPage: React.FC = () => {
 
   return (
     <div className='categories'>
-      <div className='header'>
+      <div className='header header--categories'>
         <div className='header__title'>
           <div className='logo'>
             <img src={logo} alt='logo' />
