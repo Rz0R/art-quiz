@@ -6,6 +6,11 @@ export const QUESTIONS_IN_GROUP = 10;
 
 export const NUMBER_OF_POSSIBLE_ANSWERS = 4;
 
+export enum NameSpace {
+  app = 'APP',
+  game = 'GAME',
+}
+
 export enum QuestionsText {
   ARTIST = 'Who is the author of this picture?',
   PAINTING = 'Which is {AUTHOR} picture?',

@@ -1,5 +1,7 @@
 import { ArtistQuestions, PaintingQuestions } from './questions';
 
 export type GameState = {
-  questions: ArtistQuestions | PaintingQuestions;
+  questions: ArtistQuestions;
+  isLoading: boolean;
+  error: string;
 };

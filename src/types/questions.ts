@@ -7,6 +7,8 @@ export type Question = {
 
 export type ArtistQuestion = {
   question: string;
+  answer: string;
+  imageNum: string;
   authors: string[];
 };
 

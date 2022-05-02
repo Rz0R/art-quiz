@@ -1,11 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { appState } from './appState/appState';
 import { gameState } from './gameState/gameState';
-
-export enum NameSpace {
-  app = 'APP',
-  game = 'GAME',
-}
+import { NameSpace } from '../consts/const';
 
 export const rootReducer = combineReducers({
   [NameSpace.app]: appState,

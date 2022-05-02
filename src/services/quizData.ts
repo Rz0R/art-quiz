@@ -33,8 +33,8 @@ class QuizData {
 
     if (group < GROUP_QUANTITY) {
       return this.getArtistCategoryQuestions(group);
-    } else if (group >= GROUP_QUANTITY && group < GROUP_QUANTITY * 2) {
-      return this.getPaintingCategoryQuestions(group);
+      // } else if (group >= GROUP_QUANTITY && group < GROUP_QUANTITY * 2) {
+      //   return this.getPaintingCategoryQuestions(group);
     } else {
       throw new Error('No such group!');
     }
@@ -44,7 +44,10 @@ class QuizData {
     const result = [];
 
     for (let i = group * QUESTIONS_IN_GROUP; i < group * QUESTIONS_IN_GROUP + QUESTIONS_IN_GROUP; i++) {
-      const authors = new Set().add(this.allQuestions[i].author);
+      const answer = this.allQuestions[i].author;
+
+      const authors = new Set().add(answer);
+      const imageNum = this.allQuestions[i].imageNum;
 
       while (authors.size < NUMBER_OF_POSSIBLE_ANSWERS) {
         const author = this.uniqueAuthors[Math.floor(Math.random() * this.uniqueAuthors.length)];
@@ -55,6 +58,8 @@ class QuizData {
 
       const question = {
         question: QuestionsText.ARTIST,
+        answer,
+        imageNum,
         authors: [...authors].sort(() => Math.random() - 0.5),
       };
 
