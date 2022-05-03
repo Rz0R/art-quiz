@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { logo, homeIcon } from '../../consts/assetsPaths';
 import { createImageUrl, replaceElementInArray } from '../../utils/common';
 import { QUESTIONS_IN_GROUP } from '../../consts/const';
+import NextQuestionPopup from './NextQuestionPopup/NextQuestionPopup';
 
 const GamePage: React.FC = () => {
   const { groupId = '' } = useParams();
@@ -16,6 +17,8 @@ const GamePage: React.FC = () => {
     answers: [null, null, null, null],
   });
   const [pagination, setPagination] = useState(new Array(QUESTIONS_IN_GROUP).fill(null));
+  const [isNextQuestionPopupActive, setIsNextQuestionPopupActive] = useState(false);
+  const [isAnwerCorrect, setIsAnswerCorrect] = useState(false);
   const { questions, isLoading, error } = useAppSelector((state) => state.GAME);
 
   useEffect(() => {
@@ -30,7 +33,7 @@ const GamePage: React.FC = () => {
     return <h2>{error}</h2>;
   }
 
-  const { question, answer, imageNum, authors } = questions[questionNumber];
+  const { question, answer, imageNum, name, year, authors } = questions[questionNumber];
 
   const imageUrl = createImageUrl(imageNum);
 
@@ -47,24 +50,27 @@ const GamePage: React.FC = () => {
         isAnswered: true,
         answers: replaceElementInArray(answers, ind, 'answers__answer--correct'),
       });
+      setIsAnswerCorrect(true);
     } else {
       setPagination(replaceElementInArray(pagination, questionNumber, 'pagination__item--wrong'));
       setUserAnswer({
         isAnswered: true,
         answers: replaceElementInArray(answers, ind, 'answers__answer--wrong'),
       });
+      setIsAnswerCorrect(false);
     }
+    setIsNextQuestionPopupActive(true);
+  };
 
-    setTimeout(() => {
-      if (!(questionNumber + 1 >= QUESTIONS_IN_GROUP)) {
-        setQuestionNumber(questionNumber + 1);
-
-        setUserAnswer({
-          isAnswered: false,
-          answers: [null, null, null, null],
-        });
-      }
-    }, 1000);
+  const onNextBtnClick = () => {
+    if (!(questionNumber + 1 >= QUESTIONS_IN_GROUP)) {
+      setQuestionNumber(questionNumber + 1);
+      setUserAnswer({
+        isAnswered: false,
+        answers: [null, null, null, null],
+      });
+      setIsNextQuestionPopupActive(false);
+    }
   };
 
   return (
@@ -104,6 +110,15 @@ const GamePage: React.FC = () => {
           ))}
         </ul>
       </div>
+      <NextQuestionPopup
+        author={answer}
+        name={name}
+        year={year}
+        imageNum={imageNum}
+        isPopupActive={isNextQuestionPopupActive}
+        isAnwerCorrect={isAnwerCorrect}
+        onNextBtnClick={onNextBtnClick}
+      />
     </div>
   );
 };

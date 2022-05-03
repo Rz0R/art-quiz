@@ -45,6 +45,8 @@ class QuizData {
 
     for (let i = group * QUESTIONS_IN_GROUP; i < group * QUESTIONS_IN_GROUP + QUESTIONS_IN_GROUP; i++) {
       const answer = this.allQuestions[i].author;
+      const name = this.allQuestions[i].name;
+      const year = this.allQuestions[i].year;
 
       const authors = new Set().add(answer);
       const imageNum = this.allQuestions[i].imageNum;
@@ -60,6 +62,8 @@ class QuizData {
         question: QuestionsText.ARTIST,
         answer,
         imageNum,
+        name,
+        year,
         authors: [...authors].sort(() => Math.random() - 0.5),
       };
 

@@ -9,6 +9,8 @@ export type ArtistQuestion = {
   question: string;
   answer: string;
   imageNum: string;
+  name: string;
+  year: string;
   authors: string[];
 };
 
