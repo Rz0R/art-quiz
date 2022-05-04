@@ -480,6 +480,7 @@ body {
 
 .popup__content {
   background-color: #ffffff;
+  width: 600px;
   padding: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -528,5 +529,29 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.popup__text-congrats {
+  font-weight: 700;
+  font-size: 36px;
+  margin-bottom: 45px;
+}
+
+.popup__text-result {
+  font-weight: 700;
+  font-size: 96px;
+  margin-bottom: 30px;
+}
+
+.popup__good-job-icon {
+  margin-bottom: 100px;
+}
+
+.popup .popup_btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 40px;
+          column-gap: 40px;
 }
 /*# sourceMappingURL=main.min.css.map */
