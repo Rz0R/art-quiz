@@ -3,7 +3,7 @@ import { createImageUrl } from '../../../utils/common';
 import { correctAnswerIcon } from '../../../consts/assetsPaths';
 import { wrongAnswerIcon } from '../../../consts/assetsPaths';
 
-type NextQuestionPopupType = {
+type NextQuestionPopupProps = {
   author: string;
   name: string;
   year: string;
@@ -21,7 +21,7 @@ const NextQuestionPopup = ({
   isPopupActive,
   isAnwerCorrect,
   onNextBtnClick,
-}: NextQuestionPopupType): React.ReactPortal => {
+}: NextQuestionPopupProps): React.ReactPortal => {
   const imageUrl = createImageUrl(imageNum);
 
   return ReactDOM.createPortal(

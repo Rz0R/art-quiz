@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { loadQuestionsAction } from '../../store/serviceActions';
 import { Link } from 'react-router-dom';
 import { logo, homeIcon } from '../../consts/assetsPaths';
 import { createImageUrl, replaceElementInArray } from '../../utils/common';
-import { QUESTIONS_IN_GROUP } from '../../consts/const';
-import NextQuestionPopup from './NextQuestionPopup/NextQuestionPopup';
+import { QUESTIONS_IN_GROUP, GROUP_QUANTITY } from '../../consts/const';
+import NextQuestionPopup from './NextQuestionPopup';
+import GameResultPopup from './GameResultPopup';
 
 const GamePage: React.FC = () => {
   const { groupId = '' } = useParams();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [questionNumber, setQuestionNumber] = useState(0);
   const [userAnswer, setUserAnswer] = useState({
@@ -18,6 +20,7 @@ const GamePage: React.FC = () => {
   });
   const [pagination, setPagination] = useState(new Array(QUESTIONS_IN_GROUP).fill(null));
   const [isNextQuestionPopupActive, setIsNextQuestionPopupActive] = useState(false);
+  const [isGameResultPoupActive, setIsGameResultPoupActive] = useState(false);
   const [isAnwerCorrect, setIsAnswerCorrect] = useState(false);
   const { questions, isLoading, error } = useAppSelector((state) => state.GAME);
 
@@ -62,6 +65,17 @@ const GamePage: React.FC = () => {
     setIsNextQuestionPopupActive(true);
   };
 
+  const resetQuizState = () => {
+    setUserAnswer({
+      isAnswered: false,
+      answers: [null, null, null, null],
+    });
+    setIsGameResultPoupActive(false);
+    setIsNextQuestionPopupActive(false);
+    setPagination(new Array(QUESTIONS_IN_GROUP).fill(null));
+    setQuestionNumber(0);
+  };
+
   const onNextBtnClick = () => {
     if (!(questionNumber + 1 >= QUESTIONS_IN_GROUP)) {
       setQuestionNumber(questionNumber + 1);
@@ -70,7 +84,15 @@ const GamePage: React.FC = () => {
         answers: [null, null, null, null],
       });
       setIsNextQuestionPopupActive(false);
+    } else {
+      setIsGameResultPoupActive(true);
+      setIsNextQuestionPopupActive(false);
     }
+  };
+
+  const onNextQuizBtnClick = () => {
+    navigate(`/category/artists/${Number(groupId) + 1 <= GROUP_QUANTITY ? Number(groupId) + 1 : 0}`);
+    resetQuizState();
   };
 
   return (
@@ -118,6 +140,11 @@ const GamePage: React.FC = () => {
         isPopupActive={isNextQuestionPopupActive}
         isAnwerCorrect={isAnwerCorrect}
         onNextBtnClick={onNextBtnClick}
+      />
+      <GameResultPopup
+        correctAnswers={pagination.filter((item) => item === 'pagination__item--correct').length}
+        isPopupActive={isGameResultPoupActive}
+        onNextQuizBtnClick={onNextQuizBtnClick}
       />
     </div>
   );
