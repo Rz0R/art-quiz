@@ -15,3 +15,7 @@ export enum QuestionsText {
   ARTIST = 'Who is the author of this picture?',
   PAINTING = 'Which is {AUTHOR} picture?',
 }
+
+export type POPUP_TYPE = 'INFO' | 'RESULT';
+
+export const ANIMATION_TIME = 500;

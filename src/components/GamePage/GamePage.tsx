@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import { logo, homeIcon } from '../../consts/assetsPaths';
 import { createImageUrl, replaceElementInArray } from '../../utils/common';
 import { QUESTIONS_IN_GROUP, GROUP_QUANTITY } from '../../consts/const';
-import NextQuestionPopup from './NextQuestionPopup';
-import GameResultPopup from './GameResultPopup';
+import Popup from './Popup';
+import { POPUP_TYPE, ANIMATION_TIME } from '../../consts/const';
 
 const GamePage: React.FC = () => {
   const { groupId = '' } = useParams();
@@ -19,8 +19,9 @@ const GamePage: React.FC = () => {
     answers: [null, null, null, null],
   });
   const [pagination, setPagination] = useState(new Array(QUESTIONS_IN_GROUP).fill(null));
-  const [isNextQuestionPopupActive, setIsNextQuestionPopupActive] = useState(false);
-  const [isGameResultPoupActive, setIsGameResultPoupActive] = useState(false);
+  const [isPopupActive, setIsPopupActive] = useState(false);
+  const [popupType, setPopupType] = useState<POPUP_TYPE>('INFO');
+
   const [isAnwerCorrect, setIsAnswerCorrect] = useState(false);
   const { questions, isLoading, error } = useAppSelector((state) => state.GAME);
 
@@ -62,7 +63,8 @@ const GamePage: React.FC = () => {
       });
       setIsAnswerCorrect(false);
     }
-    setIsNextQuestionPopupActive(true);
+    setIsPopupActive(true);
+    setPopupType('INFO');
   };
 
   const resetQuizState = () => {
@@ -70,8 +72,8 @@ const GamePage: React.FC = () => {
       isAnswered: false,
       answers: [null, null, null, null],
     });
-    setIsGameResultPoupActive(false);
-    setIsNextQuestionPopupActive(false);
+    setIsPopupActive(false);
+    setPopupType('INFO');
     setPagination(new Array(QUESTIONS_IN_GROUP).fill(null));
     setQuestionNumber(0);
   };
@@ -83,10 +85,14 @@ const GamePage: React.FC = () => {
         isAnswered: false,
         answers: [null, null, null, null],
       });
-      setIsNextQuestionPopupActive(false);
+      setIsPopupActive(false);
+      setPopupType('INFO');
     } else {
-      setIsGameResultPoupActive(true);
-      setIsNextQuestionPopupActive(false);
+      setIsPopupActive(false);
+      setTimeout(() => {
+        setIsPopupActive(true);
+        setPopupType('RESULT');
+      }, ANIMATION_TIME);
     }
   };
 
@@ -132,18 +138,16 @@ const GamePage: React.FC = () => {
           ))}
         </ul>
       </div>
-      <NextQuestionPopup
+      <Popup
+        popupType={popupType}
+        isPopupActive={isPopupActive}
         author={answer}
         name={name}
         year={year}
         imageNum={imageNum}
-        isPopupActive={isNextQuestionPopupActive}
         isAnwerCorrect={isAnwerCorrect}
-        onNextBtnClick={onNextBtnClick}
-      />
-      <GameResultPopup
         correctAnswers={pagination.filter((item) => item === 'pagination__item--correct').length}
-        isPopupActive={isGameResultPoupActive}
+        onNextBtnClick={onNextBtnClick}
         onNextQuizBtnClick={onNextQuizBtnClick}
       />
     </div>
