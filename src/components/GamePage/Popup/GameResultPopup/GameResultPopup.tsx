@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { homeIcon, goodJobIcon } from '../../../../consts/assetsPaths';
+import LoadableImage from '../../../LoadableImage';
 
 type GameResultPopupProps = {
   correctAnswers: number;
@@ -13,7 +14,7 @@ const GameResultPopup = ({ correctAnswers, onNextQuizBtnClick }: GameResultPopup
         <div className='popup__text-congrats'>contgratulations!</div>
         <div className='popup__text-result'>{correctAnswers}/10</div>
         <div className='popup__good-job-icon'>
-          <img src={goodJobIcon} alt='good job' />
+          <LoadableImage src={goodJobIcon} alt='good job' />
         </div>
         <div className='popup_btns'>
           <Link to='/' className='btn'>

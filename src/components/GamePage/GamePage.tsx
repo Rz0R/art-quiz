@@ -8,6 +8,7 @@ import { createImageUrl, replaceElementInArray } from '../../utils/common';
 import { QUESTIONS_IN_GROUP, GROUP_QUANTITY } from '../../consts/const';
 import Popup from './Popup';
 import { POPUP_TYPE, ANIMATION_TIME } from '../../consts/const';
+import LoadableImage from '../LoadableImage';
 
 const GamePage: React.FC = () => {
   const { groupId = '' } = useParams();
@@ -116,7 +117,7 @@ const GamePage: React.FC = () => {
         <div className='header__question'>{question}</div>
       </div>
       <div className='game__picture'>
-        <img src={imageUrl} alt='' />
+        <LoadableImage src={imageUrl} />
         <div className='pagination'>
           {questions.map((_, ind) => (
             <div key={`pagItem-${ind}`} className={`pagination__item ${pagination[ind] ? pagination[ind] : ''}`} />
