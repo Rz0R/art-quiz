@@ -69,10 +69,6 @@
     }
   }
 
-  .btn--next {
-    justify-content: center;
-  }
-
   // congrats popup
   &__text-congrats {
     font-weight: 700;
@@ -93,5 +89,24 @@
   .popup_btns {
     display: flex;
     column-gap: 40px;
+  }
+
+  // game over popup
+
+  &__text-game-over {
+    font-size: 96px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 50px;
+  }
+
+  &__cup-icon {
+    margin-bottom: 40px;
+  }
+
+  &__text-play-again {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
   }
 }
