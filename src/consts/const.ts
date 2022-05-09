@@ -16,6 +16,6 @@ export enum QuestionsText {
   PAINTING = 'Which is {AUTHOR} picture?',
 }
 
-export type POPUP_TYPE = 'INFO' | 'RESULT';
+export type POPUP_TYPE = 'INFO' | 'RESULT' | 'GAME_OVER';
 
 export const ANIMATION_TIME = 500;

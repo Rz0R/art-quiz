@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import GameResultPopup from './GameResultPopup';
 import NextQuestionPopup from './NextQuestionPopup';
+import GameOverPopup from './GameOverPopup';
 import { POPUP_TYPE } from '../../../consts/const';
 
 type PopupProps = {
@@ -14,6 +15,7 @@ type PopupProps = {
   isAnwerCorrect: boolean;
   onNextBtnClick: () => void;
   onNextQuizBtnClick: () => void;
+  onTryAgainBtnClick: () => void;
 };
 
 const Popup = ({
@@ -27,6 +29,7 @@ const Popup = ({
   isAnwerCorrect,
   onNextBtnClick,
   onNextQuizBtnClick,
+  onTryAgainBtnClick,
 }: PopupProps) => {
   return ReactDOM.createPortal(
     <>
@@ -44,6 +47,9 @@ const Popup = ({
             />
           )}
           {popupType === 'RESULT' && <GameResultPopup correctAnswers={correctAnswers} onNextQuizBtnClick={onNextQuizBtnClick} />}
+          {popupType === 'GAME_OVER' && (
+            <GameOverPopup onTryAgainYesBtnClick={onTryAgainBtnClick} onTryAgainNoBtnClick={onNextQuizBtnClick} />
+          )}
         </div>
       </div>
     </>,

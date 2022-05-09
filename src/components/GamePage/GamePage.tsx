@@ -88,17 +88,27 @@ const GamePage: React.FC = () => {
       });
       setIsPopupActive(false);
       setPopupType('INFO');
-    } else {
+    } else if (pagination.filter((item) => item === 'pagination__item--correct').length > 0) {
       setIsPopupActive(false);
       setTimeout(() => {
         setIsPopupActive(true);
         setPopupType('RESULT');
+      }, ANIMATION_TIME);
+    } else {
+      setIsPopupActive(false);
+      setTimeout(() => {
+        setIsPopupActive(true);
+        setPopupType('GAME_OVER');
       }, ANIMATION_TIME);
     }
   };
 
   const onNextQuizBtnClick = () => {
     navigate(`/category/artists/${Number(groupId) + 1 <= GROUP_QUANTITY ? Number(groupId) + 1 : 0}`);
+    resetQuizState();
+  };
+
+  const onTryAgainBtnClick = () => {
     resetQuizState();
   };
 
@@ -150,6 +160,7 @@ const GamePage: React.FC = () => {
         correctAnswers={pagination.filter((item) => item === 'pagination__item--correct').length}
         onNextBtnClick={onNextBtnClick}
         onNextQuizBtnClick={onNextQuizBtnClick}
+        onTryAgainBtnClick={onTryAgainBtnClick}
       />
     </div>
   );

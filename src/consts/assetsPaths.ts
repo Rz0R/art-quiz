@@ -8,6 +8,7 @@ export const homeIcon = `${iconsPath}//home-icon.svg`;
 export const correctAnswerIcon = `${iconsPath}/correct-answer.png`;
 export const wrongAnswerIcon = `${iconsPath}/wrong-answer.png`;
 export const goodJobIcon = `${iconsPath}/good-job.png`;
+export const cupIcon = `${iconsPath}/cup-icon.png`;
 
 export const artistsBtnImg = `${imagesPath}/home-page/artists-quiz.jpg`;
 export const picturesBtnImg = `${imagesPath}/home-page/pictures-quiz.jpg`;

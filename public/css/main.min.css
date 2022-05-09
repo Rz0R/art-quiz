@@ -108,10 +108,8 @@ body {
           align-items: center;
   -webkit-box-shadow: 1px 6px 11px 1px rgba(0, 0, 0, 0.7);
           box-shadow: 1px 6px 11px 1px rgba(0, 0, 0, 0.7);
-  -webkit-transition: -webkit-box-shadow 0.5s ease;
-  transition: -webkit-box-shadow 0.5s ease;
-  transition: box-shadow 0.5s ease;
-  transition: box-shadow 0.5s ease, -webkit-box-shadow 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .btn:hover {
@@ -129,6 +127,12 @@ body {
 .btn--settings:hover img {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+}
+
+.btn--text-only {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .home {
@@ -525,12 +529,6 @@ body {
      object-position: 50% 50%;
 }
 
-.popup .btn--next {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
 .popup__text-congrats {
   font-weight: 700;
   font-size: 36px;
@@ -553,6 +551,23 @@ body {
   display: flex;
   -webkit-column-gap: 40px;
           column-gap: 40px;
+}
+
+.popup__text-game-over {
+  font-size: 96px;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+.popup__cup-icon {
+  margin-bottom: 40px;
+}
+
+.popup__text-play-again {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 30px;
 }
 
 .image-container {

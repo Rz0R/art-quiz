@@ -21,7 +21,7 @@ const GameResultPopup = ({ correctAnswers, onNextQuizBtnClick }: GameResultPopup
             <img src={homeIcon} alt='home button' />
             <span>home</span>
           </Link>
-          <button className='btn btn--next' onClick={onNextQuizBtnClick}>
+          <button className='btn btn--text-only' onClick={onNextQuizBtnClick}>
             <span>Next Quiz</span>
           </button>
         </div>
