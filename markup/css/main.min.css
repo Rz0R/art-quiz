@@ -353,7 +353,37 @@ body {
   width: 100%;
 }
 
-.game__picture .pagination {
+.game .pictures {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 15px;
+  position: relative;
+  max-width: 700px;
+}
+
+.game .pictures__item {
+  width: calc(50% - 8px);
+  border-radius: 15px;
+  overflow: hidden;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.game .pictures__item img {
+  width: 100%;
+}
+
+.game .pictures__item:hover {
+  overflow: hidden;
+  -webkit-box-shadow: 2px 2px 15px #000000;
+          box-shadow: 2px 2px 15px #000000;
+}
+
+.game .pagination {
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -366,7 +396,7 @@ body {
   width: 50%;
 }
 
-.game__picture .pagination__item {
+.game .pagination__item {
   border: 1px solid #000;
   border-radius: 50%;
   height: 12px;
@@ -374,11 +404,11 @@ body {
   background-color: rgba(221, 221, 221, 0.9);
 }
 
-.game__picture .pagination__item--correct {
+.game .pagination__item--correct {
   background-color: rgba(0, 102, 53, 0.9);
 }
 
-.game__picture .pagination__item--wrong {
+.game .pagination__item--wrong {
   background-color: rgba(184, 25, 25, 0.9);
 }
 

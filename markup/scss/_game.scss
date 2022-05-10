@@ -31,31 +31,56 @@
     img {
       width: 100%;
     }
+  }
 
-    .pagination {
-      position: absolute;
-      display: flex;
+  .pictures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    position: relative;
+    max-width: 700px;
 
-      bottom: 10px;
-      height: 20px;
-      justify-content: space-around;
-      left: 25%;
-      width: 50%;
+    &__item {
+      width: calc(50% - 8px);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.5s ease;
+      cursor: pointer;
 
-      &__item {
-        border: 1px solid #000;
-        border-radius: 50%;
-        height: 12px;
-        width: 12px;
-        background-color: rgba($color: $bg-clr, $alpha: 0.9);
+      img {
+        width: 100%;
+      }
 
-        &--correct {
-          background-color: rgba($color: $crct-clr, $alpha: 0.9);
-        }
+      &:hover {
+        overflow: hidden;
+        box-shadow: 2px 2px 15px #000000;
+      }
+    }
+  }
 
-        &--wrong {
-          background-color: rgba($color: $wrng-clr, $alpha: 0.9);
-        }
+  .pagination {
+    position: absolute;
+    display: flex;
+
+    bottom: 10px;
+    height: 20px;
+    justify-content: space-around;
+    left: 25%;
+    width: 50%;
+
+    &__item {
+      border: 1px solid #000;
+      border-radius: 50%;
+      height: 12px;
+      width: 12px;
+      background-color: rgba($color: $bg-clr, $alpha: 0.9);
+
+      &--correct {
+        background-color: rgba($color: $crct-clr, $alpha: 0.9);
+      }
+
+      &--wrong {
+        background-color: rgba($color: $wrng-clr, $alpha: 0.9);
       }
     }
   }
