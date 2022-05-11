@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import GroupItem from './GroupItem';
 import { logo, settingsIcon, homeIcon } from '../../consts/assetsPaths';
+import { createImageUrl } from '../../utils/common';
 
 const CategoryPage: React.FC = () => {
   const { catId = 'artists' } = useParams();
@@ -17,11 +18,13 @@ const CategoryPage: React.FC = () => {
   }
 
   for (i; i < j; i += 10) {
-    const imageSrc = `/assets/img/quiz/${i}.webp`;
+    const imageSrc = createImageUrl(String(i));
     images.push(imageSrc);
   }
 
-  const itemsEls = images.map((image, ind) => <GroupItem key={ind} categoryId={catId} groupNumber={(ind + 1).toString()} image={image} />);
+  const itemsEls = images.map((image, ind) => (
+    <GroupItem key={ind} categoryId={catId} groupNumber={(ind + 1).toString()} imageSrc={image} />
+  ));
 
   return (
     <div className='categories'>

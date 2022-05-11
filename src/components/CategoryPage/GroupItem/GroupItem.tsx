@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LoadableImage from '../../LoadableImage';
 
 interface IGroupItem {
   categoryId: string;
   groupNumber: string;
-  image: string;
+  imageSrc: string;
 }
 
-const GroupItem: React.FC<IGroupItem> = ({ categoryId, groupNumber, image }) => {
+const GroupItem: React.FC<IGroupItem> = ({ categoryId, groupNumber, imageSrc }) => {
   return (
     <Link className='item' to={`/category/${categoryId}/${groupNumber}`}>
       <div className='item__header'>
@@ -15,7 +16,7 @@ const GroupItem: React.FC<IGroupItem> = ({ categoryId, groupNumber, image }) => 
         <div className='item__score'>9/10</div>
       </div>
       <div className='item__picture'>
-        <img src={image} alt='' />
+        <LoadableImage src={imageSrc} />
       </div>
     </Link>
   );

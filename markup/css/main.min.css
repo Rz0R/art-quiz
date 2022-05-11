@@ -167,11 +167,13 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 15px;
+  max-width: 350px;
+  width: 100%;
 }
 
 .quiz-menu__btn {
-  max-width: 350px;
   display: block;
+  aspect-ratio: 1/1;
   position: relative;
   -webkit-transition: -webkit-box-shadow 1s ease;
   transition: -webkit-box-shadow 1s ease;
@@ -295,6 +297,10 @@ body {
 
 .list .item__score {
   font-size: 18px;
+}
+
+.list .item__picture {
+  aspect-ratio: 1/1;
 }
 
 .list .item__picture img {

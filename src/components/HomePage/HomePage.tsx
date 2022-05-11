@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { logo, artistsBtnImg, picturesBtnImg, settingsIcon } from '../../consts/assetsPaths';
+import LoadableImage from '../LoadableImage';
 
 const HomePage: React.FC = () => {
   return (
@@ -10,13 +11,13 @@ const HomePage: React.FC = () => {
 
       <div className='quiz-menu'>
         <Link className='quiz-menu__btn' to='/category/artists'>
-          <img src={artistsBtnImg} alt='artists quiz' />
+          <LoadableImage src={artistsBtnImg} alt='artists quiz' />
           <h3 className='quiz-menu__btn-title'>
             <span>artists</span> quiz
           </h3>
         </Link>
         <Link className='quiz-menu__btn' to='/category/pictures'>
-          <img src={picturesBtnImg} alt='pictures quiz' />
+          <LoadableImage src={picturesBtnImg} alt='artists quiz' />
           <h3 className='quiz-menu__btn-title'>
             <span>pictures</span> quiz
           </h3>
