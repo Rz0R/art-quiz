@@ -8,6 +8,7 @@ export type Question = {
 export type ArtistQuestion = {
   question: string;
   answer: string;
+  author: string;
   imageNum: string;
   name: string;
   year: string;
@@ -16,6 +17,11 @@ export type ArtistQuestion = {
 
 export type PaintingQuestion = {
   question: string;
+  answer: string;
+  author: string;
+  imageNum: string;
+  name: string;
+  year: string;
   paintings: string[];
 };
 

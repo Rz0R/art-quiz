@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { loadQuestionsAction } from '../../store/serviceActions';
+import { loadArtistQuestionsAction, loadPaintingQuestionsAction } from '../../store/serviceActions';
 import { replaceElementInArray } from '../../utils/common';
 import { QUESTIONS_IN_GROUP, GROUP_QUANTITY } from '../../consts/const';
 import Popup from './Popup';
 import ArtistQuiz from './ArtistQuiz';
+import PaintingQuiz from './PaintingQuiz';
 import { POPUP_TYPE, ANIMATION_TIME, CORRECT_ANSWERS_TYPE } from '../../consts/const';
 
 const GamePage: React.FC = () => {
-  const { groupId = '' } = useParams();
+  const { catId = '', groupId = '' } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [questionNumber, setQuestionNumber] = useState(0);
@@ -22,13 +23,29 @@ const GamePage: React.FC = () => {
   const [popupType, setPopupType] = useState<POPUP_TYPE>('INFO');
 
   const [isAnwerCorrect, setIsAnswerCorrect] = useState(false);
-  const { questions, isLoading, error } = useAppSelector((state) => state.GAME);
+  const { artistQuestions, paintingQuetions, isLoading, error } = useAppSelector((state) => state.GAME);
 
   useEffect(() => {
-    dispatch(loadQuestionsAction(Number(groupId)));
-  }, [groupId, dispatch]);
+    if (catId === 'artists') {
+      dispatch(loadArtistQuestionsAction(Number(groupId)));
+    } else if (catId === 'pictures') {
+      dispatch(loadPaintingQuestionsAction(Number(groupId)));
+    }
+  }, [catId, groupId, dispatch]);
 
-  if (isLoading || questions.length === 0) {
+  const checkDataIsLoading = (): boolean => {
+    if (isLoading || (catId === 'artists' && artistQuestions.length === 0)) {
+      return true;
+    }
+
+    if (isLoading || (catId === 'pictures' && paintingQuetions.length === 0)) {
+      return true;
+    }
+
+    return false;
+  };
+
+  if (checkDataIsLoading()) {
     return <h2>Loading....</h2>;
   }
 
@@ -36,8 +53,19 @@ const GamePage: React.FC = () => {
     return <h2>{error}</h2>;
   }
 
-  const artistQuestion = questions[questionNumber];
-  const { answer, imageNum, name, year } = artistQuestion;
+  let currentQuestion;
+
+  if (catId === 'artists') {
+    currentQuestion = artistQuestions[questionNumber];
+  } else if (catId === 'pictures') {
+    currentQuestion = paintingQuetions[questionNumber];
+  }
+
+  if (!currentQuestion) {
+    return <h2>No such page!</h2>;
+  }
+
+  const { author, answer, imageNum, name, year } = currentQuestion;
 
   const { isAnswered, answers } = userAnswer;
 
@@ -101,7 +129,7 @@ const GamePage: React.FC = () => {
   };
 
   const onNextQuizBtnClick = () => {
-    navigate(`/category/artists/${Number(groupId) + 1 <= GROUP_QUANTITY ? Number(groupId) + 1 : 0}`);
+    navigate(`/category/${catId}/${Number(groupId) + 1 <= GROUP_QUANTITY ? Number(groupId) + 1 : 1}`);
     resetQuizState();
   };
 
@@ -111,16 +139,23 @@ const GamePage: React.FC = () => {
 
   return (
     <div className='game'>
-      <ArtistQuiz
-        artistQuestion={artistQuestion}
-        pagination={pagination}
-        onAnswerBtnClick={onAnswerBtnClick}
-        answers={userAnswer.answers}
-      />
+      {catId === 'artists' && (
+        <ArtistQuiz
+          artistQuestion={artistQuestions[questionNumber]}
+          pagination={pagination}
+          onAnswerBtnClick={onAnswerBtnClick}
+          answers={userAnswer.answers}
+        />
+      )}
+
+      {catId === 'pictures' && (
+        <PaintingQuiz paintingQuestion={paintingQuetions[questionNumber]} pagination={pagination} onAnswerBtnClick={onAnswerBtnClick} />
+      )}
+
       <Popup
         popupType={popupType}
         isPopupActive={isPopupActive}
-        author={answer}
+        author={author}
         name={name}
         year={year}
         imageNum={imageNum}

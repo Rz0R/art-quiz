@@ -367,11 +367,14 @@ body {
       flex-wrap: wrap;
   gap: 15px;
   position: relative;
+  aspect-ratio: 1/1;
   max-width: 700px;
+  width: 100%;
 }
 
 .game .pictures__item {
-  width: calc(50% - 8px);
+  aspect-ratio: 1/1;
+  width: calc(50% - 7.5px);
   border-radius: 15px;
   overflow: hidden;
   -webkit-transition: all 0.5s ease;

@@ -40,11 +40,20 @@ class QuizData {
     }
   };
 
-  private getArtistCategoryQuestions = (group: number): ArtistQuestions => {
+  getArtistCategoryQuestions = async (group: number): Promise<ArtistQuestions> => {
+    if (group < 0 || group >= GROUP_QUANTITY) {
+      throw new Error('No such group!');
+    }
+
+    if (!this.isDataLoaded) {
+      await this.initData();
+    }
+
     const result = [];
 
     for (let i = group * QUESTIONS_IN_GROUP; i < group * QUESTIONS_IN_GROUP + QUESTIONS_IN_GROUP; i++) {
-      const answer = this.allQuestions[i].author;
+      const { author } = this.allQuestions[i];
+      const answer = author;
       const name = this.allQuestions[i].name;
       const year = this.allQuestions[i].year;
 
@@ -61,6 +70,7 @@ class QuizData {
       const question = {
         question: QuestionsText.ARTIST,
         answer,
+        author,
         imageNum,
         name,
         year,
@@ -73,12 +83,23 @@ class QuizData {
     return result as ArtistQuestions;
   };
 
-  private getPaintingCategoryQuestions = (group: number): PaintingQuestions => {
+  getPaintingCategoryQuestions = async (group: number): Promise<PaintingQuestions> => {
+    if (group < 0 || group >= GROUP_QUANTITY) {
+      throw new Error('No such group!');
+    }
+
+    if (!this.isDataLoaded) {
+      await this.initData();
+    }
+
     const result = [];
 
+    group = group + GROUP_QUANTITY;
+
     for (let i = group * QUESTIONS_IN_GROUP; i < group * QUESTIONS_IN_GROUP + QUESTIONS_IN_GROUP; i++) {
-      const { author, imageNum } = this.allQuestions[i];
+      const { author, imageNum, name, year } = this.allQuestions[i];
       const questionText = QuestionsText.PAINTING.replace('{AUTHOR}', author);
+      const answer = imageNum;
       const imageNums = [];
       imageNums.push(imageNum);
       const authors = new Set().add(author);
@@ -108,6 +129,11 @@ class QuizData {
 
       const question = {
         question: questionText,
+        answer,
+        author,
+        imageNum,
+        name,
+        year,
         paintings: imageNums,
       };
 
