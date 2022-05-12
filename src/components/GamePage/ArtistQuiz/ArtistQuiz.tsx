@@ -1,15 +1,25 @@
+import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { ArtistQuestions } from '../../../types/questions';
+import { ArtistQuestion } from '../../../types/questions';
 import { logo, homeIcon } from '../../../consts/assetsPaths';
 import { createImageUrl } from '../../../utils/common';
+import { CORRECT_ANSWERS_TYPE } from '../../../consts/const';
+import Pagination from '../Pagination';
 
-const ArtistQuiz = (questions: ArtistQuestions): JSX.Element => {
-  const { question, imageNum, authors } = questions[0];
+type ArtistQuizProps = {
+  artistQuestion: ArtistQuestion;
+  pagination: CORRECT_ANSWERS_TYPE[];
+  answers: CORRECT_ANSWERS_TYPE[];
+  onAnswerBtnClick: (ind: number, author: string) => void;
+};
+
+const ArtistQuiz = ({ artistQuestion, pagination, answers, onAnswerBtnClick }: ArtistQuizProps): JSX.Element => {
+  const { question, imageNum, authors } = artistQuestion;
 
   const imageUrl = createImageUrl(imageNum);
 
   return (
-    <div className='game'>
+    <>
       <div className='header header--game'>
         <div className='header__top'>
           <div className='logo'>
@@ -23,26 +33,28 @@ const ArtistQuiz = (questions: ArtistQuestions): JSX.Element => {
         <div className='header__question'>{question}</div>
       </div>
       <div className='game__picture'>
-        <img src={imageUrl} alt='' />
-        <div className='pagination'>
-          {/* <div className='pagination__item pagination__item--wrong' />
-          <div className='pagination__item pagination__item--correct' />
-          <div className='pagination__item' /> */}
-          {questions.map((_, ind) => (
-            <div key={`pagItem-${ind}`} className='pagination__item' />
-          ))}
-        </div>
+        <img src={imageUrl} alt='picture' />
+        <Pagination paginationValue={pagination} />
       </div>
       <div className='game__answers answers'>
         <ul className='answers--wrapper'>
           {authors.map((author, ind) => (
-            <li key={`${author}-${ind}`} className='answers__answer'>
+            <li
+              key={`${author}-${ind}`}
+              className={classnames('answers__answer', {
+                'answers__answer--correct': answers[ind] === 'CORRECT',
+                'answers__answer--wrong': answers[ind] === 'WRONG',
+              })}
+              onClick={() => {
+                onAnswerBtnClick(ind, author);
+              }}
+            >
               {author}
             </li>
           ))}
         </ul>
       </div>
-    </div>
+    </>
   );
 };
 

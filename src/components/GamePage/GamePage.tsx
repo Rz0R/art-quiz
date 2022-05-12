@@ -2,14 +2,11 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { loadQuestionsAction } from '../../store/serviceActions';
-import { Link } from 'react-router-dom';
-import { logo, homeIcon } from '../../consts/assetsPaths';
-import { createImageUrl, replaceElementInArray } from '../../utils/common';
+import { replaceElementInArray } from '../../utils/common';
 import { QUESTIONS_IN_GROUP, GROUP_QUANTITY } from '../../consts/const';
 import Popup from './Popup';
-import Pagination from './Pagination';
+import ArtistQuiz from './ArtistQuiz';
 import { POPUP_TYPE, ANIMATION_TIME, CORRECT_ANSWERS_TYPE } from '../../consts/const';
-import LoadableImage from '../LoadableImage';
 
 const GamePage: React.FC = () => {
   const { groupId = '' } = useParams();
@@ -39,9 +36,8 @@ const GamePage: React.FC = () => {
     return <h2>{error}</h2>;
   }
 
-  const { question, answer, imageNum, name, year, authors } = questions[questionNumber];
-
-  const imageUrl = createImageUrl(imageNum);
+  const artistQuestion = questions[questionNumber];
+  const { answer, imageNum, name, year } = artistQuestion;
 
   const { isAnswered, answers } = userAnswer;
 
@@ -54,14 +50,14 @@ const GamePage: React.FC = () => {
       setPagination(replaceElementInArray(pagination, questionNumber, 'CORRECT'));
       setUserAnswer({
         isAnswered: true,
-        answers: replaceElementInArray(answers, ind, 'answers__answer--correct'),
+        answers: replaceElementInArray(answers, ind, 'CORRECT'),
       });
       setIsAnswerCorrect(true);
     } else {
       setPagination(replaceElementInArray(pagination, questionNumber, 'WRONG'));
       setUserAnswer({
         isAnswered: true,
-        answers: replaceElementInArray(answers, ind, 'answers__answer--wrong'),
+        answers: replaceElementInArray(answers, ind, 'WRONG'),
       });
       setIsAnswerCorrect(false);
     }
@@ -115,37 +111,12 @@ const GamePage: React.FC = () => {
 
   return (
     <div className='game'>
-      <div className='header header--game'>
-        <div className='header__top'>
-          <div className='logo'>
-            <img src={logo} alt='logo' />
-          </div>
-          <Link to='/' className='btn'>
-            <img src={homeIcon} alt='home button' />
-            <span>home</span>
-          </Link>
-        </div>
-        <div className='header__question'>{question}</div>
-      </div>
-      <div className='game__picture'>
-        <LoadableImage src={imageUrl} />
-        <Pagination paginationValue={pagination} />
-      </div>
-      <div className='game__answers answers'>
-        <ul className='answers--wrapper'>
-          {authors.map((author, ind) => (
-            <li
-              key={`${author}-${ind}`}
-              className={`answers__answer ${answers[ind] ? answers[ind] : ''}`}
-              onClick={() => {
-                onAnswerBtnClick(ind, author);
-              }}
-            >
-              {author}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ArtistQuiz
+        artistQuestion={artistQuestion}
+        pagination={pagination}
+        onAnswerBtnClick={onAnswerBtnClick}
+        answers={userAnswer.answers}
+      />
       <Popup
         popupType={popupType}
         isPopupActive={isPopupActive}
