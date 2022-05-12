@@ -18,4 +18,6 @@ export enum QuestionsText {
 
 export type POPUP_TYPE = 'INFO' | 'RESULT' | 'GAME_OVER';
 
+export type CORRECT_ANSWERS_TYPE = 'CORRECT' | 'WRONG' | null;
+
 export const ANIMATION_TIME = 500;

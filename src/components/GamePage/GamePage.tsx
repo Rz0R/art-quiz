@@ -7,7 +7,8 @@ import { logo, homeIcon } from '../../consts/assetsPaths';
 import { createImageUrl, replaceElementInArray } from '../../utils/common';
 import { QUESTIONS_IN_GROUP, GROUP_QUANTITY } from '../../consts/const';
 import Popup from './Popup';
-import { POPUP_TYPE, ANIMATION_TIME } from '../../consts/const';
+import Pagination from './Pagination';
+import { POPUP_TYPE, ANIMATION_TIME, CORRECT_ANSWERS_TYPE } from '../../consts/const';
 import LoadableImage from '../LoadableImage';
 
 const GamePage: React.FC = () => {
@@ -19,7 +20,7 @@ const GamePage: React.FC = () => {
     isAnswered: false,
     answers: [null, null, null, null],
   });
-  const [pagination, setPagination] = useState(new Array(QUESTIONS_IN_GROUP).fill(null));
+  const [pagination, setPagination] = useState<CORRECT_ANSWERS_TYPE[]>(new Array(QUESTIONS_IN_GROUP).fill(null));
   const [isPopupActive, setIsPopupActive] = useState(false);
   const [popupType, setPopupType] = useState<POPUP_TYPE>('INFO');
 
@@ -50,14 +51,14 @@ const GamePage: React.FC = () => {
     }
 
     if (author === answer) {
-      setPagination(replaceElementInArray(pagination, questionNumber, 'pagination__item--correct'));
+      setPagination(replaceElementInArray(pagination, questionNumber, 'CORRECT'));
       setUserAnswer({
         isAnswered: true,
         answers: replaceElementInArray(answers, ind, 'answers__answer--correct'),
       });
       setIsAnswerCorrect(true);
     } else {
-      setPagination(replaceElementInArray(pagination, questionNumber, 'pagination__item--wrong'));
+      setPagination(replaceElementInArray(pagination, questionNumber, 'WRONG'));
       setUserAnswer({
         isAnswered: true,
         answers: replaceElementInArray(answers, ind, 'answers__answer--wrong'),
@@ -88,7 +89,7 @@ const GamePage: React.FC = () => {
       });
       setIsPopupActive(false);
       setPopupType('INFO');
-    } else if (pagination.filter((item) => item === 'pagination__item--correct').length > 0) {
+    } else if (pagination.filter((item) => item === 'CORRECT').length > 0) {
       setIsPopupActive(false);
       setTimeout(() => {
         setIsPopupActive(true);
@@ -128,11 +129,7 @@ const GamePage: React.FC = () => {
       </div>
       <div className='game__picture'>
         <LoadableImage src={imageUrl} />
-        <div className='pagination'>
-          {questions.map((_, ind) => (
-            <div key={`pagItem-${ind}`} className={`pagination__item ${pagination[ind] ? pagination[ind] : ''}`} />
-          ))}
-        </div>
+        <Pagination paginationValue={pagination} />
       </div>
       <div className='game__answers answers'>
         <ul className='answers--wrapper'>
@@ -157,7 +154,7 @@ const GamePage: React.FC = () => {
         year={year}
         imageNum={imageNum}
         isAnwerCorrect={isAnwerCorrect}
-        correctAnswers={pagination.filter((item) => item === 'pagination__item--correct').length}
+        correctAnswers={pagination.filter((item) => item === 'CORRECT').length}
         onNextBtnClick={onNextBtnClick}
         onNextQuizBtnClick={onNextQuizBtnClick}
         onTryAgainBtnClick={onTryAgainBtnClick}
