@@ -31,7 +31,7 @@ export const loadPaintingQuestionsAction = (group: number) => async (dispatch: A
   }
 };
 
-export const saveResultAction = (result: string[], category: CategoryType, group: number) => (dispatch: AppDispatch) => {
+export const saveResultAction = (result: string[] | null, category: CategoryType, group: number) => (dispatch: AppDispatch) => {
   if (category === CategoryType.ARTISTS) {
     group = group - 1;
   } else if (category === CategoryType.PAINTINGS) {
@@ -39,11 +39,10 @@ export const saveResultAction = (result: string[], category: CategoryType, group
   }
 
   const results = store.getState().RESULTS.answers;
-  console.log(result);
 
   const newResult = replaceElementInArray(results, group, result);
 
-  console.log(newResult);
+  localStorage.setItem('answers', JSON.stringify(newResult));
 
   dispatch(saveResult(newResult));
 };

@@ -23,6 +23,10 @@ export type POPUP_TYPE = 'INFO' | 'RESULT' | 'GAME_OVER';
 
 export type CORRECT_ANSWERS_TYPE = 'CORRECT' | 'WRONG' | null;
 
+export enum LOCAL_STORAGE_KEYS {
+  ANSWERS = 'answers',
+}
+
 export enum CategoryType {
   ARTISTS = 'artists',
   PAINTINGS = 'paintings',

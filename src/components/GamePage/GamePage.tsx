@@ -127,6 +127,8 @@ const GamePage: React.FC = () => {
         setIsPopupActive(true);
         setPopupType('GAME_OVER');
       }, ANIMATION_TIME);
+
+      dispatch(saveResultAction(null, catId as CategoryType, Number(groupId)));
     }
   };
 
