@@ -3,16 +3,17 @@ import { useParams } from 'react-router-dom';
 import GroupItem from './GroupItem';
 import { logo, settingsIcon, homeIcon } from '../../consts/assetsPaths';
 import { createImageUrl } from '../../utils/common';
+import { CategoryType } from '../../consts/const';
 
 const CategoryPage: React.FC = () => {
-  const { catId = 'artists' } = useParams();
+  const { catId = CategoryType.ARTISTS } = useParams();
 
   const images: string[] = [];
 
   let i = 0;
   let j = 120;
 
-  if (catId !== 'artists') {
+  if (catId !== CategoryType.ARTISTS) {
     i = 120;
     j = i * 2;
   }

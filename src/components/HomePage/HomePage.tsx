@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { logo, artistsBtnImg, picturesBtnImg, settingsIcon } from '../../consts/assetsPaths';
+import { CategoryType } from '../../consts/const';
 import LoadableImage from '../LoadableImage';
 
 const HomePage: React.FC = () => {
@@ -10,13 +11,13 @@ const HomePage: React.FC = () => {
       </div>
 
       <div className='quiz-menu'>
-        <Link className='quiz-menu__btn' to='/category/artists'>
+        <Link className='quiz-menu__btn' to={`/category/${CategoryType.ARTISTS}`}>
           <LoadableImage src={artistsBtnImg} alt='artists quiz' />
           <h3 className='quiz-menu__btn-title'>
             <span>artists</span> quiz
           </h3>
         </Link>
-        <Link className='quiz-menu__btn' to='/category/pictures'>
+        <Link className='quiz-menu__btn' to={`/category/${CategoryType.PAINTINGS}`}>
           <LoadableImage src={picturesBtnImg} alt='artists quiz' />
           <h3 className='quiz-menu__btn-title'>
             <span>pictures</span> quiz

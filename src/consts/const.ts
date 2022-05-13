@@ -2,6 +2,8 @@ export const URL = '/data/images.json';
 
 export const GROUP_QUANTITY = 12;
 
+export const NUMBER_OF_ALL_GROUPS = GROUP_QUANTITY * 2;
+
 export const QUESTIONS_IN_GROUP = 10;
 
 export const NUMBER_OF_POSSIBLE_ANSWERS = 4;
@@ -9,6 +11,7 @@ export const NUMBER_OF_POSSIBLE_ANSWERS = 4;
 export enum NameSpace {
   app = 'APP',
   game = 'GAME',
+  results = 'RESULTS',
 }
 
 export enum QuestionsText {
@@ -19,5 +22,10 @@ export enum QuestionsText {
 export type POPUP_TYPE = 'INFO' | 'RESULT' | 'GAME_OVER';
 
 export type CORRECT_ANSWERS_TYPE = 'CORRECT' | 'WRONG' | null;
+
+export enum CategoryType {
+  ARTISTS = 'artists',
+  PAINTINGS = 'paintings',
+}
 
 export const ANIMATION_TIME = 500;
