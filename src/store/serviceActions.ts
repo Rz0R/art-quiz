@@ -7,7 +7,7 @@ import {
 import { saveResult } from './resultState/resultState';
 import { quizData } from '../services/quizData';
 import { AppDispatch } from './rootReducer';
-import { CategoryType, GROUP_QUANTITY } from '../consts/const';
+import { CategoryType, GROUP_QUANTITY, LOCAL_STORAGE_KEYS } from '../consts/const';
 import { store } from './rootReducer';
 import { replaceElementInArray } from '../utils/common';
 
@@ -42,7 +42,7 @@ export const saveResultAction = (result: string[] | null, category: CategoryType
 
   const newResult = replaceElementInArray(results, group, result);
 
-  localStorage.setItem('answers', JSON.stringify(newResult));
+  localStorage.setItem(LOCAL_STORAGE_KEYS.ANSWERS, JSON.stringify(newResult));
 
   dispatch(saveResult(newResult));
 };

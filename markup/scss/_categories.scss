@@ -56,7 +56,7 @@
     }
 
     &__number {
-      font-size: 36px;
+      font-size: 72px;
       font-weight: 700;
     }
 
@@ -74,6 +74,14 @@
 
     &:hover {
       transform: scale(1.05);
+    }
+
+    &.answered {
+      color: $main-clr;
+
+      img {
+        filter: grayscale(0);
+      }
     }
   }
 }

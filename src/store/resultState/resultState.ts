@@ -8,8 +8,6 @@ const initialState: ResultState = {
   answers: (localResults.length > 0 && localResults) || new Array(NUMBER_OF_ALL_GROUPS).fill(null),
 };
 
-console.log(initialState);
-
 export const resultStateSlice = createSlice({
   name: NameSpace.results,
   initialState,
