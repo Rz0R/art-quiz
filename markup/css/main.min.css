@@ -421,6 +421,18 @@ body {
           filter: grayscale(0);
 }
 
+.scores {
+  padding-top: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+}
+
 .item__check {
   max-width: 60px;
 }

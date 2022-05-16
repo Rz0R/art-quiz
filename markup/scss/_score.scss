@@ -1,3 +1,10 @@
+.scores {
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .item {
   &__check {
     max-width: 60px;

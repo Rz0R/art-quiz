@@ -21,7 +21,7 @@ const GroupItem: React.FC<IGroupItem> = ({ categoryId, groupNumber, imageSrc, is
 
   const onScoreBntClick = (evt: MouseEvent) => {
     evt.stopPropagation();
-    console.log('score btn was clicked!');
+    navigate(`/score/${categoryId}/${groupNumber}`);
   };
 
   return (
@@ -32,7 +32,7 @@ const GroupItem: React.FC<IGroupItem> = ({ categoryId, groupNumber, imageSrc, is
       </div>
       <div className='item__picture'>
         <LoadableImage src={imageSrc} />
-        <div className='item__info-btn' onClick={onScoreBntClick}>
+        <div className='item__score-btn' onClick={onScoreBntClick}>
           <img src={scoreIcon} alt='quiz score' />
           <span>score</span>
         </div>

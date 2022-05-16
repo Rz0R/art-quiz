@@ -5,6 +5,7 @@ import {
   questionsLoadingError,
 } from './gameState/gameState';
 import { saveResult } from './resultState/resultState';
+import { scoreQuestionsLoading, scoreQuestionsLoadingSucces, scoreQuestionsLoadingError } from './scoreState/scoreState';
 import { quizData } from '../services/quizData';
 import { AppDispatch } from './rootReducer';
 import { CategoryType, GROUP_QUANTITY, LOCAL_STORAGE_KEYS } from '../consts/const';
@@ -28,6 +29,16 @@ export const loadPaintingQuestionsAction = (group: number) => async (dispatch: A
     dispatch(paintingQuestionsLoadinsSuccess(questions));
   } catch (err: any) {
     dispatch(questionsLoadingError(err.message));
+  }
+};
+
+export const loadScoreQuestionsAction = (group: number) => async (dispatch: AppDispatch) => {
+  try {
+    dispatch(scoreQuestionsLoading);
+    const questions = await quizData.getScoreQestionsByGroup(group - 1);
+    dispatch(scoreQuestionsLoadingSucces(questions));
+  } catch (err: any) {
+    dispatch(scoreQuestionsLoadingError(err.message));
   }
 };
 

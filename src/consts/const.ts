@@ -12,6 +12,7 @@ export enum NameSpace {
   app = 'APP',
   game = 'GAME',
   results = 'RESULTS',
+  scores = 'SCORES',
 }
 
 export enum QuestionsText {

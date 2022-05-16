@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
 import GroupItem from './GroupItem';
 import { logo, settingsIcon, homeIcon } from '../../consts/assetsPaths';

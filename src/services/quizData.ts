@@ -1,4 +1,4 @@
-import { GROUP_QUANTITY, QUESTIONS_IN_GROUP, NUMBER_OF_POSSIBLE_ANSWERS, QuestionsText } from '../consts/const';
+import { GROUP_QUANTITY, QUESTIONS_IN_GROUP, NUMBER_OF_POSSIBLE_ANSWERS, QuestionsText, NUMBER_OF_ALL_GROUPS } from '../consts/const';
 import { URL } from '../consts/const';
 import { Questions, ArtistQuestions, PaintingQuestions } from '../types/questions';
 
@@ -141,6 +141,21 @@ class QuizData {
     }
 
     return result;
+  };
+
+  getScoreQestionsByGroup = async (group: number): Promise<Questions> => {
+    if (group < 0 || group >= NUMBER_OF_ALL_GROUPS) {
+      throw new Error('No such group!');
+    }
+
+    if (!this.isDataLoaded) {
+      await this.initData();
+    }
+
+    const numberOfFirstQuestion = group * QUESTIONS_IN_GROUP;
+    const numberOfLastQuestion = numberOfFirstQuestion + QUESTIONS_IN_GROUP;
+
+    return this.allQuestions.slice(numberOfFirstQuestion, numberOfLastQuestion);
   };
 }
 
