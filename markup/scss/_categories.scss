@@ -64,7 +64,7 @@
       font-size: 18px;
     }
 
-    &__info-btn {
+    &__score-btn {
       position: absolute;
       width: 100%;
       height: 70px;
@@ -95,7 +95,7 @@
     }
 
     &.answered .item__picture:hover {
-      .item__info-btn {
+      .item__score-btn {
         bottom: 0;
       }
     }

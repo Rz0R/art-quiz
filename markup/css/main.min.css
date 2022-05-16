@@ -364,7 +364,7 @@ body {
   font-size: 18px;
 }
 
-.list .item__info-btn {
+.list .item__score-btn {
   position: absolute;
   width: 100%;
   height: 70px;
@@ -387,7 +387,7 @@ body {
   width: 100%;
 }
 
-.list .item__info-btn img {
+.list .item__score-btn img {
   max-width: 50px;
 }
 
@@ -403,7 +403,7 @@ body {
   width: 100%;
 }
 
-.list .item.answered .item__picture:hover .item__info-btn {
+.list .item.answered .item__picture:hover .item__score-btn {
   bottom: 0;
 }
 
@@ -419,6 +419,55 @@ body {
 .list .item.answered img {
   -webkit-filter: grayscale(0);
           filter: grayscale(0);
+}
+
+.item__check {
+  max-width: 60px;
+}
+
+.item__check img {
+  max-width: 100%;
+}
+
+.item__info {
+  padding-top: 10px;
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  bottom: -50%;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  background-color: rgba(102, 0, 51, 0.6);
+  color: #ffffff;
+  text-align: center;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+.item__info p {
+  padding-bottom: 10px;
+}
+
+.item.item--show-info .item__info {
+  bottom: 0;
+}
+
+.item.correct {
+  color: #660033;
+}
+
+.item.correct img {
+  -webkit-filter: grayscale(0);
+          filter: grayscale(0);
+}
+
+.item.wrong .item__info {
+  -webkit-filter: grayscale(1);
+          filter: grayscale(1);
+}
+
+.list.list--score .item {
+  width: calc(33.3333% - 7px);
 }
 
 .game {

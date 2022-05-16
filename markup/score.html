@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/main.min.css">
-	<title>Category</title>
+	<title>Score</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
 						<div class="logo">
 							<img src="assets/img/logo.png" alt="logo">
 						</div>
-						<div class="header__title-name">Categories</div>
+						<div class="header__title-name">Score</div>
 					</div>
 					<div class="header__btns">
 						<a class="btn" href="#">
@@ -35,40 +35,44 @@
 					</div>
 				</div>
 
-				<div class="list">
-					<a class="item answered" href="#">
+				<div class="list list--score">
+					<button class="item item--show-info correct" href="#">
 						<div class="item__header">
 							<div class="item__number">1</div>
-							<div class="item__score">9/10</div>
+							<div class="item__check">
+								<img src="assets/icons/correct-answer.png" alt="correct">
+							</div>
 						</div>
 
 						<div class="item__picture">
 							<img src="assets/img/quiz/0.webp" alt="0">
-							<button class="item__score-btn">
-								<img src="assets/icons/score-icon.svg" alt="quiz score">
-								<span>score</span>
-							</button>
+							<div class="item__info">
+								<p>Girl with a Pearl Earring</p>
+								<p>Johannes Vermeer</p>
+								<p>1665</p>
+							</div>
 						</div>
-					</a>
+					</button>
 
-					<a class="item" href="#">
+					<button class="item item--show-info wrong" href="#">
 						<div class="item__header">
 							<div class="item__number">1</div>
-							<!-- <div class="item__score">9/10</div> -->
+							<div class="item__check">
+								<img src="assets/icons/wrong-answer.png" alt="wrong">
+							</div>
 						</div>
 
 						<div class="item__picture">
 							<img src="assets/img/quiz/10.webp" alt="0">
 							<div class="item__info">
-								<button class="item__info-btn">
-									<img src="assets/icons/score-icon.svg" alt="quiz score">
-									<span>score</span>
-								</button>
+								<p>Girl with a Pearl Earring</p>
+								<p>Johannes Vermeer</p>
+								<p>1665</p>
 							</div>
 						</div>
-					</a>
+					</button>
 
-					<a class="item" href="#">
+					<button class="item">
 						<div class="item__header">
 							<div class="item__number">1</div>
 							<!-- <div class="item__score">9/10</div> -->
@@ -77,9 +81,9 @@
 						<div class="item__picture">
 							<img src="assets/img/quiz/20.webp" alt="0">
 						</div>
-					</a>
+					</button>
 
-					<a class="item" href="#">
+					<button class="item">
 						<div class="item__header">
 							<div class="item__number">1</div>
 							<!-- <div class="item__score">9/10</div> -->
@@ -88,9 +92,9 @@
 						<div class="item__picture">
 							<img src="assets/img/quiz/30.webp" alt="0">
 						</div>
-					</a>
+					</button>
 
-					<a class="item" href="#">
+					<button class="item">
 						<div class="item__header">
 							<div class="item__number">1</div>
 							<!-- <div class="item__score">9/10</div> -->
@@ -99,9 +103,9 @@
 						<div class="item__picture">
 							<img src="assets/img/quiz/40.webp" alt="0">
 						</div>
-					</a>
+					</button>
 
-					<a class="item" href="#">
+					<button class="item">
 						<div class="item__header">
 							<div class="item__number">1</div>
 							<!-- <div class="item__score">9/10</div> -->
@@ -110,7 +114,7 @@
 						<div class="item__picture">
 							<img src="assets/img/quiz/50.webp" alt="0">
 						</div>
-					</a>
+					</button>
 
 				</div>
 			</div>
