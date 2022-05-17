@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { loadScoreQuestionsAction } from '../../store/serviceActions';
 import ScoreGroupItem from './ScoreGroupItem';
+import Loader from '../Loader';
 import { logo, settingsIcon, homeIcon } from '../../consts/assetsPaths';
 import { CategoryType, GROUP_QUANTITY } from '../../consts/const';
 
@@ -35,7 +36,8 @@ const ScorePage = () => {
   }
 
   if (isLoading || questions.length === 0) {
-    return <h2>Loading....</h2>;
+    console.log('Loader');
+    return <Loader />;
   }
 
   if (error) {

@@ -7,6 +7,7 @@ import { QUESTIONS_IN_GROUP, GROUP_QUANTITY, CategoryType } from '../../consts/c
 import Popup from './Popup';
 import ArtistQuiz from './ArtistQuiz';
 import PaintingQuiz from './PaintingQuiz';
+import Loader from '../Loader';
 import { POPUP_TYPE, ANIMATION_TIME, CORRECT_ANSWERS_TYPE } from '../../consts/const';
 
 const GamePage: React.FC = () => {
@@ -46,7 +47,7 @@ const GamePage: React.FC = () => {
   };
 
   if (checkDataIsLoading()) {
-    return <h2>Loading....</h2>;
+    return <Loader />;
   }
 
   if (error) {

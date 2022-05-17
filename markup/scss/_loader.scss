@@ -1,4 +1,4 @@
-.loading__wrapper {
+.loader__wrapper {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -14,13 +14,13 @@
   border-radius: 50%;
   position: relative;
   text-indent: -9999em;
-  -webkit-animation: load 1.3s infinite linear;
-  animation: load 1.3s infinite linear;
+  -webkit-animation: load-spinner 1.3s infinite linear;
+  animation: load-spinner 1.3s infinite linear;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
 }
-@-webkit-keyframes load {
+@-webkit-keyframes load-spinner {
   0%,
   100% {
     box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
@@ -49,7 +49,7 @@
     box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
   }
 }
-@keyframes load {
+@keyframes load-spinner {
   0%,
   100% {
     box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;

@@ -94,7 +94,7 @@
       }
     }
 
-    &.answered .item__picture:hover {
+    &.answered:hover {
       .item__score-btn {
         bottom: 0;
       }
