@@ -1,0 +1,20 @@
+.error {
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: calc(100vh - 15px);
+
+  &__body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  &__text {
+    font-size: 50px;
+    font-weight: bold;
+    color: $sec-clr;
+  }
+}

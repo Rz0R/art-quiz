@@ -1,8 +1,17 @@
+html {
+  font-size: 18px;
+}
+
 body {
   height: 100%;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   background-color: $bg-clr;
+}
+
+.root {
+  min-height: 100%;
+  overflow: hidden;
 }
 
 .container {
