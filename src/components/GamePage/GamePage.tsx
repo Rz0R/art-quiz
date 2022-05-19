@@ -7,6 +7,7 @@ import { QUESTIONS_IN_GROUP, GROUP_QUANTITY, CategoryType } from '../../consts/c
 import Popup from './Popup';
 import ArtistQuiz from './ArtistQuiz';
 import PaintingQuiz from './PaintingQuiz';
+import ErrorPage from '../ErrorPage';
 import Loader from '../Loader';
 import { POPUP_TYPE, ANIMATION_TIME, CORRECT_ANSWERS_TYPE } from '../../consts/const';
 
@@ -46,12 +47,12 @@ const GamePage: React.FC = () => {
     return false;
   };
 
-  if (checkDataIsLoading()) {
-    return <Loader />;
+  if (error) {
+    return <ErrorPage errorMessage={error} />;
   }
 
-  if (error) {
-    return <h2>{error}</h2>;
+  if (checkDataIsLoading()) {
+    return <Loader />;
   }
 
   let currentQuestion;
@@ -63,7 +64,7 @@ const GamePage: React.FC = () => {
   }
 
   if (!currentQuestion) {
-    return <h2>No such page!</h2>;
+    return <ErrorPage errorMessage={error} />;
   }
 
   const { author, answer, imageNum, name, year } = currentQuestion;

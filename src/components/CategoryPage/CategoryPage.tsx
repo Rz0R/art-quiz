@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
+import ErrorPage from '../ErrorPage';
 import GroupItem from './GroupItem';
 import { logo, settingsIcon, homeIcon } from '../../consts/assetsPaths';
 import { createImageUrl } from '../../utils/common';
@@ -11,7 +12,7 @@ const CategoryPage: React.FC = () => {
   const { answers } = useAppSelector((state) => state.RESULTS);
 
   if (!(catId === CategoryType.ARTISTS || catId === CategoryType.PAINTINGS)) {
-    return <h2>404</h2>;
+    return <ErrorPage errorMessage='404' />;
   }
 
   let min = 0;

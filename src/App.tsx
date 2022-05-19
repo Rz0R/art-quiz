@@ -5,7 +5,7 @@ import SettingsPage from './components/SettingsPage';
 import CategoryPage from './components/CategoryPage';
 import GamePage from './components/GamePage';
 import ScorePage from './components/ScorePage';
-import NotFoundPage from './components/NotFoundPage';
+import ErrorPage from './components/ErrorPage';
 
 const App: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const App: React.FC = () => {
         <Route path='/category/:catId/:groupId' element={<GamePage />} />
         <Route path='/score/:catId/:groupId' element={<ScorePage />} />
         <Route path='/settings' element={<SettingsPage />} />
-        <Route path='*' element={<NotFoundPage />} />
+        <Route path='*' element={<ErrorPage errorMessage='404' />} />
       </Routes>
     </div>
   );

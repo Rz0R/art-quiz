@@ -6,6 +6,7 @@ import ScoreGroupItem from './ScoreGroupItem';
 import Loader from '../Loader';
 import { logo, settingsIcon, homeIcon } from '../../consts/assetsPaths';
 import { CategoryType, GROUP_QUANTITY } from '../../consts/const';
+import ErrorPage from '../ErrorPage';
 
 const ScorePage = () => {
   const { catId = CategoryType.ARTISTS, groupId } = useParams();
@@ -27,21 +28,18 @@ const ScorePage = () => {
     }
   }, [catId, groupId, groupNumber, dispatch]);
 
-  console.log(groupNumber, answers[groupNumber]);
-
   const currentAnswers = answers[groupNumber - 1];
 
   if (!(catId === CategoryType.ARTISTS || catId === CategoryType.PAINTINGS) || !currentAnswers) {
-    return <h2>404</h2>;
+    return <ErrorPage errorMessage='404' />;
   }
 
   if (isLoading || questions.length === 0) {
-    console.log('Loader');
     return <Loader />;
   }
 
   if (error) {
-    return <h2>{error}</h2>;
+    return <ErrorPage errorMessage={error} />;
   }
 
   const scoreGroupItems = questions.map((question, ind) => (
