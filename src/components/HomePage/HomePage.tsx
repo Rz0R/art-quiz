@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { logo, artistsBtnImg, picturesBtnImg, settingsIcon } from '../../consts/assetsPaths';
+import { logo, artistsBtnImg, picturesBtnImg } from '../../consts/assetsPaths';
 import { CategoryType } from '../../consts/const';
 import LoadableImage from '../LoadableImage';
 
@@ -25,8 +25,7 @@ const HomePage: React.FC = () => {
         </Link>
       </div>
       <Link className='btn btn--settings' to='/settings'>
-        <img src={settingsIcon} alt='pictures quiz' />
-        <span>settings</span>
+        settings
       </Link>
     </div>
   );

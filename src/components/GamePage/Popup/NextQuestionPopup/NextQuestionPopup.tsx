@@ -26,8 +26,8 @@ const NextQuestionPopup = ({ author, name, year, imageNum, isAnwerCorrect, onNex
       <div className='popup__picture-name'>{name}</div>
       <div className='popup__picture-author'>{author}</div>
       <div className='popup__picture-year'>{year}</div>
-      <button className='btn btn--text-only' onClick={onNextBtnClick}>
-        <span>Next</span>
+      <button className='btn' onClick={onNextBtnClick}>
+        Next
       </button>
     </>
   );

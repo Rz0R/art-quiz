@@ -24,33 +24,72 @@ body {
 .btn {
   display: block;
   background-color: #660033;
-  width: 150px;
-  height: 50px;
-  padding: 2px 7px 2px 3px;
-  color: #ffffff;
+  min-width: 200px;
+  min-height: 50px;
+  padding: 2px 5px;
+  color: $thrd-clr;
   font-size: 18px;
   text-transform: uppercase;
+  justify-content: center;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   box-shadow: 1px 6px 11px 1px rgba(0, 0, 0, 0.7);
   transition: all 0.5s ease;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   }
 
   &--settings {
-    img {
+    position: relative;
+    padding: 2px 5px 2px 55px;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 2.5px;
+      left: 5px;
+      display: block;
+      width: 45px;
+      height: 45px;
+      background: url('/assets/icons/settings-icon.svg') center/45px 45px no-repeat;
       transition: transform 2s;
     }
 
-    &:hover img {
+    &:hover::before {
       transform: rotate(180deg);
     }
   }
 
-  &--text-only {
-    justify-content: center;
+  &--home {
+    position: relative;
+    padding: 2px 5px 2px 55px;
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      top: 50%;
+      left: 5px;
+      transform: translateY(-50%);
+      width: 45px;
+      height: 45px;
+      background: url('/assets/icons/home-icon.svg') center/45px 45px no-repeat;
+    }
+  }
+
+  &--categories {
+    position: relative;
+    padding: 2px 5px 2px 55px;
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      top: 50%;
+      left: 5px;
+      transform: translateY(-50%);
+      width: 35px;
+      height: 35px;
+      background: url('/assets/icons/categories-icon.svg') center/35px 35px no-repeat;
+    }
   }
 }

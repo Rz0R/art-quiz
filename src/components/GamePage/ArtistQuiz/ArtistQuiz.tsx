@@ -1,10 +1,10 @@
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { ArtistQuestion } from '../../../types/questions';
-import { logo, homeIcon } from '../../../consts/assetsPaths';
 import { createImageUrl } from '../../../utils/common';
-import { CORRECT_ANSWERS_TYPE } from '../../../consts/const';
+import { CORRECT_ANSWERS_TYPE, CategoryType } from '../../../consts/const';
 import Pagination from '../Pagination';
+import { logo } from '../../../consts/assetsPaths';
 
 type ArtistQuizProps = {
   artistQuestion: ArtistQuestion;
@@ -22,12 +22,11 @@ const ArtistQuiz = ({ artistQuestion, pagination, answers, onAnswerBtnClick }: A
     <>
       <div className='header header--game'>
         <div className='header__top'>
-          <div className='logo'>
+          <Link className='logo' to='/'>
             <img src={logo} alt='logo' />
-          </div>
-          <Link to='/' className='btn'>
-            <img src={homeIcon} alt='home button' />
-            <span>home</span>
+          </Link>
+          <Link className='btn btn--categories' to={`/category/${CategoryType.ARTISTS}`}>
+            categories
           </Link>
         </div>
         <div className='header__question'>{question}</div>

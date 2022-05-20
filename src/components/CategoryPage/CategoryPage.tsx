@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
 import ErrorPage from '../ErrorPage';
 import GroupItem from './GroupItem';
-import { logo, settingsIcon, homeIcon } from '../../consts/assetsPaths';
+import { logo } from '../../consts/assetsPaths';
 import { createImageUrl } from '../../utils/common';
 import { CategoryType } from '../../consts/const';
 import { GROUP_QUANTITY, QUESTIONS_IN_GROUP, NUMBER_OF_ALL_GROUPS } from '../../consts/const';
@@ -34,20 +34,17 @@ const CategoryPage: React.FC = () => {
     <div className='categories'>
       <div className='header header--categories'>
         <div className='header__title'>
-          <div className='logo'>
+          <Link className='logo' to='/'>
             <img src={logo} alt='logo' />
-          </div>
+          </Link>
           <div className='header__title-name'>Categories</div>
         </div>
-
         <div className='header__btns'>
-          <Link className='btn' to='/'>
-            <img src={homeIcon} alt='home button' />
-            <span>home</span>
+          <Link className='btn btn--home' to='/'>
+            home
           </Link>
           <Link className='btn btn--settings' to='/settings'>
-            <img src={settingsIcon} alt='settings button' />
-            <span>settings</span>
+            settings
           </Link>
         </div>
       </div>

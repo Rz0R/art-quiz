@@ -15,11 +15,11 @@ const GameOverPopup = ({ onTryAgainYesBtnClick, onTryAgainNoBtnClick }: GameOver
       </div>
       <div className='popup__text-play-again'>play again?</div>
       <div className='popup_btns'>
-        <button className='btn btn--text-only' onClick={onTryAgainYesBtnClick}>
-          <span>Yes</span>
+        <button className='btn' onClick={onTryAgainYesBtnClick}>
+          Yes
         </button>
-        <button className='btn btn--text-only' onClick={onTryAgainNoBtnClick}>
-          <span>No</span>
+        <button className='btn' onClick={onTryAgainNoBtnClick}>
+          No
         </button>
       </div>
     </>
