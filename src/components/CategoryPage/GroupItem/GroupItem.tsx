@@ -1,6 +1,5 @@
 import React, { MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { scoreIcon } from '../../../consts/assetsPaths';
 import LoadableImage from '../../LoadableImage';
 import classnames from 'classnames';
 
@@ -33,8 +32,7 @@ const GroupItem: React.FC<IGroupItem> = ({ categoryId, groupNumber, imageSrc, is
       <div className='item__picture'>
         <LoadableImage src={imageSrc} />
         <div className='item__score-btn' onClick={onScoreBntClick}>
-          <img src={scoreIcon} alt='quiz score' />
-          <span>score</span>
+          score
         </div>
       </div>
     </button>

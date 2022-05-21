@@ -1,5 +1,5 @@
 .categories {
-  padding-top: 15px;
+  padding: 15px 0px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -68,19 +68,29 @@
       position: absolute;
       width: 100%;
       height: 70px;
+      padding: 0 0 0 10%;
       bottom: -70px;
-      transition: all 0.5s ease;
+      transition: all 0.5s ease 0.5s;
 
       display: flex;
-      justify-content: space-evenly;
+      justify-content: center;
       align-items: center;
       background: $main-clr;
       font-size: 26px;
       text-transform: uppercase;
       color: $thrd-clr;
       width: 100%;
-      img {
-        max-width: 50px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 15%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        background: url('/assets/icons/score-icon.svg') center/50px 50px no-repeat;
       }
     }
 
@@ -97,6 +107,7 @@
     &.answered:hover {
       .item__score-btn {
         bottom: 0;
+        transition-delay: 0s;
       }
     }
 
