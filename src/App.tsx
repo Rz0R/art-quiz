@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
-import SettingsPage from './components/SettingsPage';
+import { SettingsPage } from './components/SettingsPage';
 import CategoryPage from './components/CategoryPage';
 import GamePage from './components/GamePage';
 import ScorePage from './components/ScorePage';

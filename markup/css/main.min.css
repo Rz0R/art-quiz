@@ -859,7 +859,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   gap: 50px;
-  padding: 15px 10px;
+  padding: 15px 0px;
   text-transform: uppercase;
   min-height: calc(100vh - 30px);
 }
@@ -930,8 +930,39 @@ body {
 }
 
 .menu__progress {
+  -webkit-appearance: none;
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, dimgray), color-stop(50%, dimgray), color-stop(0, #e5e5e5), to(#e5e5e5));
+  background: -webkit-linear-gradient(left, dimgray 0, dimgray 50%, #e5e5e5 0, #e5e5e5);
+  background: -o-linear-gradient(left, dimgray 0, dimgray 50%, #e5e5e5 0, #e5e5e5);
+  background: linear-gradient(90deg, dimgray 0, dimgray 50%, #e5e5e5 0, #e5e5e5);
+  border: 1px solid dimgray;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 6px;
+  outline: none;
+  -webkit-transition: all 0.45s ease-in;
+  -o-transition: all 0.45s ease-in;
+  transition: all 0.45s ease-in;
   max-width: 270px;
   width: 100%;
+}
+
+.menu__progress:hover {
+  opacity: 0.8;
+}
+
+.menu__progress:disabled {
+  opacity: 0.3;
+}
+
+.menu__progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: dimgray;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: ew-resize;
+  height: 15px;
+  width: 15px;
 }
 
 .menu__checkbox {

@@ -91,7 +91,7 @@ body {
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1020px;
   margin: 0 auto;
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
@@ -118,9 +118,9 @@ body {
           align-items: center;
   -webkit-box-shadow: 1px 6px 11px 1px rgba(0, 0, 0, 0.7);
           box-shadow: 1px 6px 11px 1px rgba(0, 0, 0, 0.7);
-  -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
@@ -142,7 +142,7 @@ body {
   display: block;
   width: 45px;
   height: 45px;
-  background: url("/assets/icons/settings-icon.svg") center/45px 45px no-repeat;
+  background: url("/assets/icons/settings-icon.svg") center/contain no-repeat;
   -webkit-transition: -webkit-transform 2s;
   transition: -webkit-transform 2s;
   -o-transition: transform 2s;
@@ -172,7 +172,7 @@ body {
           transform: translateY(-50%);
   width: 45px;
   height: 45px;
-  background: url("/assets/icons/home-icon.svg") center/45px 45px no-repeat;
+  background: url("/assets/icons/home-icon.svg") center/contain no-repeat;
 }
 
 .btn--categories {
@@ -191,7 +191,7 @@ body {
           transform: translateY(-50%);
   width: 35px;
   height: 35px;
-  background: url("/assets/icons/categories-icon.svg") center/35px 35px no-repeat;
+  background: url("/assets/icons/categories-icon.svg") center/contain no-repeat;
 }
 
 .image-container {
@@ -845,6 +845,129 @@ body {
 .game__answers .answers__answer--wrong {
   background-color: rgba(184, 25, 25, 0.5);
   color: #ffffff;
+}
+
+.settings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 50px;
+  padding: 15px 0px;
+  text-transform: uppercase;
+  min-height: calc(100vh - 30px);
+}
+
+.settings__title {
+  font-size: 36px;
+  font-weight: 500;
+  color: #660033;
+  margin-bottom: 30px;
+}
+
+.settings__menu {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.menu__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  border-radius: 15px;
+  -webkit-box-shadow: 2px 2px 15px #000;
+          box-shadow: 2px 2px 15px #000;
+  background: #ffffff;
+  padding: 30px 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: calc(50% - 50px);
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.menu__icon {
+  max-width: 100px;
+  width: 100%;
+  aspect-ratio: 1/1;
+  margin-bottom: 15px;
+}
+
+.menu__icon--volume {
+  background: url("../assets/icons/volume-icon.svg") center/contain no-repeat;
+}
+
+.menu__icon--time {
+  background: url("../assets/icons/time-icon.svg") center/contain no-repeat;
+}
+
+.menu__title {
+  font-weight: 700;
+  font-size: 36px;
+  color: #555555;
+}
+
+.menu__progress {
+  -webkit-appearance: none;
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, dimgray), color-stop(50%, dimgray), color-stop(0, #e5e5e5), to(#e5e5e5));
+  background: -webkit-linear-gradient(left, dimgray 0, dimgray 50%, #e5e5e5 0, #e5e5e5);
+  background: -o-linear-gradient(left, dimgray 0, dimgray 50%, #e5e5e5 0, #e5e5e5);
+  background: linear-gradient(90deg, dimgray 0, dimgray 50%, #e5e5e5 0, #e5e5e5);
+  border: 1px solid dimgray;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 6px;
+  outline: none;
+  -webkit-transition: all 0.45s ease-in;
+  -o-transition: all 0.45s ease-in;
+  transition: all 0.45s ease-in;
+  max-width: 270px;
+  width: 100%;
+}
+
+.menu__progress:hover {
+  opacity: 0.8;
+}
+
+.menu__progress:disabled {
+  opacity: 0.3;
+}
+
+.menu__progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: dimgray;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: ew-resize;
+  height: 15px;
+  width: 15px;
+}
+
+.menu__checkbox {
+  width: 30px;
+  height: 30px;
 }
 
 .overlay {
