@@ -65,7 +65,7 @@
 
   &__progress {
     -webkit-appearance: none;
-    background: linear-gradient(90deg, dimgray 0, dimgray 50%, #e5e5e5 0, #e5e5e5);
+    background: linear-gradient(90deg, $sec-clr 0, $sec-clr 50%, #e5e5e5 0, #e5e5e5);
     border: 1px solid dimgray;
     border-radius: 5px;
     cursor: pointer;
@@ -86,7 +86,7 @@
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
-      background: dimgray;
+      background: $sec-clr;
       border: 2px solid #fff;
       border-radius: 50%;
       cursor: ew-resize;
@@ -95,8 +95,36 @@
     }
   }
 
-  &__checkbox {
+  // &__checkbox {
+  // }
+}
+
+.checkbox {
+  &__label {
+    display: block;
+    cursor: pointer;
+    border: 2px solid $sec-clr;
+    border-radius: 3px;
     width: 30px;
     height: 30px;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: -1px 1px 9px 3px rgba($sec-clr, 0.25);
+    }
+  }
+
+  &__input {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+
+    &:checked + label {
+      background: url('../assets/icons/checkbox-mark-icon.svg') center/contain no-repeat;
+    }
   }
 }

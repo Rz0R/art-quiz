@@ -931,10 +931,10 @@ body {
 
 .menu__progress {
   -webkit-appearance: none;
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, dimgray), color-stop(50%, dimgray), color-stop(0, #e5e5e5), to(#e5e5e5));
-  background: -webkit-linear-gradient(left, dimgray 0, dimgray 50%, #e5e5e5 0, #e5e5e5);
-  background: -o-linear-gradient(left, dimgray 0, dimgray 50%, #e5e5e5 0, #e5e5e5);
-  background: linear-gradient(90deg, dimgray 0, dimgray 50%, #e5e5e5 0, #e5e5e5);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0, #555555), color-stop(50%, #555555), color-stop(0, #e5e5e5), to(#e5e5e5));
+  background: -webkit-linear-gradient(left, #555555 0, #555555 50%, #e5e5e5 0, #e5e5e5);
+  background: -o-linear-gradient(left, #555555 0, #555555 50%, #e5e5e5 0, #e5e5e5);
+  background: linear-gradient(90deg, #555555 0, #555555 50%, #e5e5e5 0, #e5e5e5);
   border: 1px solid dimgray;
   border-radius: 5px;
   cursor: pointer;
@@ -957,7 +957,7 @@ body {
 
 .menu__progress::-webkit-slider-thumb {
   -webkit-appearance: none;
-  background: dimgray;
+  background: #555555;
   border: 2px solid #fff;
   border-radius: 50%;
   cursor: ew-resize;
@@ -965,9 +965,38 @@ body {
   width: 15px;
 }
 
-.menu__checkbox {
+.checkbox__label {
+  display: block;
+  cursor: pointer;
+  border: 2px solid #555555;
+  border-radius: 3px;
   width: 30px;
   height: 30px;
+  -webkit-transition: -webkit-box-shadow 0.3s ease;
+  transition: -webkit-box-shadow 0.3s ease;
+  -o-transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, -webkit-box-shadow 0.3s ease;
+}
+
+.checkbox__label:hover {
+  -webkit-box-shadow: -1px 1px 9px 3px rgba(85, 85, 85, 0.25);
+          box-shadow: -1px 1px 9px 3px rgba(85, 85, 85, 0.25);
+}
+
+.checkbox__input {
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.checkbox__input:checked + label {
+  background: url("../assets/icons/checkbox-mark-icon.svg") center/contain no-repeat;
 }
 
 .overlay {
