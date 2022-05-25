@@ -847,6 +847,21 @@ body {
   color: #ffffff;
 }
 
+.countdown-timer {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 150px;
+          flex: 0 0 150px;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-size: 45px;
+  font-weight: 700;
+  color: #660033;
+}
+
 .settings {
   display: -webkit-box;
   display: -ms-flexbox;

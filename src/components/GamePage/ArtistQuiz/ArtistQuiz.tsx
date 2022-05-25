@@ -4,6 +4,7 @@ import { ArtistQuestion } from '../../../types/questions';
 import { createImageUrl } from '../../../utils/common';
 import { CORRECT_ANSWERS_TYPE, CategoryType } from '../../../consts/const';
 import Pagination from '../Pagination';
+import { CountdownTimer } from '../CoundownTimer';
 import { logo } from '../../../consts/assetsPaths';
 
 type ArtistQuizProps = {
@@ -25,6 +26,7 @@ const ArtistQuiz = ({ artistQuestion, pagination, answers, onAnswerBtnClick }: A
           <Link className='logo' to='/'>
             <img src={logo} alt='logo' />
           </Link>
+          <CountdownTimer />
           <Link className='btn btn--categories' to={`/category/${CategoryType.ARTISTS}`}>
             categories
           </Link>

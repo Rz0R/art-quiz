@@ -11,3 +11,9 @@ export const replaceElementInArray = (array: any[], ind: number, el: any) => {
 
   return [...array.slice(0, ind), el, ...array.slice(ind + 1)];
 };
+
+export const formatTime = (totalSeconds: number) => {
+  const min = `0${Math.floor(totalSeconds / 60)}`.slice(-2);
+  const sec = `0${totalSeconds % 60}`.slice(-2);
+  return `${min}:${sec}`;
+};
