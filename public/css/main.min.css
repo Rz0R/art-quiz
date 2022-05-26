@@ -944,13 +944,33 @@ body {
   color: #555555;
 }
 
+.menu__input-wrapper {
+  max-width: 300px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.menu__time-value {
+  font-size: 36px;
+  font-weight: 600;
+  color: #555555;
+}
+
 .menu__progress {
   -webkit-appearance: none;
   background: -webkit-gradient(linear, left top, right top, color-stop(0, #555555), color-stop(50%, #555555), color-stop(0, #e5e5e5), to(#e5e5e5));
   background: -webkit-linear-gradient(left, #555555 0, #555555 50%, #e5e5e5 0, #e5e5e5);
   background: -o-linear-gradient(left, #555555 0, #555555 50%, #e5e5e5 0, #e5e5e5);
   background: linear-gradient(90deg, #555555 0, #555555 50%, #e5e5e5 0, #e5e5e5);
-  border: 1px solid dimgray;
+  border: 1px solid #555555;
   border-radius: 5px;
   cursor: pointer;
   height: 6px;
@@ -958,8 +978,9 @@ body {
   -webkit-transition: all 0.45s ease-in;
   -o-transition: all 0.45s ease-in;
   transition: all 0.45s ease-in;
-  max-width: 270px;
+  max-width: 240px;
   width: 100%;
+  margin-right: 10px;
 }
 
 .menu__progress:hover {

@@ -40,4 +40,12 @@ export enum TimerActions {
   RESET = 'reset',
 }
 
+export const TIMER_DEFAULT_SETTINGS = {
+  TIME: 60,
+  IS_TIMER_ON: false,
+  MIN_TIME: 5,
+  MAX_TIME: 30,
+  TIME_STEP: 5,
+};
+
 export const ANIMATION_TIME = 500;

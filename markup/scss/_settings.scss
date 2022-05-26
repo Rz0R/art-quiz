@@ -63,18 +63,33 @@
     color: $sec-clr;
   }
 
+  &__input-wrapper {
+    max-width: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__time-value {
+    font-size: 36px;
+    font-weight: 600;
+    color: $sec-clr;
+  }
+
   &__progress {
     -webkit-appearance: none;
     background: linear-gradient(90deg, $sec-clr 0, $sec-clr 50%, #e5e5e5 0, #e5e5e5);
-    border: 1px solid dimgray;
+    border: 1px solid $sec-clr;
     border-radius: 5px;
     cursor: pointer;
     height: 6px;
     outline: none;
     transition: all 0.45s ease-in;
 
-    max-width: 270px;
+    max-width: 240px;
     width: 100%;
+    margin-right: 10px;
 
     &:hover {
       opacity: 0.8;

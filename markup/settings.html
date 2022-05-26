@@ -33,7 +33,11 @@
 					</div>
 					<div class="menu__item">
 						<div class="menu__icon menu__icon--time"></div>
-						<input type="range" class="menu__progress">
+						<div class="menu__input-wrapper">
+							<input type="range" class="menu__progress" min="5" max="60" step="5">
+							<span class="menu__time-value">30</span>
+						</div>
+
 						<div class="menu__checkbox checkbox">
 							<input type="checkbox" class="checkbox__input" id="checkbox__time">
 							<label for="checkbox__time" class="checkbox__label"></label>
