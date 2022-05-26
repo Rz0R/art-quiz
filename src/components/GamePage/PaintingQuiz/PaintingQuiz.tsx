@@ -5,14 +5,16 @@ import { createImageUrl } from '../../../utils/common';
 import { CategoryType, CORRECT_ANSWERS_TYPE } from '../../../consts/const';
 import Pagination from '../Pagination';
 import LoadableImage from '../../LoadableImage';
+import { CountdownTimer } from '../CoundownTimer';
 
 type PaintingQuizProps = {
   paintingQuestion: PaintingQuestion;
   pagination: CORRECT_ANSWERS_TYPE[];
   onAnswerBtnClick: (ind: number, author: string) => void;
+  isTimerOn: boolean;
 };
 
-const PaintingQuiz = ({ paintingQuestion, pagination, onAnswerBtnClick }: PaintingQuizProps) => {
+const PaintingQuiz = ({ paintingQuestion, pagination, onAnswerBtnClick, isTimerOn }: PaintingQuizProps) => {
   const { question, paintings } = paintingQuestion;
 
   return (
@@ -22,6 +24,7 @@ const PaintingQuiz = ({ paintingQuestion, pagination, onAnswerBtnClick }: Painti
           <Link className='logo' to='/'>
             <img src={logo} alt='logo' />
           </Link>
+          {isTimerOn && <CountdownTimer />}
           <Link className='btn btn--categories' to={`/category/${CategoryType.PAINTINGS}`}>
             categories
           </Link>

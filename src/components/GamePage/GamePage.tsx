@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { loadArtistQuestionsAction, loadPaintingQuestionsAction, saveResultAction } from '../../store/serviceActions';
+import { resetTimer, stopTimer } from '../../store/gameState/gameState';
 import { replaceElementInArray } from '../../utils/common';
 import { QUESTIONS_IN_GROUP, GROUP_QUANTITY, CategoryType } from '../../consts/const';
 import Popup from './Popup';
@@ -25,7 +26,8 @@ const GamePage: React.FC = () => {
   const [popupType, setPopupType] = useState<POPUP_TYPE>('INFO');
 
   const [isAnwerCorrect, setIsAnswerCorrect] = useState(false);
-  const { artistQuestions, paintingQuetions, isLoading, error } = useAppSelector((state) => state.GAME);
+  const { artistQuestions, paintingQuetions, isLoading, error, isTimeOver } = useAppSelector((state) => state.GAME);
+  const { isTimerOn } = useAppSelector((state) => state.SETTINGS);
 
   useEffect(() => {
     if (catId === CategoryType.ARTISTS) {
@@ -34,6 +36,15 @@ const GamePage: React.FC = () => {
       dispatch(loadPaintingQuestionsAction(Number(groupId)));
     }
   }, [catId, groupId, dispatch]);
+
+  useEffect(() => {
+    if (isTimerOn && isTimeOver) {
+      setPagination(replaceElementInArray(pagination, questionNumber, 'WRONG'));
+      setIsAnswerCorrect(false);
+      setIsPopupActive(true);
+      setPopupType('INFO');
+    }
+  }, [isTimerOn, isTimeOver]);
 
   const checkDataIsLoading = (): boolean => {
     if (isLoading || (catId === CategoryType.ARTISTS && artistQuestions.length === 0)) {
@@ -91,6 +102,11 @@ const GamePage: React.FC = () => {
       });
       setIsAnswerCorrect(false);
     }
+
+    if (isTimerOn) {
+      dispatch(stopTimer());
+    }
+
     setIsPopupActive(true);
     setPopupType('INFO');
   };
@@ -104,6 +120,9 @@ const GamePage: React.FC = () => {
     setPopupType('INFO');
     setPagination(new Array(QUESTIONS_IN_GROUP).fill(null));
     setQuestionNumber(0);
+    if (isTimerOn) {
+      dispatch(resetTimer());
+    }
   };
 
   const onNextBtnClick = () => {
@@ -115,13 +134,15 @@ const GamePage: React.FC = () => {
       });
       setIsPopupActive(false);
       setPopupType('INFO');
+      if (isTimerOn) {
+        dispatch(resetTimer());
+      }
     } else if (pagination.filter((item) => item === 'CORRECT').length > 0) {
       setIsPopupActive(false);
       setTimeout(() => {
         setIsPopupActive(true);
         setPopupType('RESULT');
       }, ANIMATION_TIME);
-
       dispatch(saveResultAction(pagination as string[], catId as CategoryType, Number(groupId)));
     } else {
       setIsPopupActive(false);
@@ -151,11 +172,17 @@ const GamePage: React.FC = () => {
           pagination={pagination}
           onAnswerBtnClick={onAnswerBtnClick}
           answers={userAnswer.answers}
+          isTimerOn={isTimerOn}
         />
       )}
 
       {catId === CategoryType.PAINTINGS && (
-        <PaintingQuiz paintingQuestion={paintingQuetions[questionNumber]} pagination={pagination} onAnswerBtnClick={onAnswerBtnClick} />
+        <PaintingQuiz
+          paintingQuestion={paintingQuetions[questionNumber]}
+          pagination={pagination}
+          onAnswerBtnClick={onAnswerBtnClick}
+          isTimerOn={isTimerOn}
+        />
       )}
 
       <Popup

@@ -12,9 +12,10 @@ type ArtistQuizProps = {
   pagination: CORRECT_ANSWERS_TYPE[];
   answers: CORRECT_ANSWERS_TYPE[];
   onAnswerBtnClick: (ind: number, author: string) => void;
+  isTimerOn: boolean;
 };
 
-const ArtistQuiz = ({ artistQuestion, pagination, answers, onAnswerBtnClick }: ArtistQuizProps): JSX.Element => {
+const ArtistQuiz = ({ artistQuestion, pagination, answers, onAnswerBtnClick, isTimerOn }: ArtistQuizProps): JSX.Element => {
   const { question, imageNum, authors } = artistQuestion;
 
   const imageUrl = createImageUrl(imageNum);
@@ -26,7 +27,7 @@ const ArtistQuiz = ({ artistQuestion, pagination, answers, onAnswerBtnClick }: A
           <Link className='logo' to='/'>
             <img src={logo} alt='logo' />
           </Link>
-          <CountdownTimer />
+          {isTimerOn && <CountdownTimer />}
           <Link className='btn btn--categories' to={`/category/${CategoryType.ARTISTS}`}>
             categories
           </Link>

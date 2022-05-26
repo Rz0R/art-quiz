@@ -13,6 +13,7 @@ export enum NameSpace {
   game = 'GAME',
   results = 'RESULTS',
   scores = 'SCORES',
+  settings = 'SETTINGS',
 }
 
 export enum QuestionsText {
@@ -31,6 +32,12 @@ export enum LOCAL_STORAGE_KEYS {
 export enum CategoryType {
   ARTISTS = 'artists',
   PAINTINGS = 'paintings',
+}
+
+export enum TimerActions {
+  PLAY = 'play',
+  STOP = 'stop',
+  RESET = 'reset',
 }
 
 export const ANIMATION_TIME = 500;

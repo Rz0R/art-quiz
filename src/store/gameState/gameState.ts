@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GameState } from '../../types/gameState';
-import { NameSpace } from '../../consts/const';
+import { NameSpace, TimerActions } from '../../consts/const';
 import { ArtistQuestions, PaintingQuestions } from '../../types/questions';
 
 const initialState: GameState = {
@@ -8,6 +8,8 @@ const initialState: GameState = {
   paintingQuetions: [],
   isLoading: false,
   error: '',
+  timerActions: TimerActions.PLAY,
+  isTimeOver: false,
 };
 
 export const gameStateSlice = createSlice({
@@ -32,10 +34,42 @@ export const gameStateSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    playTimer(state) {
+      state.timerActions = TimerActions.PLAY;
+    },
+    stopTimer(state) {
+      state.timerActions = TimerActions.STOP;
+    },
+    resetTimer(state) {
+      state.timerActions = TimerActions.RESET;
+      state.isTimeOver = false;
+    },
+    timeIsOver(state) {
+      state.timerActions = TimerActions.STOP;
+      state.isTimeOver = true;
+    },
   },
 });
 
-const { questionsLoading, artistQuestionsLoadinsSuccess, paintingQuestionsLoadinsSuccess, questionsLoadingError } = gameStateSlice.actions;
+const {
+  questionsLoading,
+  artistQuestionsLoadinsSuccess,
+  paintingQuestionsLoadinsSuccess,
+  questionsLoadingError,
+  playTimer,
+  stopTimer,
+  resetTimer,
+  timeIsOver,
+} = gameStateSlice.actions;
 
-export { questionsLoading, artistQuestionsLoadinsSuccess, paintingQuestionsLoadinsSuccess, questionsLoadingError };
+export {
+  questionsLoading,
+  artistQuestionsLoadinsSuccess,
+  paintingQuestionsLoadinsSuccess,
+  questionsLoadingError,
+  playTimer,
+  stopTimer,
+  resetTimer,
+  timeIsOver,
+};
 export const gameState = gameStateSlice.reducer;
