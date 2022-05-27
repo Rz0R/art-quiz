@@ -1,27 +1,31 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { setTimer } from '../../store/settingsState/settingsState';
+// import { setVolume, setTimer } from '../../store/settingsState/settingsState';
+import { saveSettingsAction } from '../../store/serviceActions';
 import { Link, useNavigate } from 'react-router-dom';
 import { logo } from '../../consts/assetsPaths';
 import { InputRange } from './InputRange';
 import { CheckBox } from './CheckBox';
-import { TIMER_DEFAULT_SETTINGS } from '../../consts/const';
+import { TIMER_DEFAULT_SETTINGS, VOLUME_DEFAULT_SETTINGS } from '../../consts/const';
 
 const SettingsPage: React.FC = () => {
-  const { isTimerOn, time } = useAppSelector((state) => state.SETTINGS);
+  const { isVolumeOn, volumeLevel, isTimerOn, time } = useAppSelector((state) => state.SETTINGS);
   const dispatch = useAppDispatch();
 
-  const [volumeValue, setVolumeValue] = useState(40);
-  const [isVolumeActive, setIsVolumeActive] = useState(false);
+  const [volumeValue, setVolumeValue] = useState(volumeLevel);
+  const [isVolumeActive, setIsVolumeActive] = useState(isVolumeOn);
 
   const [timeValue, setTimeValue] = useState(time);
   const [isTimerActive, setIsTimeActive] = useState(isTimerOn);
   const navigate = useNavigate();
 
   const { MIN_TIME, MAX_TIME, TIME_STEP } = TIMER_DEFAULT_SETTINGS;
+  const { MIN_VOLUME_VALUE, MAX_VOLUME_VALUE, VOLUME_STEP } = VOLUME_DEFAULT_SETTINGS;
 
   const onSaveBtnClick = () => {
-    dispatch(setTimer({ isTimerOn: isTimerActive, time: timeValue }));
+    // dispatch(setVolume({ isVolumeOn: isVolumeActive, volumeLevel: volumeValue }));
+    // dispatch(setTimer({ isTimerOn: isTimerActive, time: timeValue }));
+    dispatch(saveSettingsAction({ isVolumeOn: isVolumeActive, volumeLevel: volumeValue, isTimerOn: isTimerActive, time: timeValue }));
     navigate('/');
   };
   return (
@@ -33,7 +37,14 @@ const SettingsPage: React.FC = () => {
       <div className='settings__menu menu'>
         <div className='menu__item'>
           <div className='menu__icon menu__icon--volume' />
-          <InputRange value={volumeValue} isActive={isVolumeActive} onChange={(evt) => setVolumeValue(Number(evt.target.value))} />
+          <InputRange
+            value={volumeValue}
+            isActive={isVolumeActive}
+            min={MIN_VOLUME_VALUE}
+            max={MAX_VOLUME_VALUE}
+            step={VOLUME_STEP}
+            onChange={(evt) => setVolumeValue(Number(evt.target.value))}
+          />
           <CheckBox id='volume' isChecked={isVolumeActive} onChange={() => setIsVolumeActive(!isVolumeActive)} />
           <div className='menu__title'>volume</div>
         </div>

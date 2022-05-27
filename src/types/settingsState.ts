@@ -1,6 +1,6 @@
 export type SettingsState = {
   volumeLevel: number;
-  isMute: boolean;
+  isVolumeOn: boolean;
   isTimerOn: boolean;
   time: number;
 };
