@@ -11,6 +11,8 @@ import PaintingQuiz from './PaintingQuiz';
 import ErrorPage from '../ErrorPage';
 import Loader from '../Loader';
 import { POPUP_TYPE, ANIMATION_TIME, CORRECT_ANSWERS_TYPE } from '../../consts/const';
+import useSound from 'use-sound';
+import { rightAnswerSound, wrongAnswerSound, victorySound, loseSound } from '../../consts/assetsPaths';
 
 const GamePage: React.FC = () => {
   const { catId = '', groupId = '' } = useParams();
@@ -27,7 +29,27 @@ const GamePage: React.FC = () => {
 
   const [isAnwerCorrect, setIsAnswerCorrect] = useState(false);
   const { artistQuestions, paintingQuetions, isLoading, error, isTimeOver } = useAppSelector((state) => state.GAME);
-  const { isTimerOn } = useAppSelector((state) => state.SETTINGS);
+  const { isVolumeOn, volumeLevel, isTimerOn } = useAppSelector((state) => state.SETTINGS);
+
+  const [playRightAnswerSound] = useSound(rightAnswerSound, {
+    volume: volumeLevel,
+    soundEnabled: isVolumeOn,
+  });
+
+  const [playWrongAnswerSound] = useSound(wrongAnswerSound, {
+    volume: volumeLevel,
+    soundEnabled: isVolumeOn,
+  });
+
+  const [playVictorySound] = useSound(victorySound, {
+    volume: volumeLevel,
+    soundEnabled: isVolumeOn,
+  });
+
+  const [playLoseSound] = useSound(loseSound, {
+    volume: volumeLevel,
+    soundEnabled: isVolumeOn,
+  });
 
   useEffect(() => {
     if (catId === CategoryType.ARTISTS) {
@@ -43,6 +65,7 @@ const GamePage: React.FC = () => {
       setIsAnswerCorrect(false);
       setIsPopupActive(true);
       setPopupType('INFO');
+      playWrongAnswerSound();
     }
   }, [isTimerOn, isTimeOver]);
 
@@ -94,6 +117,7 @@ const GamePage: React.FC = () => {
         answers: replaceElementInArray(answers, ind, 'CORRECT'),
       });
       setIsAnswerCorrect(true);
+      playRightAnswerSound();
     } else {
       setPagination(replaceElementInArray(pagination, questionNumber, 'WRONG'));
       setUserAnswer({
@@ -101,6 +125,7 @@ const GamePage: React.FC = () => {
         answers: replaceElementInArray(answers, ind, 'WRONG'),
       });
       setIsAnswerCorrect(false);
+      playWrongAnswerSound();
     }
 
     if (isTimerOn) {
@@ -142,6 +167,7 @@ const GamePage: React.FC = () => {
       setTimeout(() => {
         setIsPopupActive(true);
         setPopupType('RESULT');
+        playVictorySound();
       }, ANIMATION_TIME);
       dispatch(saveResultAction(pagination as string[], catId as CategoryType, Number(groupId)));
     } else {
@@ -149,6 +175,7 @@ const GamePage: React.FC = () => {
       setTimeout(() => {
         setIsPopupActive(true);
         setPopupType('GAME_OVER');
+        playLoseSound();
       }, ANIMATION_TIME);
 
       dispatch(saveResultAction(null, catId as CategoryType, Number(groupId)));
