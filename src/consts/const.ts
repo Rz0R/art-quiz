@@ -23,7 +23,11 @@ export enum QuestionsText {
 
 export type POPUP_TYPE = 'INFO' | 'RESULT' | 'GAME_OVER';
 
-export type CORRECT_ANSWERS_TYPE = 'CORRECT' | 'WRONG' | null;
+export enum ANSWERS_TYPE {
+  CORRECT = 'CORRECT',
+  WRONG = 'WRONG',
+  NO_ANSWER = 'NO_ANSWER',
+}
 
 export enum LOCAL_STORAGE_KEYS {
   ANSWERS = 'answers',

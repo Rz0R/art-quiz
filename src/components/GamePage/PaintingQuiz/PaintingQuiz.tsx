@@ -2,14 +2,14 @@ import { PaintingQuestion } from '../../../types/questions';
 import { Link } from 'react-router-dom';
 import { logo } from '../../../consts/assetsPaths';
 import { createImageUrl } from '../../../utils/common';
-import { CategoryType, CORRECT_ANSWERS_TYPE } from '../../../consts/const';
+import { CategoryType, ANSWERS_TYPE } from '../../../consts/const';
 import Pagination from '../Pagination';
 import LoadableImage from '../../LoadableImage';
 import { CountdownTimer } from '../CoundownTimer';
 
 type PaintingQuizProps = {
   paintingQuestion: PaintingQuestion;
-  pagination: CORRECT_ANSWERS_TYPE[];
+  pagination: ANSWERS_TYPE[];
   onAnswerBtnClick: (ind: number, author: string) => void;
   isTimerOn: boolean;
 };

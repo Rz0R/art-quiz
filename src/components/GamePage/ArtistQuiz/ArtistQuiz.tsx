@@ -2,15 +2,15 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { ArtistQuestion } from '../../../types/questions';
 import { createImageUrl } from '../../../utils/common';
-import { CORRECT_ANSWERS_TYPE, CategoryType } from '../../../consts/const';
+import { ANSWERS_TYPE, CategoryType } from '../../../consts/const';
 import Pagination from '../Pagination';
 import { CountdownTimer } from '../CoundownTimer';
 import { logo } from '../../../consts/assetsPaths';
 
 type ArtistQuizProps = {
   artistQuestion: ArtistQuestion;
-  pagination: CORRECT_ANSWERS_TYPE[];
-  answers: CORRECT_ANSWERS_TYPE[];
+  pagination: ANSWERS_TYPE[];
+  answers: ANSWERS_TYPE[];
   onAnswerBtnClick: (ind: number, author: string) => void;
   isTimerOn: boolean;
 };
@@ -44,8 +44,8 @@ const ArtistQuiz = ({ artistQuestion, pagination, answers, onAnswerBtnClick, isT
             <li
               key={`${author}-${ind}`}
               className={classnames('answers__answer', {
-                'answers__answer--correct': answers[ind] === 'CORRECT',
-                'answers__answer--wrong': answers[ind] === 'WRONG',
+                'answers__answer--correct': answers[ind] === ANSWERS_TYPE.CORRECT,
+                'answers__answer--wrong': answers[ind] === ANSWERS_TYPE.WRONG,
               })}
               onClick={() => {
                 onAnswerBtnClick(ind, author);

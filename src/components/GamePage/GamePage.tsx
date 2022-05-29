@@ -10,20 +10,25 @@ import ArtistQuiz from './ArtistQuiz';
 import PaintingQuiz from './PaintingQuiz';
 import ErrorPage from '../ErrorPage';
 import Loader from '../Loader';
-import { POPUP_TYPE, ANIMATION_TIME, CORRECT_ANSWERS_TYPE } from '../../consts/const';
+import { POPUP_TYPE, ANIMATION_TIME, ANSWERS_TYPE, NUMBER_OF_POSSIBLE_ANSWERS } from '../../consts/const';
 import useSound from 'use-sound';
 import { rightAnswerSound, wrongAnswerSound, victorySound, loseSound } from '../../consts/assetsPaths';
+
+type UserAnswersType = {
+  isAnswered: boolean;
+  answers: ANSWERS_TYPE[];
+};
 
 const GamePage: React.FC = () => {
   const { catId = '', groupId = '' } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [questionNumber, setQuestionNumber] = useState(0);
-  const [userAnswer, setUserAnswer] = useState({
+  const [userAnswer, setUserAnswer] = useState<UserAnswersType>({
     isAnswered: false,
-    answers: [null, null, null, null],
+    answers: new Array(NUMBER_OF_POSSIBLE_ANSWERS).fill(ANSWERS_TYPE.NO_ANSWER),
   });
-  const [pagination, setPagination] = useState<CORRECT_ANSWERS_TYPE[]>(new Array(QUESTIONS_IN_GROUP).fill(null));
+  const [pagination, setPagination] = useState<ANSWERS_TYPE[]>(new Array(QUESTIONS_IN_GROUP).fill(ANSWERS_TYPE.NO_ANSWER));
   const [isPopupActive, setIsPopupActive] = useState(false);
   const [popupType, setPopupType] = useState<POPUP_TYPE>('INFO');
 
@@ -61,13 +66,13 @@ const GamePage: React.FC = () => {
 
   useEffect(() => {
     if (isTimerOn && isTimeOver) {
-      setPagination(replaceElementInArray(pagination, questionNumber, 'WRONG'));
+      setPagination(replaceElementInArray(pagination, questionNumber, ANSWERS_TYPE.WRONG));
       setIsAnswerCorrect(false);
       setIsPopupActive(true);
       setPopupType('INFO');
       playWrongAnswerSound();
     }
-  }, [isTimerOn, isTimeOver]);
+  }, [isTimerOn, isTimeOver, playWrongAnswerSound, questionNumber, pagination]);
 
   const checkDataIsLoading = (): boolean => {
     if (isLoading || (catId === CategoryType.ARTISTS && artistQuestions.length === 0)) {
@@ -111,18 +116,18 @@ const GamePage: React.FC = () => {
     }
 
     if (author === answer) {
-      setPagination(replaceElementInArray(pagination, questionNumber, 'CORRECT'));
+      setPagination(replaceElementInArray(pagination, questionNumber, ANSWERS_TYPE.CORRECT));
       setUserAnswer({
         isAnswered: true,
-        answers: replaceElementInArray(answers, ind, 'CORRECT'),
+        answers: replaceElementInArray(answers, ind, ANSWERS_TYPE.CORRECT),
       });
       setIsAnswerCorrect(true);
       playRightAnswerSound();
     } else {
-      setPagination(replaceElementInArray(pagination, questionNumber, 'WRONG'));
+      setPagination(replaceElementInArray(pagination, questionNumber, ANSWERS_TYPE.WRONG));
       setUserAnswer({
         isAnswered: true,
-        answers: replaceElementInArray(answers, ind, 'WRONG'),
+        answers: replaceElementInArray(answers, ind, ANSWERS_TYPE.WRONG),
       });
       setIsAnswerCorrect(false);
       playWrongAnswerSound();
@@ -139,11 +144,11 @@ const GamePage: React.FC = () => {
   const resetQuizState = () => {
     setUserAnswer({
       isAnswered: false,
-      answers: [null, null, null, null],
+      answers: new Array(NUMBER_OF_POSSIBLE_ANSWERS).fill(ANSWERS_TYPE.NO_ANSWER),
     });
     setIsPopupActive(false);
     setPopupType('INFO');
-    setPagination(new Array(QUESTIONS_IN_GROUP).fill(null));
+    setPagination(new Array(QUESTIONS_IN_GROUP).fill(ANSWERS_TYPE.NO_ANSWER));
     setQuestionNumber(0);
     if (isTimerOn) {
       dispatch(resetTimer());
@@ -155,14 +160,14 @@ const GamePage: React.FC = () => {
       setQuestionNumber(questionNumber + 1);
       setUserAnswer({
         isAnswered: false,
-        answers: [null, null, null, null],
+        answers: new Array(NUMBER_OF_POSSIBLE_ANSWERS).fill(ANSWERS_TYPE.NO_ANSWER),
       });
       setIsPopupActive(false);
       setPopupType('INFO');
       if (isTimerOn) {
         dispatch(resetTimer());
       }
-    } else if (pagination.filter((item) => item === 'CORRECT').length > 0) {
+    } else if (pagination.filter((item) => item === ANSWERS_TYPE.CORRECT).length > 0) {
       setIsPopupActive(false);
       setTimeout(() => {
         setIsPopupActive(true);
@@ -220,7 +225,7 @@ const GamePage: React.FC = () => {
         year={year}
         imageNum={imageNum}
         isAnwerCorrect={isAnwerCorrect}
-        correctAnswers={pagination.filter((item) => item === 'CORRECT').length}
+        correctAnswers={pagination.filter((item) => item === ANSWERS_TYPE.CORRECT).length}
         onNextBtnClick={onNextBtnClick}
         onNextQuizBtnClick={onNextQuizBtnClick}
         onTryAgainBtnClick={onTryAgainBtnClick}

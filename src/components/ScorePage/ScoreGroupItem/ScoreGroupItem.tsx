@@ -4,6 +4,7 @@ import { correctAnswerIcon, wrongAnswerIcon } from '../../../consts/assetsPaths'
 import { createImageUrl } from '../../../utils/common';
 import classnames from 'classnames';
 import { Question } from '../../../types/questions';
+import { ANSWERS_TYPE } from '../../../consts/const';
 
 type ScoreGroupItemProps = {
   questionNumber: number;
@@ -25,8 +26,8 @@ const ScoreGroupItem = ({ questionNumber, question, answer }: ScoreGroupItemProp
   return (
     <button
       className={classnames('item', {
-        correct: answer === 'CORRECT',
-        wrong: answer === 'WRONG',
+        correct: answer === ANSWERS_TYPE.CORRECT,
+        wrong: answer === ANSWERS_TYPE.WRONG,
         'item--show-info': isInfoActive,
       })}
       onClick={onItemClick}
@@ -34,8 +35,8 @@ const ScoreGroupItem = ({ questionNumber, question, answer }: ScoreGroupItemProp
       <div className='item__header'>
         <div className='item__number'>{questionNumber}</div>
         <div className='item__check'>
-          {answer === 'CORRECT' && <img src={correctAnswerIcon} alt='correct answer'></img>}
-          {answer === 'WRONG' && <img src={wrongAnswerIcon} alt='wrong answer'></img>}
+          {answer === ANSWERS_TYPE.CORRECT && <img src={correctAnswerIcon} alt='correct answer'></img>}
+          {answer === ANSWERS_TYPE.WRONG && <img src={wrongAnswerIcon} alt='wrong answer'></img>}
         </div>
       </div>
       <div className='item__picture'>
