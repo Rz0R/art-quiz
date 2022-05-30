@@ -4,7 +4,7 @@ export const createImageUrl = (imageNum: string) => {
   return `${quizImagePath}/${imageNum}.webp`;
 };
 
-export const replaceElementInArray = (array: any[], ind: number, el: any) => {
+export const replaceElementInArray = <T>(array: T[], ind: number, el: T): T[] => {
   if (array.length === 0 || array.length <= ind || ind < 0) {
     return array;
   }
