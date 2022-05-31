@@ -21,7 +21,13 @@ export enum QuestionsText {
   PAINTING = 'Which is {AUTHOR} picture?',
 }
 
-export type POPUP_TYPE = 'INFO' | 'RESULT' | 'GAME_OVER';
+// export type POPUP_TYPE = 'INFO' | 'RESULT' | 'GAME_OVER';
+
+export enum POPUP_TYPE {
+  INFO = 'INFO',
+  RESULT = 'RESULT',
+  GAME_OVER = 'GAME_OVER',
+}
 
 export enum ANSWERS_TYPE {
   CORRECT = 'CORRECT',

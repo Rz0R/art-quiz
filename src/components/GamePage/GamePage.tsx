@@ -30,7 +30,7 @@ const GamePage: React.FC = () => {
   });
   const [pagination, setPagination] = useState<ANSWERS_TYPE[]>(new Array(QUESTIONS_IN_GROUP).fill(ANSWERS_TYPE.NO_ANSWER));
   const [isPopupActive, setIsPopupActive] = useState(false);
-  const [popupType, setPopupType] = useState<POPUP_TYPE>('INFO');
+  const [popupType, setPopupType] = useState<POPUP_TYPE>(POPUP_TYPE.INFO);
 
   const [isAnwerCorrect, setIsAnswerCorrect] = useState(false);
   const { artistQuestions, paintingQuetions, isLoading, error, isTimeOver } = useAppSelector((state) => state.GAME);
@@ -69,7 +69,7 @@ const GamePage: React.FC = () => {
       setPagination(replaceElementInArray(pagination, questionNumber, ANSWERS_TYPE.WRONG));
       setIsAnswerCorrect(false);
       setIsPopupActive(true);
-      setPopupType('INFO');
+      setPopupType(POPUP_TYPE.INFO);
       playWrongAnswerSound();
     }
   }, [isTimerOn, isTimeOver, playWrongAnswerSound, questionNumber, pagination]);
@@ -138,7 +138,7 @@ const GamePage: React.FC = () => {
     }
 
     setIsPopupActive(true);
-    setPopupType('INFO');
+    setPopupType(POPUP_TYPE.INFO);
   };
 
   const resetQuizState = () => {
@@ -147,7 +147,7 @@ const GamePage: React.FC = () => {
       answers: new Array(NUMBER_OF_POSSIBLE_ANSWERS).fill(ANSWERS_TYPE.NO_ANSWER),
     });
     setIsPopupActive(false);
-    setPopupType('INFO');
+    setPopupType(POPUP_TYPE.INFO);
     setPagination(new Array(QUESTIONS_IN_GROUP).fill(ANSWERS_TYPE.NO_ANSWER));
     setQuestionNumber(0);
     if (isTimerOn) {
@@ -163,7 +163,7 @@ const GamePage: React.FC = () => {
         answers: new Array(NUMBER_OF_POSSIBLE_ANSWERS).fill(ANSWERS_TYPE.NO_ANSWER),
       });
       setIsPopupActive(false);
-      setPopupType('INFO');
+      setPopupType(POPUP_TYPE.INFO);
       if (isTimerOn) {
         dispatch(resetTimer());
       }
@@ -171,7 +171,7 @@ const GamePage: React.FC = () => {
       setIsPopupActive(false);
       setTimeout(() => {
         setIsPopupActive(true);
-        setPopupType('RESULT');
+        setPopupType(POPUP_TYPE.RESULT);
         playVictorySound();
       }, ANIMATION_TIME);
       dispatch(saveResultAction(pagination as string[], catId as CategoryType, Number(groupId)));
@@ -179,7 +179,7 @@ const GamePage: React.FC = () => {
       setIsPopupActive(false);
       setTimeout(() => {
         setIsPopupActive(true);
-        setPopupType('GAME_OVER');
+        setPopupType(POPUP_TYPE.GAME_OVER);
         playLoseSound();
       }, ANIMATION_TIME);
 

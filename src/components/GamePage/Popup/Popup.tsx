@@ -36,7 +36,7 @@ const Popup = ({
       <div className={`overlay ${isPopupActive ? 'active' : ''}`}></div>
       <div className={`popup ${isPopupActive ? 'active' : ''}`}>
         <div className='popup__content'>
-          {popupType === 'INFO' && (
+          {popupType === POPUP_TYPE.INFO && (
             <NextQuestionPopup
               author={author}
               name={name}
@@ -46,8 +46,8 @@ const Popup = ({
               onNextBtnClick={onNextBtnClick}
             />
           )}
-          {popupType === 'RESULT' && <GameResultPopup correctAnswers={correctAnswers} onNextQuizBtnClick={onNextQuizBtnClick} />}
-          {popupType === 'GAME_OVER' && (
+          {popupType === POPUP_TYPE.RESULT && <GameResultPopup correctAnswers={correctAnswers} onNextQuizBtnClick={onNextQuizBtnClick} />}
+          {popupType === POPUP_TYPE.GAME_OVER && (
             <GameOverPopup onTryAgainYesBtnClick={onTryAgainBtnClick} onTryAgainNoBtnClick={onNextQuizBtnClick} />
           )}
         </div>
