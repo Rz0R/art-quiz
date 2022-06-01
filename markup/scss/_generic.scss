@@ -22,13 +22,13 @@ body {
 }
 
 .btn {
-  display: block;
+  display: inline-block;
   background-color: #660033;
-  min-width: 200px;
-  min-height: 50px;
+  max-width: 200px;
   padding: 2px 5px;
   color: $thrd-clr;
   font-size: 18px;
+  line-height: 2.8;
   text-transform: uppercase;
   justify-content: center;
   display: flex;
@@ -43,7 +43,7 @@ body {
 
   &--settings {
     position: relative;
-    padding: 2px 5px 2px 55px;
+    padding: 0px 40px 0px 70px;
     &::before {
       content: '';
       position: absolute;
