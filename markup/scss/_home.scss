@@ -1,18 +1,38 @@
-.logo {
-  max-width: 220px;
-  width: 100%;
-  background: url('/assets/img/logo.png') center/contain no-repeat;
-  aspect-ratio: 220/140;
-}
-
 .quiz-menu {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0px -85px;
+  width: 100%;
 
   &__item {
     width: 50%;
-    padding: 0 85px;
+    padding: 0 7.15%;
+
+    @media (max-width: 800px) {
+      width: 100%;
+      padding: 0px;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0px -8.333%;
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+      max-width: 500px;
+    }
+
+    & > *:not(:last-child) {
+      @media (max-width: 800px) {
+        padding-bottom: 40px;
+      }
+
+      @media (max-width: 400px) {
+        padding-bottom: 15px;
+      }
+    }
   }
 
   &__btn {
@@ -20,17 +40,23 @@
     aspect-ratio: 1/1;
     position: relative;
     transition: box-shadow 1s ease;
+    position: relative;
+
+    img {
+      object-fit: cover;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    @media (max-width: 800px) {
+      aspect-ratio: 500/320;
+    }
 
     &:hover {
       box-shadow: 5px 5px 35px rgba(0, 0, 0, 0.78);
-    }
-
-    &--artits {
-      background: url('/assets/img/home-page/artists-quiz.jpg') center/contain no-repeat;
-    }
-
-    &--paintings {
-      background: url('/assets/img/home-page/pictures-quiz.jpg') center/contain no-repeat;
     }
   }
 
@@ -44,7 +70,7 @@
     text-align: right;
     text-transform: uppercase;
     color: $main-clr;
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba($thrd-clr, 0.75);
 
     & span {
       font-weight: 700;
@@ -53,17 +79,11 @@
 }
 
 .home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
   padding: 15px 0px;
-
-  &__logo {
-    margin: 0 auto 70px auto;
-  }
-
-  &__quiz-menu {
-    margin-bottom: 80px;
-  }
-
-  &__btn {
-    margin: 0 auto;
-  }
+  justify-content: space-around;
 }

@@ -98,14 +98,33 @@ body {
   padding: 0 10px;
 }
 
+.logo {
+  max-width: 220px;
+  width: 100%;
+  background: url("/assets/img/logo.png") center/cover no-repeat;
+  aspect-ratio: 220/140;
+}
+
+@media (max-width: 800px) {
+  .logo {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo {
+    max-width: 100px;
+  }
+}
+
 .btn {
-  display: block;
+  display: inline-block;
   background-color: #660033;
-  min-width: 200px;
-  min-height: 50px;
+  max-width: 200px;
   padding: 2px 5px;
   color: #ffffff;
   font-size: 18px;
+  line-height: 2.8;
   text-transform: uppercase;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -131,7 +150,7 @@ body {
 
 .btn--settings {
   position: relative;
-  padding: 2px 5px 2px 55px;
+  padding: 0px 40px 0px 70px;
 }
 
 .btn--settings::before {
@@ -142,7 +161,7 @@ body {
   display: block;
   width: 45px;
   height: 45px;
-  background: url("/assets/icons/settings-icon.svg") center/contain no-repeat;
+  background: url("/assets/icons/settings-icon.svg") center/cover no-repeat;
   -webkit-transition: -webkit-transform 2s;
   transition: -webkit-transform 2s;
   -o-transition: transform 2s;
@@ -172,7 +191,7 @@ body {
           transform: translateY(-50%);
   width: 45px;
   height: 45px;
-  background: url("/assets/icons/home-icon.svg") center/contain no-repeat;
+  background: url("/assets/icons/home-icon.svg") center/cover no-repeat;
 }
 
 .btn--categories {
@@ -191,7 +210,7 @@ body {
           transform: translateY(-50%);
   width: 35px;
   height: 35px;
-  background: url("/assets/icons/categories-icon.svg") center/contain no-repeat;
+  background: url("/assets/icons/categories-icon.svg") center/cover no-repeat;
 }
 
 .image-container {
@@ -365,40 +384,58 @@ body {
   }
 }
 
-.home {
+.quiz-menu {
+  width: 100%;
+}
+
+.quiz-menu__item {
+  width: 50%;
+  padding: 0 7.15%;
+}
+
+@media (max-width: 800px) {
+  .quiz-menu__item {
+    width: 100%;
+    padding: 0px;
+  }
+}
+
+.quiz-menu__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 20px;
-  padding-top: 15px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 0px -8.333%;
 }
 
-.logo {
-  width: 100px;
+@media (max-width: 800px) {
+  .quiz-menu__wrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 0 auto;
+    max-width: 500px;
+  }
 }
 
-.logo img {
-  width: 100%;
+@media (max-width: 800px) {
+  .quiz-menu__wrapper > *:not(:last-child) {
+    padding-bottom: 40px;
+  }
 }
 
-.quiz-menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 15px;
-  max-width: 350px;
-  width: 100%;
+@media (max-width: 400px) {
+  .quiz-menu__wrapper > *:not(:last-child) {
+    padding-bottom: 15px;
+  }
 }
 
 .quiz-menu__btn {
@@ -410,10 +447,23 @@ body {
   -o-transition: box-shadow 1s ease;
   transition: box-shadow 1s ease;
   transition: box-shadow 1s ease, -webkit-box-shadow 1s ease;
+  position: relative;
 }
 
 .quiz-menu__btn img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
   width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+@media (max-width: 800px) {
+  .quiz-menu__btn {
+    aspect-ratio: 500/320;
+  }
 }
 
 .quiz-menu__btn:hover {
@@ -421,7 +471,7 @@ body {
           box-shadow: 5px 5px 35px rgba(0, 0, 0, 0.78);
 }
 
-.quiz-menu__btn-title {
+.quiz-menu__title {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -434,8 +484,26 @@ body {
   background: rgba(255, 255, 255, 0.75);
 }
 
-.quiz-menu__btn-title span {
+.quiz-menu__title span {
   font-weight: 700;
+}
+
+.home {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  row-gap: 20px;
+  padding: 15px 0px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .categories {
