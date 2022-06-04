@@ -47,6 +47,7 @@ input,
 button,
 textarea {
   font-family: inherit;
+  font-size: inherit;
 }
 
 input::-ms-clear {
@@ -54,6 +55,8 @@ input::-ms-clear {
 }
 
 button {
+  color: inherit;
+  background-color: inherit;
   cursor: pointer;
 }
 
@@ -682,11 +685,6 @@ body {
       -ms-flex: 0 0 25%;
           flex: 0 0 25%;
   padding: 0px 10px;
-  -webkit-transition: -webkit-transform 0.5s ease;
-  transition: -webkit-transform 0.5s ease;
-  -o-transition: transform 0.5s ease;
-  transition: transform 0.5s ease;
-  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
 }
 
 @media (max-width: 800px) {
@@ -720,6 +718,34 @@ body {
   background-color: rgba(255, 255, 255, 0.5);
   color: #555555;
   border-top-left-radius: 25px;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  cursor: pointer;
+}
+
+.list .item__body.answered:hover .item__score-btn {
+  bottom: 0;
+  -webkit-transition-delay: 0s;
+       -o-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+.list .item__body:hover {
+  -webkit-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.list .item__body.answered {
+  color: #660033;
+}
+
+.list .item__body.answered img {
+  -webkit-filter: grayscale(0);
+          filter: grayscale(0);
 }
 
 .list .item__header {
@@ -790,28 +816,6 @@ body {
   -webkit-filter: grayscale(1);
           filter: grayscale(1);
   width: 100%;
-}
-
-.list .item.answered:hover .item__score-btn {
-  bottom: 0;
-  -webkit-transition-delay: 0s;
-       -o-transition-delay: 0s;
-          transition-delay: 0s;
-}
-
-.list .item:hover {
-  -webkit-transform: scale(1.05);
-      -ms-transform: scale(1.05);
-          transform: scale(1.05);
-}
-
-.list .item.answered {
-  color: #660033;
-}
-
-.list .item.answered img {
-  -webkit-filter: grayscale(0);
-          filter: grayscale(0);
 }
 
 .scores {

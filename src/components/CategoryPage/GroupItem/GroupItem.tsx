@@ -24,18 +24,20 @@ const GroupItem: React.FC<IGroupItem> = ({ categoryId, groupNumber, imageSrc, is
   };
 
   return (
-    <button className={classnames('item', { answered: isAnswered })} onClick={onItemClick}>
-      <div className='item__header'>
-        <div className='item__number'>{groupNumber}</div>
-        {isAnswered && <div className='item__score'>{score}/10</div>}
-      </div>
-      <div className='item__picture'>
-        <LoadableImage src={imageSrc} />
-        <div className='item__score-btn' onClick={onScoreBntClick}>
-          score
+    <div className='item'>
+      <div className={classnames('item__body', { answered: isAnswered })} onClick={onItemClick}>
+        <div className='item__header'>
+          <div className='item__number'>{groupNumber}</div>
+          {isAnswered && <div className='item__score'>{score}/10</div>}
+        </div>
+        <div className='item__picture'>
+          <LoadableImage src={imageSrc} />
+          <button className='item__score-btn' onClick={onScoreBntClick}>
+            score
+          </button>
         </div>
       </div>
-    </button>
+    </div>
   );
 };
 

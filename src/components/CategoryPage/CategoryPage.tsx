@@ -2,7 +2,6 @@ import { useParams, Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
 import ErrorPage from '../ErrorPage';
 import GroupItem from './GroupItem';
-import { logo } from '../../consts/assetsPaths';
 import { createImageUrl } from '../../utils/common';
 import { CategoryType } from '../../consts/const';
 import { GROUP_QUANTITY, QUESTIONS_IN_GROUP, NUMBER_OF_ALL_GROUPS } from '../../consts/const';
@@ -33,23 +32,19 @@ const CategoryPage: React.FC = () => {
   return (
     <div className='categories'>
       <div className='header header--categories'>
-        <div className='header__title'>
-          <Link className='logo' to='/'>
-            <img src={logo} alt='logo' />
-          </Link>
-          <div className='header__title-name'>Categories</div>
-        </div>
-        <div className='header__btns'>
-          <Link className='btn btn--home' to='/'>
-            home
-          </Link>
-          <Link className='btn btn--settings' to='/settings'>
-            settings
-          </Link>
-        </div>
+        <Link className='logo header__logo' to='/'></Link>
+        <Link className='btn btn--home header__home-btn' to='/'>
+          home
+        </Link>
+        <div className='header__title'>Categories</div>
+        <Link className='btn btn--settings header__settings-btn' to='/settings'>
+          settings
+        </Link>
       </div>
 
-      <div className='list'>{itemsEls}</div>
+      <div className='list'>
+        <div className='list__wrapper'>{itemsEls}</div>
+      </div>
     </div>
   );
 };

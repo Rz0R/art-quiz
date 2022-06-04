@@ -90,7 +90,6 @@
   .item {
     flex: 0 0 25%;
     padding: 0px 10px;
-    transition: transform 0.5s ease;
 
     @media (max-width: 800px) {
       flex: 0 0 33.33333%;
@@ -111,6 +110,27 @@
       background-color: rgba(255, 255, 255, 0.5);
       color: $sec-clr;
       border-top-left-radius: 25px;
+      transition: transform 0.5s ease;
+      cursor: pointer;
+
+      &.answered:hover {
+        .item__score-btn {
+          bottom: 0;
+          transition-delay: 0s;
+        }
+      }
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &.answered {
+        color: $main-clr;
+
+        img {
+          filter: grayscale(0);
+        }
+      }
     }
 
     &__header {
@@ -165,25 +185,6 @@
       img {
         filter: grayscale(1);
         width: 100%;
-      }
-    }
-
-    &.answered:hover {
-      .item__score-btn {
-        bottom: 0;
-        transition-delay: 0s;
-      }
-    }
-
-    &:hover {
-      transform: scale(1.05);
-    }
-
-    &.answered {
-      color: $main-clr;
-
-      img {
-        filter: grayscale(0);
       }
     }
   }
