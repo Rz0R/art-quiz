@@ -104,7 +104,7 @@ body {
   background-color: #dddddd;
 }
 
-.root {
+#root {
   min-height: 100%;
   overflow: hidden;
 }
