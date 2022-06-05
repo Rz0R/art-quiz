@@ -31,7 +31,7 @@ const CategoryPage: React.FC = () => {
 
   return (
     <div className='categories'>
-      <div className='header header--categories'>
+      <div className='header'>
         <Link className='logo header__logo' to='/'></Link>
         <Link className='btn btn--home header__home-btn' to='/'>
           home

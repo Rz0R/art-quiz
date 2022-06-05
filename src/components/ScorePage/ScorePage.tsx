@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { loadScoreQuestionsAction } from '../../store/serviceActions';
 import ScoreGroupItem from './ScoreGroupItem';
 import Loader from '../Loader';
-import { logo } from '../../consts/assetsPaths';
 import { CategoryType, GROUP_QUANTITY } from '../../consts/const';
 import ErrorPage from '../ErrorPage';
 
@@ -48,25 +47,20 @@ const ScorePage = () => {
 
   return (
     <div className='scores'>
-      <div className='header header--categories'>
-        <div className='header__title'>
-          <Link className='logo' to='/'>
-            <img src={logo} alt='logo' />
-          </Link>
-          <div className='header__title-name'>Score</div>
-        </div>
-
-        <div className='header__btns'>
-          <Link className='btn btn--home' to='/'>
-            home
-          </Link>
-          <Link className='btn btn--settings' to='/settings'>
-            settings
-          </Link>
-        </div>
+      <div className='header'>
+        <Link className='logo header__logo' to='/'></Link>
+        <Link className='btn btn--home header__home-btn' to='/'>
+          home
+        </Link>
+        <div className='header__title'>Score</div>
+        <Link className='btn btn--settings header__settings-btn' to='/settings'>
+          settings
+        </Link>
       </div>
 
-      <div className='list list--score'>{scoreGroupItems}</div>
+      <div className='list'>
+        <div className='list__wrapper'>{scoreGroupItems}</div>
+      </div>
     </div>
   );
 };

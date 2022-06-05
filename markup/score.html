@@ -15,106 +15,266 @@
 
 		<div class="container">
 			<div class="scores">
-				<div class="header header--categories">
-					<div class="header__title">
-						<div class="logo">
-							<img src="assets/img/logo.png" alt="logo">
-						</div>
-						<div class="header__title-name">Score</div>
+				<div class="header">
+					<div class="logo header__logo">
 					</div>
-					<div class="header__btns">
-						<a class="btn" href="#">
-							<img src="assets/icons/home-icon.svg" alt="pictures quiz">
-							<span>home</span>
-						</a>
 
-						<a class="btn btn--settings" href="#">
-							<img src="assets/icons/settings-icon.svg" alt="pictures quiz">
-							<span>settings</span>
-						</a>
-					</div>
+					<a class="btn btn--home header__home-btn" href="#">
+						home
+					</a>
+
+					<div class="header__title">Score</div>
+
+					<a class="btn btn--settings header__settings-btn" href="#">
+						settings
+					</a>
 				</div>
 
 				<div class="list list--score">
-					<button class="item item--show-info correct" href="#">
-						<div class="item__header">
-							<div class="item__number">1</div>
-							<div class="item__check">
-								<img src="assets/icons/correct-answer.png" alt="correct">
+					<div class="list__wrapper">
+						<div class="item" href="#">
+							<div class="item__body show correct">
+								<div class="item__header">
+									<div class="item__number">1</div>
+									<div class="item__check">
+										<img src="assets/icons/correct-answer.png" alt="correct">
+									</div>
+								</div>
+
+								<div class="item__picture">
+									<img src="assets/img/quiz/0.webp" alt="0">
+									<div class="item__info">
+										<p>Girl with a Pearl Earring</p>
+										<p>Johannes Vermeer</p>
+										<p>1665</p>
+									</div>
+								</div>
 							</div>
 						</div>
 
-						<div class="item__picture">
-							<img src="assets/img/quiz/0.webp" alt="0">
-							<div class="item__info">
-								<p>Girl with a Pearl Earring</p>
-								<p>Johannes Vermeer</p>
-								<p>1665</p>
+						<div class="item" href="#">
+							<div class="item__body show wrong">
+								<div class="item__header">
+									<div class="item__number">1</div>
+									<div class="item__check">
+										<img src="assets/icons/wrong-answer.png" alt="wrong">
+									</div>
+								</div>
+
+								<div class="item__picture">
+									<img src="assets/img/quiz/1.webp" alt="0">
+									<div class="item__info">
+										<p>Girl with a Pearl Earring</p>
+										<p>Johannes Vermeer</p>
+										<p>1665</p>
+									</div>
+								</div>
 							</div>
 						</div>
-					</button>
 
-					<button class="item item--show-info wrong" href="#">
-						<div class="item__header">
-							<div class="item__number">1</div>
-							<div class="item__check">
-								<img src="assets/icons/wrong-answer.png" alt="wrong">
+						<div class="item" href="#">
+							<div class="item__body wrong">
+								<div class="item__header">
+									<div class="item__number">1</div>
+									<div class="item__check">
+										<img src="assets/icons/wrong-answer.png" alt="wrong">
+									</div>
+								</div>
+
+								<div class="item__picture">
+									<img src="assets/img/quiz/2.webp" alt="0">
+									<div class="item__info">
+										<p>Girl with a Pearl Earring</p>
+										<p>Johannes Vermeer</p>
+										<p>1665</p>
+									</div>
+								</div>
 							</div>
 						</div>
 
-						<div class="item__picture">
-							<img src="assets/img/quiz/10.webp" alt="0">
-							<div class="item__info">
-								<p>Girl with a Pearl Earring</p>
-								<p>Johannes Vermeer</p>
-								<p>1665</p>
+						<div class="item" href="#">
+							<div class="item__body wrong">
+								<div class="item__header">
+									<div class="item__number">1</div>
+									<div class="item__check">
+										<img src="assets/icons/wrong-answer.png" alt="wrong">
+									</div>
+								</div>
+
+								<div class="item__picture">
+									<img src="assets/img/quiz/3.webp" alt="0">
+									<div class="item__info">
+										<p>Girl with a Pearl Earring</p>
+										<p>Johannes Vermeer</p>
+										<p>1665</p>
+									</div>
+								</div>
 							</div>
 						</div>
-					</button>
 
-					<button class="item">
-						<div class="item__header">
-							<div class="item__number">1</div>
-							<!-- <div class="item__score">9/10</div> -->
+						<div class="item" href="#">
+							<div class="item__body wrong">
+								<div class="item__header">
+									<div class="item__number">1</div>
+									<div class="item__check">
+										<img src="assets/icons/wrong-answer.png" alt="wrong">
+									</div>
+								</div>
+
+								<div class="item__picture">
+									<img src="assets/img/quiz/4.webp" alt="0">
+									<div class="item__info">
+										<p>Girl with a Pearl Earring</p>
+										<p>Johannes Vermeer</p>
+										<p>1665</p>
+									</div>
+								</div>
+							</div>
 						</div>
 
-						<div class="item__picture">
-							<img src="assets/img/quiz/20.webp" alt="0">
-						</div>
-					</button>
 
-					<button class="item">
-						<div class="item__header">
-							<div class="item__number">1</div>
-							<!-- <div class="item__score">9/10</div> -->
-						</div>
+						<div class="item" href="#">
+							<div class="item__body wrong">
+								<div class="item__header">
+									<div class="item__number">1</div>
+									<div class="item__check">
+										<img src="assets/icons/wrong-answer.png" alt="wrong">
+									</div>
+								</div>
 
-						<div class="item__picture">
-							<img src="assets/img/quiz/30.webp" alt="0">
-						</div>
-					</button>
-
-					<button class="item">
-						<div class="item__header">
-							<div class="item__number">1</div>
-							<!-- <div class="item__score">9/10</div> -->
-						</div>
-
-						<div class="item__picture">
-							<img src="assets/img/quiz/40.webp" alt="0">
-						</div>
-					</button>
-
-					<button class="item">
-						<div class="item__header">
-							<div class="item__number">1</div>
-							<!-- <div class="item__score">9/10</div> -->
+								<div class="item__picture">
+									<img src="assets/img/quiz/6.webp" alt="0">
+									<div class="item__info">
+										<p>Girl with a Pearl Earring</p>
+										<p>Johannes Vermeer</p>
+										<p>1665</p>
+									</div>
+								</div>
+							</div>
 						</div>
 
-						<div class="item__picture">
-							<img src="assets/img/quiz/50.webp" alt="0">
+						<div class="item item--show-info" href="#">
+							<div class="item__body correct">
+								<div class="item__header">
+									<div class="item__number">1</div>
+									<div class="item__check">
+										<img src="assets/icons/correct-answer.png" alt="correct">
+									</div>
+								</div>
+
+								<div class="item__picture">
+									<img src="assets/img/quiz/0.webp" alt="0">
+									<div class="item__info">
+										<p>Girl with a Pearl Earring</p>
+										<p>Johannes Vermeer</p>
+										<p>1665</p>
+									</div>
+								</div>
+							</div>
 						</div>
-					</button>
+
+						<div class="item item--show-info" href="#">
+							<div class="item__body wrong">
+								<div class="item__header">
+									<div class="item__number">1</div>
+									<div class="item__check">
+										<img src="assets/icons/wrong-answer.png" alt="wrong">
+									</div>
+								</div>
+
+								<div class="item__picture">
+									<img src="assets/img/quiz/1.webp" alt="0">
+									<div class="item__info">
+										<p>Girl with a Pearl Earring</p>
+										<p>Johannes Vermeer</p>
+										<p>1665</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="item" href="#">
+							<div class="item__body wrong">
+								<div class="item__header">
+									<div class="item__number">1</div>
+									<div class="item__check">
+										<img src="assets/icons/wrong-answer.png" alt="wrong">
+									</div>
+								</div>
+
+								<div class="item__picture">
+									<img src="assets/img/quiz/2.webp" alt="0">
+									<div class="item__info">
+										<p>Girl with a Pearl Earring</p>
+										<p>Johannes Vermeer</p>
+										<p>1665</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="item" href="#">
+							<div class="item__body wrong">
+								<div class="item__header">
+									<div class="item__number">1</div>
+									<div class="item__check">
+										<img src="assets/icons/wrong-answer.png" alt="wrong">
+									</div>
+								</div>
+
+								<div class="item__picture">
+									<img src="assets/img/quiz/3.webp" alt="0">
+									<div class="item__info">
+										<p>Girl with a Pearl Earring</p>
+										<p>Johannes Vermeer</p>
+										<p>1665</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="item" href="#">
+							<div class="item__body wrong">
+								<div class="item__header">
+									<div class="item__number">1</div>
+									<div class="item__check">
+										<img src="assets/icons/wrong-answer.png" alt="wrong">
+									</div>
+								</div>
+
+								<div class="item__picture">
+									<img src="assets/img/quiz/4.webp" alt="0">
+									<div class="item__info">
+										<p>Girl with a Pearl Earring</p>
+										<p>Johannes Vermeer</p>
+										<p>1665</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="item" href="#">
+							<div class="item__body wrong">
+								<div class="item__header">
+									<div class="item__number">1</div>
+									<div class="item__check">
+										<img src="assets/icons/wrong-answer.png" alt="wrong">
+									</div>
+								</div>
+
+								<div class="item__picture">
+									<img src="assets/img/quiz/6.webp" alt="0">
+									<div class="item__info">
+										<p>Girl with a Pearl Earring</p>
+										<p>Johannes Vermeer</p>
+										<p>1665</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 
 				</div>
 			</div>
