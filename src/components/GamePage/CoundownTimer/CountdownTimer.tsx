@@ -35,5 +35,5 @@ export const CountdownTimer = () => {
 
   const formattedTime = formatTime(remainingTime);
 
-  return <div className='countdown-timer'>{formattedTime}</div>;
+  return <div className='countdown-timer game__header__countdown-timer'>{formattedTime}</div>;
 };

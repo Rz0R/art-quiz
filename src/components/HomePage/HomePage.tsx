@@ -20,7 +20,7 @@ const HomePage: React.FC = () => {
           </div>
           <div className='quiz-menu__item'>
             <Link className='quiz-menu__btn' to={`/category/${CategoryType.PAINTINGS}`}>
-              <LoadableImage src={picturesBtnImg} alt='artists quiz' />
+              <LoadableImage src={picturesBtnImg} alt='pictures quiz' />
               <h3 className='quiz-menu__title'>
                 <span>pictures</span> quiz
               </h3>

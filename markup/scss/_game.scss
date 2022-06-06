@@ -1,27 +1,73 @@
 .game {
-  padding-top: 15px;
+  padding: 15px 0px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 
-  .header--game {
+  &__logo {
+    grid-column: 1 / 1;
+    max-width: 100px;
+  }
+
+  &__settings-btn {
+    grid-column: 3 / 3;
+    justify-self: end;
+    align-self: start;
+  }
+
+  &__question {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    justify-self: center;
+    align-self: center;
+
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: $main-clr;
+    text-transform: uppercase;
+
+    @media (max-width: 500px) {
+      font-size: 20px;
+    }
+  }
+
+  &__header {
     max-width: 700px;
     width: 100%;
-    .header {
-      &__top {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-      }
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 
-      &__question {
-        font-weight: 700;
-        color: $main-clr;
-        font-size: 30px;
-        text-transform: uppercase;
-        text-align: center;
+    @media (max-width: 500px) {
+      grid-template-columns: 1fr 1fr;
+
+      .game__settings-btn {
+        grid-row: 1;
+        grid-column: 2 / -1;
+      }
+    }
+
+    &.game__header--with-timer {
+      @media (max-width: 500px) {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr auto 1fr;
+
+        .game__header__countdown-timer {
+          grid-row: 2;
+          grid-column: 1 / -1;
+          justify-self: center;
+          align-self: center;
+        }
+
+        .game__question {
+          grid-row: 3;
+          grid-column: 1 / -1;
+          justify-self: center;
+          align-self: center;
+        }
       }
     }
   }
@@ -31,8 +77,15 @@
     overflow: hidden;
     box-shadow: 2px 2px 15px #000000;
     position: relative;
+    max-width: 700px;
+    aspect-ratio: 1000 / 850;
+    width: 100%;
     img {
       width: 100%;
+    }
+
+    @media (max-width: 500px) {
+      aspect-ratio: 1 / 1;
     }
   }
 
@@ -92,18 +145,20 @@
   }
 
   &__answers {
-    max-width: 800px;
+    max-width: 700px;
+    width: 100%;
 
     .answers {
       &--wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        padding: 0 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
       }
 
       &__answer:first-of-type {
         border-bottom: 1px solid $main-clr;
         border-right: 1px solid $main-clr;
+        justify-self: end;
       }
 
       &__answer:nth-of-type(2) {
@@ -114,6 +169,7 @@
       &__answer:nth-of-type(3) {
         border-right: 1px solid $main-clr;
         border-top: 1px solid $main-clr;
+        justify-self: end;
       }
 
       &__answer:nth-of-type(4) {
@@ -122,9 +178,12 @@
       }
 
       &__answer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         box-sizing: border-box;
-        padding: 10px 0px;
-        width: 50%;
+        padding: 10px;
+        width: 100%;
         text-align: center;
         font-weight: 400;
         font-size: 24px;
@@ -132,6 +191,15 @@
         color: $main-clr;
         background-color: rgba($color: $thrd-clr, $alpha: 0.3);
         transition: all 0.5s ease;
+
+        @media (max-width: 500px) {
+          font-size: 18px;
+          width: 100%;
+        }
+
+        @media (max-width: 400px) {
+          font-size: 16px;
+        }
 
         &:hover {
           cursor: pointer;
@@ -156,10 +224,15 @@
 .countdown-timer {
   flex: 0 0 150px;
   height: 100%;
-  text-align: center;
-  vertical-align: middle;
   align-self: center;
   font-size: 45px;
   font-weight: 700;
   color: $main-clr;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 500px) {
+    font-size: 30px;
+  }
 }

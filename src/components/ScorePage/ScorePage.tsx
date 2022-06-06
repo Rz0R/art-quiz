@@ -58,7 +58,7 @@ const ScorePage = () => {
         </Link>
       </div>
 
-      <div className='list'>
+      <div className='list list--score'>
         <div className='list__wrapper'>{scoreGroupItems}</div>
       </div>
     </div>
