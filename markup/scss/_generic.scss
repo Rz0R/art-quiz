@@ -60,6 +60,7 @@ body {
   @media (max-width: 450px) {
     max-width: 150px;
     font-size: 14px;
+    padding: 14px 5px;
   }
 
   &:hover {
@@ -81,8 +82,12 @@ body {
       transition: transform 2s;
     }
 
-    @media (max-width: 400px) {
-      padding: 11px 5px 11px 50px;
+    @media (max-width: 500px) {
+      padding: 14px 5px 14px 50px;
+    }
+
+    @media (max-width: 450px) {
+      padding: 14px 5px 14px 50px;
     }
 
     &:hover::before {
@@ -104,6 +109,14 @@ body {
       height: 45px;
       background: url('/assets/icons/home-icon.svg') center/cover no-repeat;
     }
+
+    @media (max-width: 500px) {
+      padding: 14px 5px 14px 50px;
+    }
+
+    @media (max-width: 450px) {
+      padding: 14px 5px 14px 50px;
+    }
   }
 
   &--categories {
@@ -119,6 +132,14 @@ body {
       width: 35px;
       height: 35px;
       background: url('/assets/icons/categories-icon.svg') center/cover no-repeat;
+    }
+
+    @media (max-width: 500px) {
+      padding: 11px 5px 11px 50px;
+    }
+
+    @media (max-width: 450px) {
+      padding: 14px 5px 14px 40px;
     }
   }
 }

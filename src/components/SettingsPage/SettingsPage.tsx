@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-// import { setVolume, setTimer } from '../../store/settingsState/settingsState';
 import { saveSettingsAction } from '../../store/serviceActions';
 import { Link, useNavigate } from 'react-router-dom';
-import { logo } from '../../consts/assetsPaths';
 import { InputRange } from './InputRange';
 import { CheckBox } from './CheckBox';
 import { TIMER_DEFAULT_SETTINGS, VOLUME_DEFAULT_SETTINGS } from '../../consts/const';
@@ -23,17 +21,15 @@ const SettingsPage: React.FC = () => {
   const { MIN_VOLUME_VALUE, MAX_VOLUME_VALUE, VOLUME_STEP } = VOLUME_DEFAULT_SETTINGS;
 
   const onSaveBtnClick = () => {
-    // dispatch(setVolume({ isVolumeOn: isVolumeActive, volumeLevel: volumeValue }));
-    // dispatch(setTimer({ isTimerOn: isTimerActive, time: timeValue }));
     dispatch(saveSettingsAction({ isVolumeOn: isVolumeActive, volumeLevel: volumeValue, isTimerOn: isTimerActive, time: timeValue }));
     navigate('/');
   };
   return (
     <div className='settings'>
-      <Link className='logo' to='/'>
-        <img src={logo} alt='logo' />
-      </Link>
-      <h2 className='settings__title'>settings</h2>
+      <div className='settings__header'>
+        <Link className='logo settings__logo' to='/'></Link>
+        <h2 className='settings__title'>settings</h2>
+      </div>
       <div className='settings__menu menu'>
         <div className='menu__item'>
           <div className='menu__icon menu__icon--volume' />

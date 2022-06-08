@@ -72,7 +72,7 @@ const GamePage: React.FC = () => {
       setPopupType(POPUP_TYPE.INFO);
       playWrongAnswerSound();
     }
-  }, [isTimerOn, isTimeOver, playWrongAnswerSound, questionNumber, pagination]);
+  }, [isTimeOver]);
 
   const checkDataIsLoading = (): boolean => {
     if (isLoading || (catId === CategoryType.ARTISTS && artistQuestions.length === 0)) {
