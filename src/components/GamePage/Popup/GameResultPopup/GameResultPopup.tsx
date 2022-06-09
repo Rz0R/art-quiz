@@ -5,9 +5,10 @@ import LoadableImage from '../../../LoadableImage';
 type GameResultPopupProps = {
   correctAnswers: number;
   onNextQuizBtnClick: () => void;
+  onHomeBtnClick: () => void;
 };
 
-const GameResultPopup = ({ correctAnswers, onNextQuizBtnClick }: GameResultPopupProps) => {
+const GameResultPopup = ({ correctAnswers, onNextQuizBtnClick, onHomeBtnClick }: GameResultPopupProps) => {
   return (
     <>
       <div className='popup__content'>
@@ -17,9 +18,9 @@ const GameResultPopup = ({ correctAnswers, onNextQuizBtnClick }: GameResultPopup
           <LoadableImage src={goodJobIcon} alt='good job' />
         </div>
         <div className='popup_btns'>
-          <Link to='/' className='btn btn--home'>
+          <button className='btn btn--home' onClick={onHomeBtnClick}>
             home
-          </Link>
+          </button>
           <button className='btn' onClick={onNextQuizBtnClick}>
             Next Quiz
           </button>

@@ -25,7 +25,7 @@ const ScoreGroupItem = ({ questionNumber, question, answer }: ScoreGroupItemProp
 
   return (
     <div className='item'>
-      <div
+      <button
         className={classnames('item__body', {
           correct: answer === ANSWERS_TYPE.CORRECT,
           wrong: answer === ANSWERS_TYPE.WRONG,
@@ -48,7 +48,7 @@ const ScoreGroupItem = ({ questionNumber, question, answer }: ScoreGroupItemProp
             <p>{year}</p>
           </div>
         </div>
-      </div>
+      </button>
     </div>
   );
 };

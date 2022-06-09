@@ -101,15 +101,35 @@
       transition: transform 0.5s ease;
       cursor: pointer;
 
-      &.answered:hover {
-        .item__score-btn {
-          bottom: 0;
-          transition-delay: 0s;
+      &.answered:hover,
+      &.answered:focus {
+        @media (hover: hover) {
+          .item__score-btn {
+            bottom: 0;
+            transition-delay: 0s;
+          }
         }
       }
 
-      &:hover {
-        transform: scale(1.05);
+      &.answered {
+        @media (hover: none) {
+          .item__score-btn {
+            bottom: 0;
+          }
+        }
+      }
+
+      &:hover,
+      &:focus {
+        @media (hover: hover) {
+          transform: scale(1.05);
+        }
+      }
+
+      &:active {
+        @media (hover: none) {
+          transform: scale(1.05);
+        }
       }
 
       &.answered {

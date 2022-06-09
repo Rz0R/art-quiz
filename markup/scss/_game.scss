@@ -110,9 +110,17 @@
         width: 100%;
       }
 
-      &:hover {
-        overflow: hidden;
-        box-shadow: 2px 2px 15px #000000;
+      &:hover,
+      &:focus {
+        @media (hover: hover) {
+          box-shadow: 2px 2px 15px #000000;
+        }
+      }
+
+      &:active {
+        @media (hover: none) {
+          box-shadow: 2px 2px 15px #000000;
+        }
       }
     }
   }
@@ -190,6 +198,7 @@
         text-transform: uppercase;
         color: $main-clr;
         background-color: rgba($color: $thrd-clr, $alpha: 0.3);
+        cursor: pointer;
         transition: all 0.5s ease;
 
         @media (max-width: 500px) {
@@ -201,10 +210,19 @@
           font-size: 16px;
         }
 
-        &:hover {
-          cursor: pointer;
-          background-color: $sec-clr;
-          color: $thrd-clr;
+        &:hover,
+        &:focus {
+          @media (hover: hover) {
+            background-color: $sec-clr;
+            color: $thrd-clr;
+          }
+        }
+
+        &:active {
+          @media (hover: none) {
+            background-color: $sec-clr;
+            color: $thrd-clr;
+          }
         }
 
         &--correct {

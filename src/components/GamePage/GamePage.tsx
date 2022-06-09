@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { loadArtistQuestionsAction, loadPaintingQuestionsAction, saveResultAction } from '../../store/serviceActions';
-import { resetTimer, stopTimer } from '../../store/gameState/gameState';
+import { playTimer, resetTimer, stopTimer } from '../../store/gameState/gameState';
 import { replaceElementInArray } from '../../utils/common';
 import { QUESTIONS_IN_GROUP, GROUP_QUANTITY, CategoryType } from '../../consts/const';
 import Popup from './Popup';
@@ -196,6 +196,13 @@ const GamePage: React.FC = () => {
     resetQuizState();
   };
 
+  const onHomeBtnClick = () => {
+    navigate('/');
+    if (isTimerOn) {
+      dispatch(playTimer());
+    }
+  };
+
   return (
     <div className='game'>
       {catId === CategoryType.ARTISTS && (
@@ -229,6 +236,7 @@ const GamePage: React.FC = () => {
         onNextBtnClick={onNextBtnClick}
         onNextQuizBtnClick={onNextQuizBtnClick}
         onTryAgainBtnClick={onTryAgainBtnClick}
+        onHomeBtnClick={onHomeBtnClick}
       />
     </div>
   );

@@ -33,9 +33,9 @@ const PaintingQuiz = ({ paintingQuestion, pagination, onAnswerBtnClick, isTimerO
       </div>
       <div className='game__pictures pictures'>
         {paintings.map((item, ind) => (
-          <div key={`${item}-${ind}`} className='pictures__item' onClick={() => onAnswerBtnClick(ind, item)}>
+          <button key={`${item}-${ind}`} className='pictures__item' onClick={() => onAnswerBtnClick(ind, item)}>
             <LoadableImage src={createImageUrl(item)} alt={`painting-${ind}`} />
-          </div>
+          </button>
         ))}
         <Pagination paginationValue={pagination} />
       </div>

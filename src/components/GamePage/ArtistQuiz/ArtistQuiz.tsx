@@ -5,6 +5,7 @@ import { createImageUrl } from '../../../utils/common';
 import { ANSWERS_TYPE, CategoryType } from '../../../consts/const';
 import Pagination from '../Pagination';
 import { CountdownTimer } from '../CoundownTimer';
+import LoadableImage from '../../LoadableImage';
 
 type ArtistQuizProps = {
   artistQuestion: ArtistQuestion;
@@ -34,13 +35,13 @@ const ArtistQuiz = ({ artistQuestion, pagination, answers, onAnswerBtnClick, isT
         <div className='game__question'>{question}</div>
       </div>
       <div className='game__picture'>
-        <img src={imageUrl} alt='picture' />
+        <LoadableImage src={imageUrl} alt='picture' />
         <Pagination paginationValue={pagination} />
       </div>
       <div className='game__answers answers'>
-        <ul className='answers--wrapper'>
+        <div className='answers--wrapper'>
           {authors.map((author, ind) => (
-            <li
+            <button
               key={`${author}-${ind}`}
               className={classnames('answers__answer', {
                 'answers__answer--correct': answers[ind] === ANSWERS_TYPE.CORRECT,
@@ -51,9 +52,9 @@ const ArtistQuiz = ({ artistQuestion, pagination, answers, onAnswerBtnClick, isT
               }}
             >
               {author}
-            </li>
+            </button>
           ))}
-        </ul>
+        </div>
       </div>
     </>
   );
