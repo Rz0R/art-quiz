@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { logo } from '../../consts/assetsPaths';
 
 type ErrorPageProps = {
   errorMessage: string;
@@ -8,22 +7,17 @@ type ErrorPageProps = {
 const ErrorPage = ({ errorMessage }: ErrorPageProps) => {
   return (
     <div className='error'>
-      <div className='header header--categories'>
-        <div className='header__title'>
-          <Link className='logo' to='/'>
-            <img src={logo} alt='logo' />
-          </Link>
-          <div className='header__title-name'>Error</div>
-        </div>
-        <div className='header__btns'>
-          <Link className='btn btn--home' to='/'>
-            home
-          </Link>
-          <Link className='btn btn--settings' to='/settings'>
-            settings
-          </Link>
-        </div>
+      <div className='header'>
+        <div className='logo header__logo'></div>
+        <Link className='btn btn--home header__home-btn' to='/'>
+          home
+        </Link>
+        <div className='header__title'>Error</div>
+        <Link className='btn btn--settings header__settings-btn' to='/settings'>
+          settings
+        </Link>
       </div>
+
       <div className='error__body'>
         <p className='error__text'>{errorMessage}</p>
       </div>
