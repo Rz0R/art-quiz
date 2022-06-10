@@ -1,5 +1,13 @@
-import { GROUP_QUANTITY, QUESTIONS_IN_GROUP, NUMBER_OF_POSSIBLE_ANSWERS, QuestionsText, NUMBER_OF_ALL_GROUPS } from '../consts/const';
-import { URL } from '../consts/const';
+import {
+  GROUP_QUANTITY,
+  QUESTIONS_IN_GROUP,
+  NUMBER_OF_POSSIBLE_ANSWERS,
+  QuestionsText,
+  NUMBER_OF_ALL_GROUPS,
+  URL,
+  CategoryType,
+} from '../consts/const';
+import { getRandomInteger } from '../utils/common';
 import { Questions, ArtistQuestions, PaintingQuestions } from '../types/questions';
 
 class QuizData {
@@ -156,6 +164,31 @@ class QuizData {
     const numberOfLastQuestion = numberOfFirstQuestion + QUESTIONS_IN_GROUP;
 
     return this.allQuestions.slice(numberOfFirstQuestion, numberOfLastQuestion);
+  };
+
+  getImagesForCategories = async (category: CategoryType) => {
+    if (!this.isDataLoaded) {
+      await this.initData();
+    }
+
+    let min = 0;
+    let max = GROUP_QUANTITY * QUESTIONS_IN_GROUP;
+
+    if (category === CategoryType.PAINTINGS) {
+      min = GROUP_QUANTITY * QUESTIONS_IN_GROUP;
+      max = NUMBER_OF_ALL_GROUPS * QUESTIONS_IN_GROUP;
+    }
+
+    const images = [];
+
+    for (let i = min; i < max; i = i + QUESTIONS_IN_GROUP) {
+      const currentGroup = this.allQuestions.slice(i, i + QUESTIONS_IN_GROUP);
+      const randomIndex = getRandomInteger(0, QUESTIONS_IN_GROUP - 1);
+      const randomImage = currentGroup[randomIndex].imageNum;
+      images.push(randomImage);
+    }
+
+    return images;
   };
 }
 
