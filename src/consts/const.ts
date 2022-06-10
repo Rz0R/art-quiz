@@ -49,6 +49,13 @@ export enum TimerActions {
   RESET = 'reset',
 }
 
+export enum LoadingStatus {
+  IDLE = 'idle',
+  LOADING = 'loading',
+  SUCCEEDED = 'succeeded',
+  FAILED = 'failed',
+}
+
 export const TIMER_DEFAULT_SETTINGS = {
   TIME: 60,
   IS_TIMER_ON: false,

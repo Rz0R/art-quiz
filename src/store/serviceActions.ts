@@ -15,7 +15,7 @@ import { replaceElementInArray } from '../utils/common';
 
 export const loadArtistQuestionsAction = (group: number) => async (dispatch: AppDispatch) => {
   try {
-    dispatch(questionsLoading);
+    dispatch(questionsLoading());
     const questions = await quizData.getArtistCategoryQuestions(group - 1);
     dispatch(artistQuestionsLoadinsSuccess(questions));
   } catch (err: any) {
@@ -25,7 +25,7 @@ export const loadArtistQuestionsAction = (group: number) => async (dispatch: App
 
 export const loadPaintingQuestionsAction = (group: number) => async (dispatch: AppDispatch) => {
   try {
-    dispatch(questionsLoading);
+    dispatch(questionsLoading());
     const questions = await quizData.getPaintingCategoryQuestions(group - 1);
     dispatch(paintingQuestionsLoadinsSuccess(questions));
   } catch (err: any) {
@@ -35,7 +35,7 @@ export const loadPaintingQuestionsAction = (group: number) => async (dispatch: A
 
 export const loadScoreQuestionsAction = (group: number) => async (dispatch: AppDispatch) => {
   try {
-    dispatch(scoreQuestionsLoading);
+    dispatch(scoreQuestionsLoading());
     const questions = await quizData.getScoreQestionsByGroup(group - 1);
     dispatch(scoreQuestionsLoadingSucces(questions));
   } catch (err: any) {
@@ -67,3 +67,7 @@ export const saveSettingsAction =
     dispatch(setVolume({ isVolumeOn, volumeLevel }));
     dispatch(setTimer({ isTimerOn, time }));
   };
+
+export const getImagesForCategoriesAction = (category: CategoryType) => {
+  quizData.getImagesForCategories(category);
+};

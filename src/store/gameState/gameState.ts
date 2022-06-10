@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GameState } from '../../types/gameState';
-import { NameSpace, TimerActions } from '../../consts/const';
+import { LoadingStatus, NameSpace, TimerActions } from '../../consts/const';
 import { ArtistQuestions, PaintingQuestions } from '../../types/questions';
 
 const initialState: GameState = {
   artistQuestions: [],
   paintingQuetions: [],
-  isLoading: false,
+  loadingStatus: LoadingStatus.IDLE,
   error: '',
   timerActions: TimerActions.PLAY,
   isTimeOver: false,
@@ -17,22 +17,28 @@ export const gameStateSlice = createSlice({
   initialState,
   reducers: {
     questionsLoading(state) {
-      state.isLoading = true;
+      state.loadingStatus = LoadingStatus.LOADING;
       state.error = '';
     },
     artistQuestionsLoadinsSuccess(state, action: PayloadAction<ArtistQuestions>) {
-      state.isLoading = false;
+      state.loadingStatus = LoadingStatus.SUCCEEDED;
       state.error = '';
       state.artistQuestions = action.payload;
     },
     paintingQuestionsLoadinsSuccess(state, action: PayloadAction<PaintingQuestions>) {
-      state.isLoading = false;
+      state.loadingStatus = LoadingStatus.SUCCEEDED;
       state.error = '';
       state.paintingQuetions = action.payload;
     },
     questionsLoadingError(state, action: PayloadAction<string>) {
-      state.isLoading = false;
+      state.loadingStatus = LoadingStatus.FAILED;
       state.error = action.payload;
+    },
+    questionsLoadingIdle(state) {
+      state.loadingStatus = LoadingStatus.IDLE;
+      state.error = '';
+      state.artistQuestions = [];
+      state.paintingQuetions = [];
     },
     playTimer(state) {
       state.timerActions = TimerActions.PLAY;
@@ -56,6 +62,7 @@ const {
   artistQuestionsLoadinsSuccess,
   paintingQuestionsLoadinsSuccess,
   questionsLoadingError,
+  questionsLoadingIdle,
   playTimer,
   stopTimer,
   resetTimer,
@@ -67,6 +74,7 @@ export {
   artistQuestionsLoadinsSuccess,
   paintingQuestionsLoadinsSuccess,
   questionsLoadingError,
+  questionsLoadingIdle,
   playTimer,
   stopTimer,
   resetTimer,

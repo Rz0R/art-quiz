@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { loadArtistQuestionsAction, loadPaintingQuestionsAction, saveResultAction } from '../../store/serviceActions';
-import { playTimer, resetTimer, stopTimer } from '../../store/gameState/gameState';
+import { playTimer, questionsLoadingIdle, resetTimer, stopTimer } from '../../store/gameState/gameState';
 import { replaceElementInArray } from '../../utils/common';
-import { QUESTIONS_IN_GROUP, GROUP_QUANTITY, CategoryType } from '../../consts/const';
+import { QUESTIONS_IN_GROUP, GROUP_QUANTITY, CategoryType, LoadingStatus } from '../../consts/const';
 import Popup from './Popup';
 import ArtistQuiz from './ArtistQuiz';
 import PaintingQuiz from './PaintingQuiz';
@@ -33,7 +33,7 @@ const GamePage: React.FC = () => {
   const [popupType, setPopupType] = useState<POPUP_TYPE>(POPUP_TYPE.INFO);
 
   const [isAnwerCorrect, setIsAnswerCorrect] = useState(false);
-  const { artistQuestions, paintingQuetions, isLoading, error, isTimeOver } = useAppSelector((state) => state.GAME);
+  const { artistQuestions, paintingQuetions, loadingStatus, error, isTimeOver } = useAppSelector((state) => state.GAME);
   const { isVolumeOn, volumeLevel, isTimerOn } = useAppSelector((state) => state.SETTINGS);
 
   const [playRightAnswerSound] = useSound(rightAnswerSound, {
@@ -62,7 +62,11 @@ const GamePage: React.FC = () => {
     } else if (catId === CategoryType.PAINTINGS) {
       dispatch(loadPaintingQuestionsAction(Number(groupId)));
     }
-  }, [catId, groupId, dispatch]);
+
+    return () => {
+      dispatch(questionsLoadingIdle());
+    };
+  }, [catId, groupId]);
 
   useEffect(() => {
     if (isTimerOn && isTimeOver) {
@@ -74,23 +78,11 @@ const GamePage: React.FC = () => {
     }
   }, [isTimeOver]);
 
-  const checkDataIsLoading = (): boolean => {
-    if (isLoading || (catId === CategoryType.ARTISTS && artistQuestions.length === 0)) {
-      return true;
-    }
-
-    if (isLoading || (catId === CategoryType.PAINTINGS && paintingQuetions.length === 0)) {
-      return true;
-    }
-
-    return false;
-  };
-
   if (error) {
     return <ErrorPage errorMessage={error} />;
   }
 
-  if (checkDataIsLoading()) {
+  if (loadingStatus === LoadingStatus.LOADING) {
     return <Loader />;
   }
 

@@ -1,14 +1,22 @@
 import { useParams, Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
+import { getImagesForCategoriesAction } from '../../store/serviceActions';
 import ErrorPage from '../ErrorPage';
 import GroupItem from './GroupItem';
 import { createImageUrl } from '../../utils/common';
 import { CategoryType } from '../../consts/const';
 import { GROUP_QUANTITY, QUESTIONS_IN_GROUP, NUMBER_OF_ALL_GROUPS } from '../../consts/const';
+import { useEffect } from 'react';
 
 const CategoryPage: React.FC = () => {
-  const { catId = CategoryType.ARTISTS } = useParams();
+  const { catId } = useParams();
   const { answers } = useAppSelector((state) => state.RESULTS);
+
+  useEffect(() => {
+    if (catId === CategoryType.ARTISTS || catId === CategoryType.PAINTINGS) {
+      getImagesForCategoriesAction(catId);
+    }
+  }, [catId]);
 
   if (!(catId === CategoryType.ARTISTS || catId === CategoryType.PAINTINGS)) {
     return <ErrorPage errorMessage='404' />;
