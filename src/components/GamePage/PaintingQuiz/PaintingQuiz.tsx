@@ -26,7 +26,7 @@ const PaintingQuiz = ({ paintingQuestion, pagination, onAnswerBtnClick, isTimerO
       >
         <Link className='logo game__logo' to='/'></Link>
         {isTimerOn && <CountdownTimer />}
-        <Link className='btn btn--categories game__settings-btn' to={`/category/${CategoryType.ARTISTS}`}>
+        <Link className='btn btn--categories game__settings-btn' to={`/category/${CategoryType.PAINTINGS}`}>
           categories
         </Link>
         <div className='game__question'>{question}</div>

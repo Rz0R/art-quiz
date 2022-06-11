@@ -11,6 +11,7 @@ export const NUMBER_OF_POSSIBLE_ANSWERS = 4;
 export enum NameSpace {
   app = 'APP',
   game = 'GAME',
+  category = 'CATEGORY',
   results = 'RESULTS',
   scores = 'SCORES',
   settings = 'SETTINGS',

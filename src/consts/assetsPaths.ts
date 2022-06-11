@@ -3,7 +3,6 @@ const iconsPath = '/assets/icons';
 export const quizImagePath = `${imagesPath}/quiz`;
 const soundsPath = '/assets/sounds';
 
-export const logo = `${imagesPath}/logo.png`;
 export const correctAnswerIcon = `${iconsPath}/correct-answer.webp`;
 export const wrongAnswerIcon = `${iconsPath}/wrong-answer.webp`;
 export const goodJobIcon = `${iconsPath}/good-job.png`;

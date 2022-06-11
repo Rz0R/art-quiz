@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { appState } from './appState/appState';
+import { categoryState } from './categoryState/categoryState';
 import { gameState } from './gameState/gameState';
 import { resultState } from './resultState/resultState';
 import { scoreState } from './scoreState/scoreState';
@@ -8,6 +9,7 @@ import { NameSpace } from '../consts/const';
 
 export const rootReducer = combineReducers({
   [NameSpace.app]: appState,
+  [NameSpace.category]: categoryState,
   [NameSpace.game]: gameState,
   [NameSpace.results]: resultState,
   [NameSpace.scores]: scoreState,

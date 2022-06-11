@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { goodJobIcon } from '../../../../consts/assetsPaths';
 import LoadableImage from '../../../LoadableImage';
 

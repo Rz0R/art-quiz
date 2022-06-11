@@ -57,7 +57,7 @@ export const gameStateSlice = createSlice({
   },
 });
 
-const {
+export const {
   questionsLoading,
   artistQuestionsLoadinsSuccess,
   paintingQuestionsLoadinsSuccess,
@@ -69,15 +69,4 @@ const {
   timeIsOver,
 } = gameStateSlice.actions;
 
-export {
-  questionsLoading,
-  artistQuestionsLoadinsSuccess,
-  paintingQuestionsLoadinsSuccess,
-  questionsLoadingError,
-  questionsLoadingIdle,
-  playTimer,
-  stopTimer,
-  resetTimer,
-  timeIsOver,
-};
 export const gameState = gameStateSlice.reducer;

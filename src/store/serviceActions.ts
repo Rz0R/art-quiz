@@ -4,6 +4,7 @@ import {
   paintingQuestionsLoadinsSuccess,
   questionsLoadingError,
 } from './gameState/gameState';
+import { imagesLoading, imagesLoadingSuccess, imagesLoadingError } from './categoryState/categoryState';
 import { saveResult } from './resultState/resultState';
 import { scoreQuestionsLoading, scoreQuestionsLoadingSucces, scoreQuestionsLoadingError } from './scoreState/scoreState';
 import { setVolume, setTimer } from './settingsState/settingsState';
@@ -30,6 +31,16 @@ export const loadPaintingQuestionsAction = (group: number) => async (dispatch: A
     dispatch(paintingQuestionsLoadinsSuccess(questions));
   } catch (err: any) {
     dispatch(questionsLoadingError(err.message));
+  }
+};
+
+export const getImagesForCategoriesAction = (category: CategoryType) => async (dispatch: AppDispatch) => {
+  try {
+    dispatch(imagesLoading());
+    const images = await quizData.getImagesForCategories(category);
+    dispatch(imagesLoadingSuccess(images));
+  } catch (err: any) {
+    dispatch(imagesLoadingError(err.message));
   }
 };
 
@@ -67,7 +78,3 @@ export const saveSettingsAction =
     dispatch(setVolume({ isVolumeOn, volumeLevel }));
     dispatch(setTimer({ isTimerOn, time }));
   };
-
-export const getImagesForCategoriesAction = (category: CategoryType) => {
-  quizData.getImagesForCategories(category);
-};

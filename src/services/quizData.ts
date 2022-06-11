@@ -9,6 +9,7 @@ import {
 } from '../consts/const';
 import { getRandomInteger } from '../utils/common';
 import { Questions, ArtistQuestions, PaintingQuestions } from '../types/questions';
+import { Images } from '../types/categoryState';
 
 class QuizData {
   private isDataLoaded = false;
@@ -166,7 +167,7 @@ class QuizData {
     return this.allQuestions.slice(numberOfFirstQuestion, numberOfLastQuestion);
   };
 
-  getImagesForCategories = async (category: CategoryType) => {
+  getImagesForCategories = async (category: CategoryType): Promise<Images> => {
     if (!this.isDataLoaded) {
       await this.initData();
     }

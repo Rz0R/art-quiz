@@ -1,37 +1,50 @@
 import { useParams, Link } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/redux';
+import { useAppSelector, useAppDispatch } from '../../hooks/redux';
 import { getImagesForCategoriesAction } from '../../store/serviceActions';
+import { imagesLoadingIdle } from '../../store/categoryState/categoryState';
 import ErrorPage from '../ErrorPage';
+import Loader from '../Loader';
 import GroupItem from './GroupItem';
 import { createImageUrl } from '../../utils/common';
-import { CategoryType } from '../../consts/const';
-import { GROUP_QUANTITY, QUESTIONS_IN_GROUP, NUMBER_OF_ALL_GROUPS } from '../../consts/const';
+import { CategoryType, LoadingStatus } from '../../consts/const';
+import { GROUP_QUANTITY } from '../../consts/const';
 import { useEffect } from 'react';
 
 const CategoryPage: React.FC = () => {
   const { catId } = useParams();
   const { answers } = useAppSelector((state) => state.RESULTS);
+  const { images, loadingStatus, error } = useAppSelector((state) => state.CATEGORY);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (catId === CategoryType.ARTISTS || catId === CategoryType.PAINTINGS) {
-      getImagesForCategoriesAction(catId);
+      dispatch(getImagesForCategoriesAction(catId));
     }
-  }, [catId]);
+    return () => {
+      dispatch(imagesLoadingIdle());
+    };
+  }, []);
 
   if (!(catId === CategoryType.ARTISTS || catId === CategoryType.PAINTINGS)) {
     return <ErrorPage errorMessage='404' />;
   }
 
+  if (error) {
+    return <ErrorPage errorMessage={error} />;
+  }
+
+  if (loadingStatus === LoadingStatus.LOADING) {
+    return <Loader />;
+  }
+
   let min = 0;
-  let max = GROUP_QUANTITY;
 
   if (catId === CategoryType.PAINTINGS) {
     min = GROUP_QUANTITY;
-    max = NUMBER_OF_ALL_GROUPS;
   }
 
-  const itemsEls = Array.from({ length: max - min }, (_, ind) => {
-    const imageSrc = createImageUrl(String(ind * QUESTIONS_IN_GROUP + min * QUESTIONS_IN_GROUP));
+  const itemsEls = images.map((image, ind) => {
+    const imageSrc = createImageUrl(image);
     const isAnswered = Boolean(answers[ind + min]);
     const score = (isAnswered && answers[ind + min]?.filter((item) => item === 'CORRECT').length) || 0;
     return <GroupItem key={ind} categoryId={catId} groupNumber={ind + 1} imageSrc={imageSrc} isAnswered={isAnswered} score={score} />;
