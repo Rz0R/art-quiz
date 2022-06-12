@@ -23,7 +23,7 @@ const CategoryPage: React.FC = () => {
     return () => {
       dispatch(imagesLoadingIdle());
     };
-  }, []);
+  }, [catId, dispatch]);
 
   if (!(catId === CategoryType.ARTISTS || catId === CategoryType.PAINTINGS)) {
     return <ErrorPage errorMessage='404' />;
@@ -33,7 +33,7 @@ const CategoryPage: React.FC = () => {
     return <ErrorPage errorMessage={error} />;
   }
 
-  if (loadingStatus === LoadingStatus.LOADING) {
+  if (loadingStatus === LoadingStatus.LOADING || loadingStatus === LoadingStatus.IDLE) {
     return <Loader />;
   }
 
@@ -54,11 +54,11 @@ const CategoryPage: React.FC = () => {
     <div className='categories'>
       <div className='header'>
         <Link className='logo header__logo' to='/'></Link>
-        <Link className='btn btn--home header__home-btn' to='/'>
+        <Link className='btn btn--home header__left-element' to='/'>
           home
         </Link>
         <div className='header__title'>Categories</div>
-        <Link className='btn btn--settings header__settings-btn' to='/settings'>
+        <Link className='btn btn--settings header__right-element' to='/settings'>
           settings
         </Link>
       </div>

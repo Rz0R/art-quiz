@@ -685,7 +685,7 @@ body {
   }
 }
 
-.header__home-btn {
+.header__left-element {
   -ms-grid-column-align: start;
       justify-self: start;
   -ms-flex-item-align: start;
@@ -694,7 +694,7 @@ body {
 }
 
 @media (max-width: 600px) {
-  .header__home-btn {
+  .header__left-element {
     -ms-grid-row: 2;
     grid-row: 2;
     -ms-grid-column: 1;
@@ -702,7 +702,7 @@ body {
   }
 }
 
-.header__settings-btn {
+.header__right-element {
   -ms-grid-column-align: end;
       justify-self: end;
   -ms-flex-item-align: start;
@@ -711,7 +711,7 @@ body {
 }
 
 @media (max-width: 600px) {
-  .header__settings-btn {
+  .header__right-element {
     -ms-grid-row: 2;
     grid-row: 2;
     -ms-grid-column: 2;

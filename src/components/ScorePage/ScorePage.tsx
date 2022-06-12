@@ -8,7 +8,7 @@ import { CategoryType, GROUP_QUANTITY } from '../../consts/const';
 import ErrorPage from '../ErrorPage';
 
 const ScorePage = () => {
-  const { catId = CategoryType.ARTISTS, groupId } = useParams();
+  const { catId, groupId } = useParams();
   const { questions, isLoading, error } = useAppSelector((state) => state.SCORES);
   const { answers } = useAppSelector((state) => state.RESULTS);
   const dispatch = useAppDispatch();
@@ -49,12 +49,12 @@ const ScorePage = () => {
     <div className='scores'>
       <div className='header'>
         <Link className='logo header__logo' to='/'></Link>
-        <Link className='btn btn--home header__home-btn' to='/'>
+        <Link className='btn btn--home header__left-element' to='/'>
           home
         </Link>
         <div className='header__title'>Score</div>
-        <Link className='btn btn--settings header__settings-btn' to='/settings'>
-          settings
+        <Link className='btn btn--categories header__right-element' to={`/category/${catId}`}>
+          categories
         </Link>
       </div>
 

@@ -66,7 +66,7 @@ const GamePage: React.FC = () => {
     return () => {
       dispatch(questionsLoadingIdle());
     };
-  }, [catId, groupId]);
+  }, [catId, groupId, dispatch]);
 
   useEffect(() => {
     if (isTimerOn && isTimeOver) {
@@ -78,11 +78,7 @@ const GamePage: React.FC = () => {
     }
   }, [isTimeOver]);
 
-  if (error) {
-    return <ErrorPage errorMessage={error} />;
-  }
-
-  if (loadingStatus === LoadingStatus.LOADING) {
+  if (loadingStatus === LoadingStatus.LOADING || loadingStatus === LoadingStatus.IDLE) {
     return <Loader />;
   }
 
@@ -94,7 +90,7 @@ const GamePage: React.FC = () => {
     currentQuestion = paintingQuetions[questionNumber];
   }
 
-  if (!currentQuestion) {
+  if (!currentQuestion || error) {
     return <ErrorPage errorMessage={error} />;
   }
 

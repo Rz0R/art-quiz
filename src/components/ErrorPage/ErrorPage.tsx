@@ -9,13 +9,10 @@ const ErrorPage = ({ errorMessage }: ErrorPageProps) => {
     <div className='error'>
       <div className='header'>
         <div className='logo header__logo'></div>
-        <Link className='btn btn--home header__home-btn' to='/'>
+        <Link className='btn btn--home __left-element' to='/'>
           home
         </Link>
         <div className='header__title'>Error</div>
-        <Link className='btn btn--settings header__settings-btn' to='/settings'>
-          settings
-        </Link>
       </div>
 
       <div className='error__body'>
