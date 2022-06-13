@@ -1,13 +1,20 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppState } from '../../types/appState';
-import { loadQuizData } from '../actions';
+import { NameSpace } from '../../consts/const';
 
 export const initialState: AppState = {
-  isQuizDataLoaded: false,
+  previousUrl: '/',
 };
 
-export const appState = createReducer(initialState, (builder) => {
-  builder.addCase(loadQuizData, (state, action) => {
-    state.isQuizDataLoaded = action.payload;
-  });
+export const appStateSlice = createSlice({
+  name: NameSpace.app,
+  initialState,
+  reducers: {
+    setPreviousUrl(state, action: PayloadAction<string>) {
+      state.previousUrl = action.payload;
+    },
+  },
 });
+
+export const { setPreviousUrl } = appStateSlice.actions;
+export const appState = appStateSlice.reducer;

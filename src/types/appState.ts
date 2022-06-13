@@ -1,3 +1,3 @@
 export type AppState = {
-  isQuizDataLoaded: boolean;
+  previousUrl: string;
 };

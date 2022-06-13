@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { saveSettingsAction } from '../../store/serviceActions';
-import { Link, useNavigate } from 'react-router-dom';
 import { InputRange } from './InputRange';
 import { CheckBox } from './CheckBox';
+import { SaveButton } from './SaveButton';
 import { TIMER_DEFAULT_SETTINGS, VOLUME_DEFAULT_SETTINGS } from '../../consts/const';
 
 const SettingsPage: React.FC = () => {
@@ -15,14 +17,12 @@ const SettingsPage: React.FC = () => {
 
   const [timeValue, setTimeValue] = useState(time);
   const [isTimerActive, setIsTimeActive] = useState(isTimerOn);
-  const navigate = useNavigate();
 
   const { MIN_TIME, MAX_TIME, TIME_STEP } = TIMER_DEFAULT_SETTINGS;
   const { MIN_VOLUME_VALUE, MAX_VOLUME_VALUE, VOLUME_STEP } = VOLUME_DEFAULT_SETTINGS;
 
   const onSaveBtnClick = () => {
     dispatch(saveSettingsAction({ isVolumeOn: isVolumeActive, volumeLevel: volumeValue, isTimerOn: isTimerActive, time: timeValue }));
-    navigate('/');
   };
   return (
     <div className='settings'>
@@ -61,9 +61,7 @@ const SettingsPage: React.FC = () => {
           <div className='menu__title'>time</div>
         </div>
       </div>
-      <button className='btn' onClick={onSaveBtnClick}>
-        save
-      </button>
+      <SaveButton onClick={onSaveBtnClick} />
     </div>
   );
 };

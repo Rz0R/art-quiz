@@ -1,14 +1,16 @@
 import { useParams, Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux';
+import { useEffect } from 'react';
+
 import { getImagesForCategoriesAction } from '../../store/serviceActions';
 import { imagesLoadingIdle } from '../../store/categoryState/categoryState';
 import ErrorPage from '../ErrorPage';
 import Loader from '../Loader';
 import GroupItem from './GroupItem';
+import { SettingsButton } from '../SettingsButton';
 import { createImageUrl } from '../../utils/common';
 import { CategoryType, LoadingStatus } from '../../consts/const';
 import { GROUP_QUANTITY } from '../../consts/const';
-import { useEffect } from 'react';
 
 const CategoryPage: React.FC = () => {
   const { catId } = useParams();
@@ -58,9 +60,7 @@ const CategoryPage: React.FC = () => {
           home
         </Link>
         <div className='header__title'>Categories</div>
-        <Link className='btn btn--settings header__right-element' to='/settings'>
-          settings
-        </Link>
+        <SettingsButton className='header__right-element' />
       </div>
 
       <div className='list'>

@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+
 import { artistsBtnImg, picturesBtnImg } from '../../consts/assetsPaths';
 import { CategoryType } from '../../consts/const';
 import LoadableImage from '../LoadableImage';
+import { SettingsButton } from '../SettingsButton';
 
 const HomePage: React.FC = () => {
   return (
@@ -28,9 +30,7 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </div>
-      <Link className='btn btn--settings' to='/settings'>
-        settings
-      </Link>
+      <SettingsButton />
     </div>
   );
 };
