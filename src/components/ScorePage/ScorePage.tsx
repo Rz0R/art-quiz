@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { loadScoreQuestionsAction } from '../../store/serviceActions';
 import ScoreGroupItem from './ScoreGroupItem';
 import Loader from '../Loader';
-import { CategoryType, GROUP_QUANTITY } from '../../consts/const';
+import { CategoryType, GROUP_QUANTITY, AppRoute } from '../../consts/const';
 import ErrorPage from '../ErrorPage';
 
 const ScorePage = () => {
@@ -48,12 +48,12 @@ const ScorePage = () => {
   return (
     <div className='scores'>
       <div className='header'>
-        <Link className='logo header__logo' to='/'></Link>
-        <Link className='btn btn--home header__left-element' to='/'>
+        <Link className='logo header__logo' to={AppRoute.Root}></Link>
+        <Link className='btn btn--home header__left-element' to={AppRoute.Root}>
           home
         </Link>
         <div className='header__title'>Score</div>
-        <Link className='btn btn--categories header__right-element' to={`/category/${catId}`}>
+        <Link className='btn btn--categories header__right-element' to={`${AppRoute.Category}/${catId}`}>
           categories
         </Link>
       </div>

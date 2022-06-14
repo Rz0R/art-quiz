@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { ArtistQuestion } from '../../../types/questions';
 import { createImageUrl } from '../../../utils/common';
-import { ANSWERS_TYPE, CategoryType } from '../../../consts/const';
+import { ANSWERS_TYPE, CategoryType, AppRoute } from '../../../consts/const';
 import Pagination from '../Pagination';
 import { CountdownTimer } from '../CoundownTimer';
 import LoadableImage from '../../LoadableImage';
@@ -27,9 +27,9 @@ const ArtistQuiz = ({ artistQuestion, pagination, answers, onAnswerBtnClick, isT
           'game__header--with-timer': isTimerOn,
         })}
       >
-        <Link className='logo game__logo' to='/'></Link>
+        <Link className='logo game__logo' to={AppRoute.Root}></Link>
         {isTimerOn && <CountdownTimer />}
-        <Link className='btn btn--categories game__settings-btn' to={`/category/${CategoryType.ARTISTS}`}>
+        <Link className='btn btn--categories game__settings-btn' to={`${AppRoute.Category}/${CategoryType.ARTISTS}`}>
           categories
         </Link>
         <div className='game__question'>{question}</div>

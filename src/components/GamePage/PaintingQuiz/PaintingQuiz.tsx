@@ -1,7 +1,7 @@
 import { PaintingQuestion } from '../../../types/questions';
 import { Link } from 'react-router-dom';
 import { createImageUrl } from '../../../utils/common';
-import { CategoryType, ANSWERS_TYPE } from '../../../consts/const';
+import { CategoryType, ANSWERS_TYPE, AppRoute } from '../../../consts/const';
 import Pagination from '../Pagination';
 import LoadableImage from '../../LoadableImage';
 import { CountdownTimer } from '../CoundownTimer';
@@ -24,9 +24,9 @@ const PaintingQuiz = ({ paintingQuestion, pagination, onAnswerBtnClick, isTimerO
           'game__header--with-timer': isTimerOn,
         })}
       >
-        <Link className='logo game__logo' to='/'></Link>
+        <Link className='logo game__logo' to={AppRoute.Root}></Link>
         {isTimerOn && <CountdownTimer />}
-        <Link className='btn btn--categories game__settings-btn' to={`/category/${CategoryType.PAINTINGS}`}>
+        <Link className='btn btn--categories game__settings-btn' to={`${AppRoute.Category}/${CategoryType.PAINTINGS}`}>
           categories
         </Link>
         <div className='game__question'>{question}</div>

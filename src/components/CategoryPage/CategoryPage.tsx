@@ -10,7 +10,7 @@ import GroupItem from './GroupItem';
 import { SettingsButton } from '../SettingsButton';
 import { createImageUrl } from '../../utils/common';
 import { CategoryType, LoadingStatus } from '../../consts/const';
-import { GROUP_QUANTITY } from '../../consts/const';
+import { GROUP_QUANTITY, AppRoute } from '../../consts/const';
 
 const CategoryPage: React.FC = () => {
   const { catId } = useParams();
@@ -55,8 +55,8 @@ const CategoryPage: React.FC = () => {
   return (
     <div className='categories'>
       <div className='header'>
-        <Link className='logo header__logo' to='/'></Link>
-        <Link className='btn btn--home header__left-element' to='/'>
+        <Link className='logo header__logo' to={AppRoute.Root}></Link>
+        <Link className='btn btn--home header__left-element' to={AppRoute.Root}>
           home
         </Link>
         <div className='header__title'>Categories</div>

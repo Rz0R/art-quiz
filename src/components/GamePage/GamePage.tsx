@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import useSound from 'use-sound';
+
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { loadArtistQuestionsAction, loadPaintingQuestionsAction, saveResultAction } from '../../store/serviceActions';
 import { playTimer, questionsLoadingIdle, resetTimer, stopTimer } from '../../store/gameState/gameState';
 import { replaceElementInArray } from '../../utils/common';
@@ -10,8 +12,7 @@ import ArtistQuiz from './ArtistQuiz';
 import PaintingQuiz from './PaintingQuiz';
 import ErrorPage from '../ErrorPage';
 import Loader from '../Loader';
-import { POPUP_TYPE, ANIMATION_TIME, ANSWERS_TYPE, NUMBER_OF_POSSIBLE_ANSWERS } from '../../consts/const';
-import useSound from 'use-sound';
+import { POPUP_TYPE, ANIMATION_TIME, ANSWERS_TYPE, NUMBER_OF_POSSIBLE_ANSWERS, AppRoute } from '../../consts/const';
 import { rightAnswerSound, wrongAnswerSound, victorySound, loseSound } from '../../consts/assetsPaths';
 
 type UserAnswersType = {
@@ -176,7 +177,7 @@ const GamePage: React.FC = () => {
   };
 
   const onNextQuizBtnClick = () => {
-    navigate(`/category/${catId}/${Number(groupId) + 1 <= GROUP_QUANTITY ? Number(groupId) + 1 : 1}`);
+    navigate(`${AppRoute.Category}/${catId}/${Number(groupId) + 1 <= GROUP_QUANTITY ? Number(groupId) + 1 : 1}`);
     resetQuizState();
   };
 
@@ -185,7 +186,7 @@ const GamePage: React.FC = () => {
   };
 
   const onHomeBtnClick = () => {
-    navigate('/');
+    navigate(AppRoute.Root);
     if (isTimerOn) {
       dispatch(playTimer());
     }

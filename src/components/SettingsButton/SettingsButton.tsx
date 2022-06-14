@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { setPreviousUrl } from '../../store/appState/appState';
 import { useAppDispatch } from '../../hooks/redux';
+import { AppRoute } from '../../consts/const';
 
 type SettingsButtonProps = {
   className?: string;
@@ -14,7 +15,7 @@ const SettingsButton = ({ className = '' }: SettingsButtonProps) => {
 
   const onClick = () => {
     dispatch(setPreviousUrl(pathname));
-    navigate('/settings');
+    navigate(AppRoute.Settings);
   };
 
   return (

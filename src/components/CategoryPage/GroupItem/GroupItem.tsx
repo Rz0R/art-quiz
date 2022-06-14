@@ -2,6 +2,7 @@ import React, { MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoadableImage from '../../LoadableImage';
 import classnames from 'classnames';
+import { AppRoute } from '../../../consts/const';
 
 interface IGroupItem {
   categoryId: string;
@@ -15,12 +16,12 @@ const GroupItem: React.FC<IGroupItem> = ({ categoryId, groupNumber, imageSrc, is
   const navigate = useNavigate();
   const onItemClick = (evt: MouseEvent) => {
     evt.stopPropagation();
-    navigate(`/category/${categoryId}/${groupNumber}`);
+    navigate(`${AppRoute.Category}/${categoryId}/${groupNumber}`);
   };
 
   const onScoreBntClick = (evt: MouseEvent) => {
     evt.stopPropagation();
-    navigate(`/score/${categoryId}/${groupNumber}`);
+    navigate(`${AppRoute.Score}/${categoryId}/${groupNumber}`);
   };
 
   return (

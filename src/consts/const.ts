@@ -74,3 +74,10 @@ export const VOLUME_DEFAULT_SETTINGS = {
 };
 
 export const ANIMATION_TIME = 500;
+
+export enum AppRoute {
+  Root = '/',
+  Category = '/category',
+  Score = '/score',
+  Settings = '/settings',
+}

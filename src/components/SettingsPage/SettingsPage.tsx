@@ -6,7 +6,7 @@ import { saveSettingsAction } from '../../store/serviceActions';
 import { InputRange } from './InputRange';
 import { CheckBox } from './CheckBox';
 import { SaveButton } from './SaveButton';
-import { TIMER_DEFAULT_SETTINGS, VOLUME_DEFAULT_SETTINGS } from '../../consts/const';
+import { TIMER_DEFAULT_SETTINGS, VOLUME_DEFAULT_SETTINGS, AppRoute } from '../../consts/const';
 
 const SettingsPage: React.FC = () => {
   const { isVolumeOn, volumeLevel, isTimerOn, time } = useAppSelector((state) => state.SETTINGS);
@@ -27,7 +27,7 @@ const SettingsPage: React.FC = () => {
   return (
     <div className='settings'>
       <div className='settings__header'>
-        <Link className='logo settings__logo' to='/'></Link>
+        <Link className='logo settings__logo' to={AppRoute.Root}></Link>
         <h2 className='settings__title'>settings</h2>
       </div>
       <div className='settings__menu menu'>

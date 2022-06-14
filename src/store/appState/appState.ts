@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppState } from '../../types/appState';
-import { NameSpace } from '../../consts/const';
+import { NameSpace, AppRoute } from '../../consts/const';
 
 export const initialState: AppState = {
-  previousUrl: '/',
+  previousUrl: AppRoute.Root,
 };
 
 export const appStateSlice = createSlice({
