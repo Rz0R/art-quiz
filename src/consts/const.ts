@@ -81,3 +81,8 @@ export enum AppRoute {
   Score = '/score',
   Settings = '/settings',
 }
+
+export enum QuestionType {
+  Artist = 'artist',
+  Paintings = 'paintings',
+}

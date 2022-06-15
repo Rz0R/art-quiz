@@ -3,16 +3,26 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useSound from 'use-sound';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { loadArtistQuestionsAction, loadPaintingQuestionsAction, saveResultAction } from '../../store/serviceActions';
+import { loadQuestionsAction, saveResultAction } from '../../store/serviceActions';
 import { playTimer, questionsLoadingIdle, resetTimer, stopTimer } from '../../store/gameState/gameState';
 import { replaceElementInArray } from '../../utils/common';
-import { QUESTIONS_IN_GROUP, GROUP_QUANTITY, CategoryType, LoadingStatus } from '../../consts/const';
+import {
+  QUESTIONS_IN_GROUP,
+  GROUP_QUANTITY,
+  CategoryType,
+  LoadingStatus,
+  POPUP_TYPE,
+  ANIMATION_TIME,
+  ANSWERS_TYPE,
+  NUMBER_OF_POSSIBLE_ANSWERS,
+  AppRoute,
+  QuestionType,
+} from '../../consts/const';
 import Popup from './Popup';
 import ArtistQuiz from './ArtistQuiz';
 import PaintingQuiz from './PaintingQuiz';
 import ErrorPage from '../ErrorPage';
 import Loader from '../Loader';
-import { POPUP_TYPE, ANIMATION_TIME, ANSWERS_TYPE, NUMBER_OF_POSSIBLE_ANSWERS, AppRoute } from '../../consts/const';
 import { rightAnswerSound, wrongAnswerSound, victorySound, loseSound } from '../../consts/assetsPaths';
 
 type UserAnswersType = {
@@ -34,7 +44,7 @@ const GamePage: React.FC = () => {
   const [popupType, setPopupType] = useState<POPUP_TYPE>(POPUP_TYPE.INFO);
 
   const [isAnwerCorrect, setIsAnswerCorrect] = useState(false);
-  const { artistQuestions, paintingQuetions, loadingStatus, error, isTimeOver } = useAppSelector((state) => state.GAME);
+  const { questions, loadingStatus, error, isTimeOver } = useAppSelector((state) => state.GAME);
   const { isVolumeOn, volumeLevel, isTimerOn } = useAppSelector((state) => state.SETTINGS);
 
   const [playRightAnswerSound] = useSound(rightAnswerSound, {
@@ -58,12 +68,9 @@ const GamePage: React.FC = () => {
   });
 
   useEffect(() => {
-    if (catId === CategoryType.ARTISTS) {
-      dispatch(loadArtistQuestionsAction(Number(groupId)));
-    } else if (catId === CategoryType.PAINTINGS) {
-      dispatch(loadPaintingQuestionsAction(Number(groupId)));
+    if (catId === CategoryType.ARTISTS || catId === CategoryType.PAINTINGS) {
+      dispatch(loadQuestionsAction(catId, Number(groupId)));
     }
-
     return () => {
       dispatch(questionsLoadingIdle());
     };
@@ -79,16 +86,18 @@ const GamePage: React.FC = () => {
     }
   }, [isTimeOver]);
 
+  if (!(catId === CategoryType.ARTISTS || catId === CategoryType.PAINTINGS)) {
+    return <ErrorPage errorMessage='404' />;
+  }
+
   if (loadingStatus === LoadingStatus.LOADING || loadingStatus === LoadingStatus.IDLE) {
     return <Loader />;
   }
 
   let currentQuestion;
 
-  if (catId === CategoryType.ARTISTS) {
-    currentQuestion = artistQuestions[questionNumber];
-  } else if (catId === CategoryType.PAINTINGS) {
-    currentQuestion = paintingQuetions[questionNumber];
+  if (catId === CategoryType.ARTISTS || catId === CategoryType.PAINTINGS) {
+    currentQuestion = questions[questionNumber];
   }
 
   if (!currentQuestion || error) {
@@ -194,9 +203,9 @@ const GamePage: React.FC = () => {
 
   return (
     <div className='game'>
-      {catId === CategoryType.ARTISTS && (
+      {currentQuestion.type === QuestionType.Artist && (
         <ArtistQuiz
-          artistQuestion={artistQuestions[questionNumber]}
+          artistQuestion={currentQuestion}
           pagination={pagination}
           onAnswerBtnClick={onAnswerBtnClick}
           answers={userAnswer.answers}
@@ -204,9 +213,9 @@ const GamePage: React.FC = () => {
         />
       )}
 
-      {catId === CategoryType.PAINTINGS && (
+      {currentQuestion.type === QuestionType.Paintings && (
         <PaintingQuiz
-          paintingQuestion={paintingQuetions[questionNumber]}
+          paintingQuestion={currentQuestion}
           pagination={pagination}
           onAnswerBtnClick={onAnswerBtnClick}
           isTimerOn={isTimerOn}

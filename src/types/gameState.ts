@@ -1,9 +1,8 @@
-import { ArtistQuestions, PaintingQuestions } from './questions';
+import { GameQuestions } from './questions';
 import { TimerActions, LoadingStatus } from '../consts/const';
 
 export type GameState = {
-  artistQuestions: ArtistQuestions;
-  paintingQuetions: PaintingQuestions;
+  questions: GameQuestions;
   loadingStatus: LoadingStatus;
   error: string;
   timerActions: TimerActions;

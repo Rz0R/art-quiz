@@ -1,3 +1,5 @@
+import { QuestionType } from '../consts/const';
+
 export type Question = {
   author: string;
   name: string;
@@ -6,6 +8,7 @@ export type Question = {
 };
 
 export type ArtistQuestion = {
+  type: QuestionType.Artist;
   question: string;
   answer: string;
   author: string;
@@ -16,6 +19,7 @@ export type ArtistQuestion = {
 };
 
 export type PaintingQuestion = {
+  type: QuestionType.Paintings;
   question: string;
   answer: string;
   author: string;
@@ -28,3 +32,4 @@ export type PaintingQuestion = {
 export type Questions = Question[];
 export type ArtistQuestions = ArtistQuestion[];
 export type PaintingQuestions = PaintingQuestion[];
+export type GameQuestions = ArtistQuestions | PaintingQuestions;

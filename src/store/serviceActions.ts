@@ -1,9 +1,4 @@
-import {
-  questionsLoading,
-  artistQuestionsLoadinsSuccess,
-  paintingQuestionsLoadinsSuccess,
-  questionsLoadingError,
-} from './gameState/gameState';
+import { questionsLoading, gameQuestionsLoadingSuccess, questionsLoadingError } from './gameState/gameState';
 import { imagesLoading, imagesLoadingSuccess, imagesLoadingError } from './categoryState/categoryState';
 import { saveResult } from './resultState/resultState';
 import { scoreQuestionsLoading, scoreQuestionsLoadingSucces, scoreQuestionsLoadingError } from './scoreState/scoreState';
@@ -14,21 +9,16 @@ import { CategoryType, GROUP_QUANTITY, LOCAL_STORAGE_KEYS } from '../consts/cons
 import { store } from './rootReducer';
 import { replaceElementInArray } from '../utils/common';
 
-export const loadArtistQuestionsAction = (group: number) => async (dispatch: AppDispatch) => {
+export const loadQuestionsAction = (category: CategoryType, group: number) => async (dispatch: AppDispatch) => {
   try {
     dispatch(questionsLoading());
-    const questions = await quizData.getArtistCategoryQuestions(group - 1);
-    dispatch(artistQuestionsLoadinsSuccess(questions));
-  } catch (err: any) {
-    dispatch(questionsLoadingError(err.message));
-  }
-};
-
-export const loadPaintingQuestionsAction = (group: number) => async (dispatch: AppDispatch) => {
-  try {
-    dispatch(questionsLoading());
-    const questions = await quizData.getPaintingCategoryQuestions(group - 1);
-    dispatch(paintingQuestionsLoadinsSuccess(questions));
+    if (category === CategoryType.ARTISTS) {
+      const questions = await quizData.getArtistCategoryQuestions(group - 1);
+      dispatch(gameQuestionsLoadingSuccess(questions));
+    } else {
+      const questions = await quizData.getPaintingCategoryQuestions(group - 1);
+      dispatch(gameQuestionsLoadingSuccess(questions));
+    }
   } catch (err: any) {
     dispatch(questionsLoadingError(err.message));
   }

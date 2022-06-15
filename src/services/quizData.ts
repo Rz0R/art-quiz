@@ -6,6 +6,7 @@ import {
   NUMBER_OF_ALL_GROUPS,
   URL,
   CategoryType,
+  QuestionType,
 } from '../consts/const';
 import { getRandomInteger } from '../utils/common';
 import { Questions, ArtistQuestions, PaintingQuestions } from '../types/questions';
@@ -32,20 +33,6 @@ class QuizData {
     } catch (err) {
       this.isDataLoaded = false;
       throw err;
-    }
-  };
-
-  getQuestionsByCategory = async (group: number) => {
-    if (!this.isDataLoaded) {
-      await this.initData();
-    }
-
-    if (group < GROUP_QUANTITY) {
-      return this.getArtistCategoryQuestions(group);
-      // } else if (group >= GROUP_QUANTITY && group < GROUP_QUANTITY * 2) {
-      //   return this.getPaintingCategoryQuestions(group);
-    } else {
-      throw new Error('No such group!');
     }
   };
 
@@ -77,6 +64,7 @@ class QuizData {
       }
 
       const question = {
+        type: QuestionType.Artist,
         question: QuestionsText.ARTIST,
         answer,
         author,
@@ -137,6 +125,7 @@ class QuizData {
       imageNums.sort(() => Math.random() - 0.5);
 
       const question = {
+        type: QuestionType.Paintings as QuestionType.Paintings,
         question: questionText,
         answer,
         author,

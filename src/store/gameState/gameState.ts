@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GameState } from '../../types/gameState';
 import { LoadingStatus, NameSpace, TimerActions } from '../../consts/const';
-import { ArtistQuestions, PaintingQuestions } from '../../types/questions';
+import { GameQuestions } from '../../types/questions';
 
 const initialState: GameState = {
-  artistQuestions: [],
-  paintingQuetions: [],
+  questions: [],
   loadingStatus: LoadingStatus.IDLE,
   error: '',
   timerActions: TimerActions.PLAY,
@@ -20,15 +19,10 @@ export const gameStateSlice = createSlice({
       state.loadingStatus = LoadingStatus.LOADING;
       state.error = '';
     },
-    artistQuestionsLoadinsSuccess(state, action: PayloadAction<ArtistQuestions>) {
+    gameQuestionsLoadingSuccess(state, action: PayloadAction<GameQuestions>) {
       state.loadingStatus = LoadingStatus.SUCCEEDED;
       state.error = '';
-      state.artistQuestions = action.payload;
-    },
-    paintingQuestionsLoadinsSuccess(state, action: PayloadAction<PaintingQuestions>) {
-      state.loadingStatus = LoadingStatus.SUCCEEDED;
-      state.error = '';
-      state.paintingQuetions = action.payload;
+      state.questions = action.payload;
     },
     questionsLoadingError(state, action: PayloadAction<string>) {
       state.loadingStatus = LoadingStatus.FAILED;
@@ -37,8 +31,7 @@ export const gameStateSlice = createSlice({
     questionsLoadingIdle(state) {
       state.loadingStatus = LoadingStatus.IDLE;
       state.error = '';
-      state.artistQuestions = [];
-      state.paintingQuetions = [];
+      state.questions = [];
     },
     playTimer(state) {
       state.timerActions = TimerActions.PLAY;
@@ -59,8 +52,7 @@ export const gameStateSlice = createSlice({
 
 export const {
   questionsLoading,
-  artistQuestionsLoadinsSuccess,
-  paintingQuestionsLoadinsSuccess,
+  gameQuestionsLoadingSuccess,
   questionsLoadingError,
   questionsLoadingIdle,
   playTimer,
