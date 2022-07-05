@@ -155,16 +155,18 @@ const GamePage: React.FC = () => {
 
   const onNextBtnClick = () => {
     if (!(questionNumber + 1 >= QUESTIONS_IN_GROUP)) {
-      setQuestionNumber(questionNumber + 1);
-      setUserAnswer({
-        isAnswered: false,
-        answers: new Array(NUMBER_OF_POSSIBLE_ANSWERS).fill(ANSWERS_TYPE.NO_ANSWER),
-      });
       setIsPopupActive(false);
-      setPopupType(POPUP_TYPE.INFO);
-      if (isTimerOn) {
-        dispatch(resetTimer());
-      }
+      setTimeout(() => {
+        setQuestionNumber(questionNumber + 1);
+        setUserAnswer({
+          isAnswered: false,
+          answers: new Array(NUMBER_OF_POSSIBLE_ANSWERS).fill(ANSWERS_TYPE.NO_ANSWER),
+        });
+        setPopupType(POPUP_TYPE.INFO);
+        if (isTimerOn) {
+          dispatch(resetTimer());
+        }
+      }, ANIMATION_TIME);
     } else if (pagination.filter((item) => item === ANSWERS_TYPE.CORRECT).length > 0) {
       setIsPopupActive(false);
       setTimeout(() => {

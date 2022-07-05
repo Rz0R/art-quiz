@@ -40,6 +40,7 @@ const Popup = ({
         <div className='popup__content'>
           {popupType === POPUP_TYPE.INFO && (
             <NextQuestionPopup
+              isActive={isPopupActive}
               author={author}
               name={name}
               year={year}

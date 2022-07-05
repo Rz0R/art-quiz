@@ -1,9 +1,13 @@
+import { useState, useEffect } from 'react';
+
 import { createImageUrl } from '../../../../utils/common';
 import { correctAnswerIcon } from '../../../../consts/assetsPaths';
 import { wrongAnswerIcon } from '../../../../consts/assetsPaths';
 import LoadableImage from '../../../LoadableImage';
+import { ANIMATION_TIME } from '../../../../consts/const';
 
 type NextQuestionPopupProps = {
+  isActive: boolean;
   author: string;
   name: string;
   year: string;
@@ -12,10 +16,21 @@ type NextQuestionPopupProps = {
   onNextBtnClick: () => void;
 };
 
-const NextQuestionPopup = ({ author, name, year, imageNum, isAnwerCorrect, onNextBtnClick }: NextQuestionPopupProps) => {
+const NextQuestionPopup = ({ author, name, year, imageNum, isAnwerCorrect, onNextBtnClick, isActive }: NextQuestionPopupProps) => {
   const imageUrl = createImageUrl(imageNum);
+  const [isPopupActive, setIsPopupActive] = useState(false);
 
-  return (
+  useEffect(() => {
+    if (isActive) {
+      setIsPopupActive(isActive);
+    } else {
+      setTimeout(() => {
+        setIsPopupActive(isActive);
+      }, ANIMATION_TIME);
+    }
+  }, [isActive]);
+
+  return isPopupActive ? (
     <>
       <div className='popup__answer'>
         <img src={isAnwerCorrect ? correctAnswerIcon : wrongAnswerIcon} alt={isAnwerCorrect ? 'correct answer' : 'wrong answer'} />
@@ -30,6 +45,8 @@ const NextQuestionPopup = ({ author, name, year, imageNum, isAnwerCorrect, onNex
         Next
       </button>
     </>
+  ) : (
+    <></>
   );
 };
 
