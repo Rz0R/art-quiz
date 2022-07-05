@@ -1,4 +1,3 @@
-import LoadableImage from '../../../LoadableImage';
 import { cupIcon } from '../../../../consts/assetsPaths';
 import { POPUP_TEXT } from '../../../../consts/const';
 import { useAppSelector } from '../../../../hooks/redux';
@@ -14,7 +13,7 @@ const GameOverPopup = ({ onTryAgainYesBtnClick, onTryAgainNoBtnClick }: GameOver
     <>
       <div className='popup__text-game-over'>{POPUP_TEXT[language].gameOver}</div>
       <div className='popup__cup-icon'>
-        <LoadableImage src={cupIcon} alt='game over' />
+        <img src={cupIcon} alt='game over' />
       </div>
       <div className='popup__text-play-again'>{POPUP_TEXT[language].playAgain}</div>
       <div className='popup_btns'>

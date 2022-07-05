@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { createImageUrl } from '../../../../utils/common';
 import { correctAnswerIcon } from '../../../../consts/assetsPaths';
 import { wrongAnswerIcon } from '../../../../consts/assetsPaths';
-import LoadableImage from '../../../LoadableImage';
 import { ANIMATION_TIME } from '../../../../consts/const';
 
 type NextQuestionPopupProps = {
@@ -36,7 +35,7 @@ const NextQuestionPopup = ({ author, name, year, imageNum, isAnwerCorrect, onNex
         <img src={isAnwerCorrect ? correctAnswerIcon : wrongAnswerIcon} alt={isAnwerCorrect ? 'correct answer' : 'wrong answer'} />
       </div>
       <div className='popup__picture'>
-        <LoadableImage src={imageUrl} alt={name} />
+        <img src={imageUrl} alt={name} />
       </div>
       <div className='popup__picture-name'>{name}</div>
       <div className='popup__picture-author'>{author}</div>

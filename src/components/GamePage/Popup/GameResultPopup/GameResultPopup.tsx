@@ -18,7 +18,7 @@ const GameResultPopup = ({ correctAnswers, onNextQuizBtnClick, onHomeBtnClick }:
         <div className='popup__text-congrats'>{POPUP_TEXT[language].congratulation}</div>
         <div className='popup__text-result'>{correctAnswers}/10</div>
         <div className='popup__good-job-icon'>
-          <LoadableImage src={goodJobIcon} alt='good job' />
+          <img src={goodJobIcon} alt='good job' />
         </div>
         <div className='popup_btns'>
           <button className='btn btn--home' onClick={onHomeBtnClick}>
