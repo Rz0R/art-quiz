@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   justify-content: space-around;
   padding: 15px 0px;
   text-transform: uppercase;
@@ -46,11 +46,11 @@
 
 .menu {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
   justify-content: space-between;
-  gap: calc(18% + 10px);
-  max-width: 100%;
+  gap: 10px;
+  max-width: 840px;
   width: 100%;
 
   @media (max-width: 850px) {
@@ -63,7 +63,7 @@
   &__item {
     max-width: 415px;
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 500 / 360;
     display: flex;
     gap: 10px;
     flex-direction: column;
@@ -74,15 +74,25 @@
     padding: 30px 10px;
     align-items: center;
 
+    &:last-child:nth-child(2n - 1) {
+      justify-self: center;
+      grid-column-end: span 2;
+    }
+
     @media (max-width: 850px) {
       aspect-ratio: 500 / 360;
       padding: 10px;
+
+      &:last-child:nth-child(2n - 1) {
+        justify-self: inherit;
+        grid-column-end: unset;
+      }
     }
   }
 
   // .menu__icon
   &__icon {
-    max-width: 100px;
+    max-width: 80px;
     width: 100%;
     aspect-ratio: 1/1;
     margin-bottom: 15px;
@@ -98,6 +108,10 @@
 
     &--time {
       background: url('../assets/icons/time-icon.svg') center/contain no-repeat;
+    }
+
+    &--language {
+      background: url('../assets/icons/language-icon.svg') center/contain no-repeat;
     }
   }
 
@@ -159,6 +173,46 @@
       height: 15px;
       width: 15px;
     }
+  }
+
+  &__language-btn {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    width: 50px;
+
+    transition: all 0.3s ease 0s;
+
+    // @media (any-hover: hover) {
+    //   &:hover {
+    //     box-shadow: -1px 1px 9px 3px rgba($sec-clr, 0.25);
+    //   }
+    // }
+  }
+
+  &__arrow-left,
+  &__arrow-right {
+    height: 20px;
+    width: 20px;
+  }
+
+  &__arrow-left {
+    border-bottom: 1px solid $sec-clr;
+    border-left: 1px solid $sec-clr;
+    transform: translateX(25%) rotate(45deg);
+  }
+
+  &__arrow-right {
+    border-right: 1px solid $sec-clr;
+    border-top: 1px solid $sec-clr;
+    transform: translateX(-25%) rotate(45deg);
+  }
+
+  &__language-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: $sec-clr;
   }
 }
 

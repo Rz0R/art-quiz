@@ -73,6 +73,11 @@ export const VOLUME_DEFAULT_SETTINGS = {
   VOLUME_STEP: 0.05,
 };
 
+export enum Language {
+  ru = 'RU',
+  en = 'EN',
+}
+
 export const ANIMATION_TIME = 500;
 
 export enum AppRoute {
