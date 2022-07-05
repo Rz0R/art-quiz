@@ -6,7 +6,7 @@ import { saveSettingsAction } from '../../store/serviceActions';
 import { InputRange } from './InputRange';
 import { CheckBox } from './CheckBox';
 import { SaveButton } from './SaveButton';
-import { TIMER_DEFAULT_SETTINGS, VOLUME_DEFAULT_SETTINGS, AppRoute, Language } from '../../consts/const';
+import { TIMER_DEFAULT_SETTINGS, VOLUME_DEFAULT_SETTINGS, SETTING_PAGE_TEXT, AppRoute, Language } from '../../consts/const';
 
 const SettingsPage: React.FC = () => {
   const { isVolumeOn, volumeLevel, isTimerOn, time, language } = useAppSelector((state) => state.SETTINGS);
@@ -46,7 +46,7 @@ const SettingsPage: React.FC = () => {
     <div className='settings'>
       <div className='settings__header'>
         <Link className='logo settings__logo' to={AppRoute.Root}></Link>
-        <h2 className='settings__title'>settings</h2>
+        <h2 className='settings__title'>{SETTING_PAGE_TEXT[languageValue].title}</h2>
       </div>
       <div className='settings__menu menu'>
         <div className='menu__item'>
@@ -60,7 +60,7 @@ const SettingsPage: React.FC = () => {
             onChange={(evt) => setVolumeValue(Number(evt.target.value))}
           />
           <CheckBox id='volume' isChecked={isVolumeActive} onChange={() => setIsVolumeActive(!isVolumeActive)} />
-          <div className='menu__title'>volume</div>
+          <div className='menu__title'>{SETTING_PAGE_TEXT[languageValue].volume}</div>
         </div>
 
         <div className='menu__item'>
@@ -77,7 +77,7 @@ const SettingsPage: React.FC = () => {
             <span className='menu__time-value'>{timeValue}</span>
           </div>
           <CheckBox id='time' isChecked={isTimerActive} onChange={() => setIsTimeActive(!isTimerActive)} />
-          <div className='menu__title'>time</div>
+          <div className='menu__title'>{SETTING_PAGE_TEXT[languageValue].time}</div>
         </div>
 
         <div className='menu__item'>
@@ -91,7 +91,7 @@ const SettingsPage: React.FC = () => {
               <div className='menu__arrow-right'></div>
             </button>
           </div>
-          <div className='menu__title'>language</div>
+          <div className='menu__title'>{SETTING_PAGE_TEXT[languageValue].language}</div>
         </div>
       </div>
       <SaveButton onClick={onSaveBtnClick} />

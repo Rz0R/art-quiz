@@ -10,12 +10,14 @@ import GroupItem from './GroupItem';
 import { SettingsButton } from '../SettingsButton';
 import { createImageUrl } from '../../utils/common';
 import { CategoryType, LoadingStatus } from '../../consts/const';
-import { GROUP_QUANTITY, AppRoute } from '../../consts/const';
+import { GROUP_QUANTITY, AppRoute, CATEGORY_PAGE_TEXT } from '../../consts/const';
 
 const CategoryPage: React.FC = () => {
   const { catId } = useParams();
   const { answers } = useAppSelector((state) => state.RESULTS);
   const { images, loadingStatus, error } = useAppSelector((state) => state.CATEGORY);
+  const { language } = useAppSelector((state) => state.SETTINGS);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -59,7 +61,7 @@ const CategoryPage: React.FC = () => {
         <Link className='btn btn--home header__left-element' to={AppRoute.Root}>
           home
         </Link>
-        <div className='header__title'>Categories</div>
+        <div className='header__title'>{CATEGORY_PAGE_TEXT[language].title}</div>
         <SettingsButton className='header__right-element' />
       </div>
 

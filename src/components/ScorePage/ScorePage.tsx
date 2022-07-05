@@ -4,13 +4,15 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { loadScoreQuestionsAction } from '../../store/serviceActions';
 import ScoreGroupItem from './ScoreGroupItem';
 import Loader from '../Loader';
-import { CategoryType, GROUP_QUANTITY, AppRoute } from '../../consts/const';
+import { CategoryType, GROUP_QUANTITY, AppRoute, SCORE_PAGE_TEXT } from '../../consts/const';
 import ErrorPage from '../ErrorPage';
 
 const ScorePage = () => {
   const { catId, groupId } = useParams();
   const { questions, isLoading, error } = useAppSelector((state) => state.SCORES);
   const { answers } = useAppSelector((state) => state.RESULTS);
+  const { language } = useAppSelector((state) => state.SETTINGS);
+
   const dispatch = useAppDispatch();
 
   let groupNumber = Number(groupId);
@@ -52,7 +54,7 @@ const ScorePage = () => {
         <Link className='btn btn--home header__left-element' to={AppRoute.Root}>
           home
         </Link>
-        <div className='header__title'>Score</div>
+        <div className='header__title'>{SCORE_PAGE_TEXT[language].title}</div>
         <Link className='btn btn--categories header__right-element' to={`${AppRoute.Category}/${catId}`}>
           categories
         </Link>

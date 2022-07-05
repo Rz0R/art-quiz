@@ -153,18 +153,18 @@
   // game over popup
 
   &__text-game-over {
-    font-size: 96px;
+    font-size: 80px;
     text-align: center;
     font-weight: 700;
     margin-bottom: 50px;
 
     @media (max-width: 620px) {
-      font-size: 76px;
+      font-size: 50px;
       margin-bottom: 35px;
     }
 
     @media (max-width: 420px) {
-      font-size: 56px;
+      font-size: 40px;
       margin-bottom: 30px;
     }
   }

@@ -32,7 +32,7 @@ export const QUESTION_TEXT = {
   },
   PAINTING: {
     EN: 'Which is {AUTHOR} picture?',
-    RU: 'Какую картину написал {AUTHOR}',
+    RU: 'Какую картину написал {AUTHOR}?',
   },
 };
 
@@ -87,6 +87,8 @@ export const VOLUME_DEFAULT_SETTINGS = {
   VOLUME_STEP: 0.05,
 };
 
+export const LANGUAGE_DEFAULT_SETTINGS = Language.RU;
+
 export const ANIMATION_TIME = 500;
 
 export enum AppRoute {
@@ -100,3 +102,49 @@ export enum QuestionType {
   Artist = 'artist',
   Paintings = 'paintings',
 }
+
+export const SETTING_PAGE_TEXT = {
+  EN: {
+    title: 'settings',
+    volume: 'volume',
+    time: 'time',
+    language: 'language',
+  },
+  RU: {
+    title: 'настройки',
+    volume: 'звук',
+    time: 'время',
+    language: 'язык',
+  },
+};
+
+export const CATEGORY_PAGE_TEXT = {
+  EN: {
+    title: 'categories',
+  },
+  RU: {
+    title: 'категории',
+  },
+};
+
+export const SCORE_PAGE_TEXT = {
+  EN: {
+    title: 'score',
+  },
+  RU: {
+    title: 'счет',
+  },
+};
+
+export const POPUP_TEXT = {
+  EN: {
+    congratulation: 'contgratulations!',
+    gameOver: 'game over',
+    playAgain: 'play again?',
+  },
+  RU: {
+    congratulation: 'поздравляю!',
+    gameOver: 'вы проиграли',
+    playAgain: 'сыграем еще раз?',
+  },
+};
