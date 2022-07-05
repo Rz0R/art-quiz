@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SettingsState } from '../../types/settingsState';
-import { NameSpace, TIMER_DEFAULT_SETTINGS, VOLUME_DEFAULT_SETTINGS, LOCAL_STORAGE_KEYS } from '../../consts/const';
+import { NameSpace, TIMER_DEFAULT_SETTINGS, VOLUME_DEFAULT_SETTINGS, LOCAL_STORAGE_KEYS, Language } from '../../consts/const';
 
 const defaultState: SettingsState = {
   volumeLevel: VOLUME_DEFAULT_SETTINGS.VALUE,
   isVolumeOn: VOLUME_DEFAULT_SETTINGS.IS_VOLUME_ON,
   time: TIMER_DEFAULT_SETTINGS.TIME,
   isTimerOn: TIMER_DEFAULT_SETTINGS.IS_TIMER_ON,
+  language: Language.RU,
 };
 
 const localState = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.SETTINGS) || 'null');
@@ -23,10 +24,12 @@ export const settingsStateSlice = createSlice({
       state.volumeLevel = action.payload.volumeLevel;
       state.isVolumeOn = action.payload.isVolumeOn;
     },
+    setLanguage(state, action: PayloadAction<Language>) {
+      state.language = action.payload;
+    },
   },
 });
 
-const { setVolume, setTimer } = settingsStateSlice.actions;
-export { setVolume, setTimer };
+export const { setVolume, setTimer, setLanguage } = settingsStateSlice.actions;
 
 export const settingsState = settingsStateSlice.reducer;

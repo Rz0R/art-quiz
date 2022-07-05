@@ -2,11 +2,12 @@ import {
   GROUP_QUANTITY,
   QUESTIONS_IN_GROUP,
   NUMBER_OF_POSSIBLE_ANSWERS,
-  QuestionsText,
+  QUESTION_TEXT,
   NUMBER_OF_ALL_GROUPS,
   URL,
   CategoryType,
   QuestionType,
+  Language,
 } from '../consts/const';
 import { getRandomInteger } from '../utils/common';
 import { Questions, ArtistQuestions, PaintingQuestions } from '../types/questions';
@@ -16,15 +17,12 @@ class QuizData {
   private isDataLoaded = false;
   private allQuestions: Questions = [];
   private uniqueAuthors: string[] = [];
-  private url: string;
+  private language: Language = Language.EN;
 
-  constructor(url: string) {
-    this.url = url;
-  }
-
-  initData = async () => {
+  initData = async (language: Language) => {
     try {
-      const response = await fetch(this.url);
+      this.language = language;
+      const response = await fetch(URL[language]);
       const data = (await response.json()) as Questions;
 
       this.allQuestions = data;
@@ -36,13 +34,13 @@ class QuizData {
     }
   };
 
-  getArtistCategoryQuestions = async (group: number): Promise<ArtistQuestions> => {
+  getArtistCategoryQuestions = async (group: number, language: Language): Promise<ArtistQuestions> => {
     if (group < 0 || group >= GROUP_QUANTITY) {
       throw new Error('No such group!');
     }
 
-    if (!this.isDataLoaded) {
-      await this.initData();
+    if (!this.isDataLoaded || this.language !== language) {
+      await this.initData(language);
     }
 
     const result = [];
@@ -65,7 +63,7 @@ class QuizData {
 
       const question = {
         type: QuestionType.Artist,
-        question: QuestionsText.ARTIST,
+        question: QUESTION_TEXT.ARTIST[language],
         answer,
         author,
         imageNum,
@@ -80,13 +78,13 @@ class QuizData {
     return result as ArtistQuestions;
   };
 
-  getPaintingCategoryQuestions = async (group: number): Promise<PaintingQuestions> => {
+  getPaintingCategoryQuestions = async (group: number, language: Language): Promise<PaintingQuestions> => {
     if (group < 0 || group >= GROUP_QUANTITY) {
       throw new Error('No such group!');
     }
 
-    if (!this.isDataLoaded) {
-      await this.initData();
+    if (!this.isDataLoaded || this.language !== language) {
+      await this.initData(language);
     }
 
     const result = [];
@@ -95,7 +93,7 @@ class QuizData {
 
     for (let i = group * QUESTIONS_IN_GROUP; i < group * QUESTIONS_IN_GROUP + QUESTIONS_IN_GROUP; i++) {
       const { author, imageNum, name, year } = this.allQuestions[i];
-      const questionText = QuestionsText.PAINTING.replace('{AUTHOR}', author);
+      const questionText = QUESTION_TEXT.PAINTING[language].replace('{AUTHOR}', author);
       const answer = imageNum;
       const imageNums = [];
       imageNums.push(imageNum);
@@ -141,13 +139,13 @@ class QuizData {
     return result;
   };
 
-  getScoreQestionsByGroup = async (group: number): Promise<Questions> => {
+  getScoreQestionsByGroup = async (group: number, language: Language): Promise<Questions> => {
     if (group < 0 || group >= NUMBER_OF_ALL_GROUPS) {
       throw new Error('No such group!');
     }
 
-    if (!this.isDataLoaded) {
-      await this.initData();
+    if (!this.isDataLoaded || this.language !== language) {
+      await this.initData(language);
     }
 
     const numberOfFirstQuestion = group * QUESTIONS_IN_GROUP;
@@ -156,9 +154,9 @@ class QuizData {
     return this.allQuestions.slice(numberOfFirstQuestion, numberOfLastQuestion);
   };
 
-  getImagesForCategories = async (category: CategoryType): Promise<Images> => {
-    if (!this.isDataLoaded) {
-      await this.initData();
+  getImagesForCategories = async (category: CategoryType, language: Language): Promise<Images> => {
+    if (!this.isDataLoaded || this.language !== language) {
+      await this.initData(language);
     }
 
     let min = 0;
@@ -182,4 +180,4 @@ class QuizData {
   };
 }
 
-export const quizData = new QuizData(URL);
+export const quizData = new QuizData();

@@ -9,7 +9,7 @@ import { SaveButton } from './SaveButton';
 import { TIMER_DEFAULT_SETTINGS, VOLUME_DEFAULT_SETTINGS, AppRoute, Language } from '../../consts/const';
 
 const SettingsPage: React.FC = () => {
-  const { isVolumeOn, volumeLevel, isTimerOn, time } = useAppSelector((state) => state.SETTINGS);
+  const { isVolumeOn, volumeLevel, isTimerOn, time, language } = useAppSelector((state) => state.SETTINGS);
   const dispatch = useAppDispatch();
 
   const [volumeValue, setVolumeValue] = useState(volumeLevel);
@@ -18,21 +18,29 @@ const SettingsPage: React.FC = () => {
   const [timeValue, setTimeValue] = useState(time);
   const [isTimerActive, setIsTimeActive] = useState(isTimerOn);
 
-  const [languageValue, setLanguageValue] = useState(Language.en);
+  const [languageValue, setLanguageValue] = useState(language);
 
   const { MIN_TIME, MAX_TIME, TIME_STEP } = TIMER_DEFAULT_SETTINGS;
   const { MIN_VOLUME_VALUE, MAX_VOLUME_VALUE, VOLUME_STEP } = VOLUME_DEFAULT_SETTINGS;
 
   const onLaguageChange = () => {
-    if (languageValue === Language.en) {
-      setLanguageValue(Language.ru);
+    if (languageValue === Language.EN) {
+      setLanguageValue(Language.RU);
     } else {
-      setLanguageValue(Language.en);
+      setLanguageValue(Language.EN);
     }
   };
 
   const onSaveBtnClick = () => {
-    dispatch(saveSettingsAction({ isVolumeOn: isVolumeActive, volumeLevel: volumeValue, isTimerOn: isTimerActive, time: timeValue }));
+    dispatch(
+      saveSettingsAction({
+        isVolumeOn: isVolumeActive,
+        volumeLevel: volumeValue,
+        isTimerOn: isTimerActive,
+        time: timeValue,
+        language: languageValue,
+      })
+    );
   };
   return (
     <div className='settings'>
@@ -78,7 +86,7 @@ const SettingsPage: React.FC = () => {
             <button className='menu__language-btn' onClick={onLaguageChange}>
               <div className='menu__arrow-left'></div>
             </button>
-            <p className='menu__language-value'>{languageValue === Language.en ? 'english' : 'русский'}</p>
+            <p className='menu__language-value'>{languageValue === Language.EN ? 'english' : 'русский'}</p>
             <button className='menu__language-btn' onClick={onLaguageChange}>
               <div className='menu__arrow-right'></div>
             </button>

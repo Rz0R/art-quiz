@@ -1,4 +1,12 @@
-export const URL = '/data/images.json';
+export enum URL {
+  EN = '/data/EN_images.json',
+  RU = '/data/RU_images.json',
+}
+
+export enum Language {
+  RU = 'RU',
+  EN = 'EN',
+}
 
 export const GROUP_QUANTITY = 12;
 
@@ -17,10 +25,16 @@ export enum NameSpace {
   settings = 'SETTINGS',
 }
 
-export enum QuestionsText {
-  ARTIST = 'Who is the author of this picture?',
-  PAINTING = 'Which is {AUTHOR} picture?',
-}
+export const QUESTION_TEXT = {
+  ARTIST: {
+    EN: 'Who is the author of this picture?',
+    RU: 'Кто автор этой картины?',
+  },
+  PAINTING: {
+    EN: 'Which is {AUTHOR} picture?',
+    RU: 'Какую картину написал {AUTHOR}',
+  },
+};
 
 export enum POPUP_TYPE {
   INFO = 'INFO',
@@ -72,11 +86,6 @@ export const VOLUME_DEFAULT_SETTINGS = {
   MAX_VOLUME_VALUE: 1,
   VOLUME_STEP: 0.05,
 };
-
-export enum Language {
-  ru = 'RU',
-  en = 'EN',
-}
 
 export const ANIMATION_TIME = 500;
 
