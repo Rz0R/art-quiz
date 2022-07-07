@@ -1,4 +1,6 @@
 import classnames from 'classnames';
+import { memo } from 'react';
+
 import { ANSWERS_TYPE } from '../../../consts/const';
 
 type PaginationProps = {
@@ -21,4 +23,4 @@ const Pagination = ({ paginationValue }: PaginationProps) => {
   );
 };
 
-export default Pagination;
+export default memo(Pagination);

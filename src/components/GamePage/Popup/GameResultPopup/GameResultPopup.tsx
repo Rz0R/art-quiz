@@ -1,5 +1,4 @@
 import { goodJobIcon } from '../../../../consts/assetsPaths';
-import LoadableImage from '../../../LoadableImage';
 import { POPUP_TEXT } from '../../../../consts/const';
 import { useAppSelector } from '../../../../hooks/redux';
 

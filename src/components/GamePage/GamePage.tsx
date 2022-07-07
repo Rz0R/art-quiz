@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import useSound from 'use-sound';
 
@@ -76,15 +76,19 @@ const GamePage: React.FC = () => {
     };
   }, [catId, groupId, dispatch]);
 
+  const setTimeIsUp = useCallback(() => {
+    setPagination(replaceElementInArray(pagination, questionNumber, ANSWERS_TYPE.WRONG));
+    setIsAnswerCorrect(false);
+    setIsPopupActive(true);
+    setPopupType(POPUP_TYPE.INFO);
+    playWrongAnswerSound();
+  }, [setPagination, setIsAnswerCorrect, setIsPopupActive, playWrongAnswerSound, pagination, questionNumber]);
+
   useEffect(() => {
-    if (isTimerOn && isTimeOver) {
-      setPagination(replaceElementInArray(pagination, questionNumber, ANSWERS_TYPE.WRONG));
-      setIsAnswerCorrect(false);
-      setIsPopupActive(true);
-      setPopupType(POPUP_TYPE.INFO);
-      playWrongAnswerSound();
+    if (isTimeOver) {
+      setTimeIsUp();
     }
-  }, [isTimeOver]);
+  }, [isTimeOver, setTimeIsUp]);
 
   if (!(catId === CategoryType.ARTISTS || catId === CategoryType.PAINTINGS)) {
     return <ErrorPage errorMessage='404' />;
@@ -108,12 +112,12 @@ const GamePage: React.FC = () => {
 
   const { isAnswered, answers } = userAnswer;
 
-  const onAnswerBtnClick = (ind: number, author: string) => {
+  const onAnswerBtnClick = (ind: number, itemAnswer: string) => {
     if (isAnswered) {
       return;
     }
 
-    if (author === answer) {
+    if (itemAnswer === answer) {
       setPagination(replaceElementInArray(pagination, questionNumber, ANSWERS_TYPE.CORRECT));
       setUserAnswer({
         isAnswered: true,
@@ -156,17 +160,15 @@ const GamePage: React.FC = () => {
   const onNextBtnClick = () => {
     if (!(questionNumber + 1 >= QUESTIONS_IN_GROUP)) {
       setIsPopupActive(false);
-      setTimeout(() => {
-        setQuestionNumber(questionNumber + 1);
-        setUserAnswer({
-          isAnswered: false,
-          answers: new Array(NUMBER_OF_POSSIBLE_ANSWERS).fill(ANSWERS_TYPE.NO_ANSWER),
-        });
-        setPopupType(POPUP_TYPE.INFO);
-        if (isTimerOn) {
-          dispatch(resetTimer());
-        }
-      }, ANIMATION_TIME);
+      setQuestionNumber(questionNumber + 1);
+      setUserAnswer({
+        isAnswered: false,
+        answers: new Array(NUMBER_OF_POSSIBLE_ANSWERS).fill(ANSWERS_TYPE.NO_ANSWER),
+      });
+      setPopupType(POPUP_TYPE.INFO);
+      if (isTimerOn) {
+        dispatch(resetTimer());
+      }
     } else if (pagination.filter((item) => item === ANSWERS_TYPE.CORRECT).length > 0) {
       setIsPopupActive(false);
       setTimeout(() => {

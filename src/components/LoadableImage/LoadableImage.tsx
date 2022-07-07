@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, memo } from 'react';
 import classnames from 'classnames';
 
 type LoadableImageProps = {
@@ -34,4 +34,4 @@ const LoadableImage = ({ src, alt = '' }: LoadableImageProps) => {
   );
 };
 
-export default LoadableImage;
+export default memo(LoadableImage);

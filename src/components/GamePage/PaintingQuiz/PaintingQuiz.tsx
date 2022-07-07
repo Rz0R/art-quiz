@@ -1,16 +1,15 @@
-import { PaintingQuestion } from '../../../types/questions';
 import { Link } from 'react-router-dom';
-import { createImageUrl } from '../../../utils/common';
-import { CategoryType, ANSWERS_TYPE, AppRoute } from '../../../consts/const';
-import Pagination from '../Pagination';
-import LoadableImage from '../../LoadableImage';
-import { CountdownTimer } from '../CoundownTimer';
 import classnames from 'classnames';
+
+import { PaintingQuestion } from '../../../types/questions';
+import { CategoryType, ANSWERS_TYPE, AppRoute } from '../../../consts/const';
+import { CountdownTimer } from '../CoundownTimer';
+import Pictures from './Pictures';
 
 type PaintingQuizProps = {
   paintingQuestion: PaintingQuestion;
   pagination: ANSWERS_TYPE[];
-  onAnswerBtnClick: (ind: number, author: string) => void;
+  onAnswerBtnClick: (ind: number, painting: string) => void;
   isTimerOn: boolean;
 };
 
@@ -31,14 +30,7 @@ const PaintingQuiz = ({ paintingQuestion, pagination, onAnswerBtnClick, isTimerO
         </Link>
         <div className='game__question'>{question}</div>
       </div>
-      <div className='game__pictures pictures'>
-        {paintings.map((item, ind) => (
-          <button key={`${item}-${ind}`} className='pictures__item' onClick={() => onAnswerBtnClick(ind, item)}>
-            <LoadableImage src={createImageUrl(item)} alt={`painting-${ind}`} />
-          </button>
-        ))}
-        <Pagination paginationValue={pagination} />
-      </div>
+      <Pictures paintings={paintings} pagination={pagination} onAnswerBtnClick={onAnswerBtnClick} />
     </>
   );
 };
