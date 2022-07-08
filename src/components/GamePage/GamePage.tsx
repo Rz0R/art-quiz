@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import useSound from 'use-sound';
+import { AnimatePresence } from 'framer-motion';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { loadQuestionsAction, saveResultAction } from '../../store/serviceActions';
@@ -43,6 +44,9 @@ const GamePage: React.FC = () => {
   const [isPopupActive, setIsPopupActive] = useState(false);
   const [popupType, setPopupType] = useState<POPUP_TYPE>(POPUP_TYPE.INFO);
 
+  const [endGame, setEndOfGame] = useState(false);
+  const timerId = useRef<NodeJS.Timeout | null>(null);
+
   const [isAnwerCorrect, setIsAnswerCorrect] = useState(false);
   const { questions, loadingStatus, error, isTimeOver } = useAppSelector((state) => state.GAME);
   const { isVolumeOn, volumeLevel, isTimerOn } = useAppSelector((state) => state.SETTINGS);
@@ -76,19 +80,39 @@ const GamePage: React.FC = () => {
     };
   }, [catId, groupId, dispatch]);
 
-  const setTimeIsUp = useCallback(() => {
-    setPagination(replaceElementInArray(pagination, questionNumber, ANSWERS_TYPE.WRONG));
-    setIsAnswerCorrect(false);
+  useEffect(() => {
+    if (isTimerOn && isTimeOver) {
+      setPagination(replaceElementInArray(pagination, questionNumber, ANSWERS_TYPE.WRONG));
+      setIsAnswerCorrect(false);
+      setIsPopupActive(true);
+      setPopupType(POPUP_TYPE.INFO);
+      playWrongAnswerSound();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTimeOver]);
+
+  const showEndGamePopup = useCallback(() => {
     setIsPopupActive(true);
-    setPopupType(POPUP_TYPE.INFO);
-    playWrongAnswerSound();
-  }, [setPagination, setIsAnswerCorrect, setIsPopupActive, playWrongAnswerSound, pagination, questionNumber]);
+    if (pagination.filter((item) => item === ANSWERS_TYPE.CORRECT).length > 0) {
+      setPopupType(POPUP_TYPE.RESULT);
+      playVictorySound();
+    } else {
+      setPopupType(POPUP_TYPE.GAME_OVER);
+      playLoseSound();
+    }
+  }, [pagination, playVictorySound, playLoseSound]);
 
   useEffect(() => {
-    if (isTimeOver) {
-      setTimeIsUp();
+    if (endGame) {
+      timerId.current = setTimeout(() => {
+        showEndGamePopup();
+      }, ANIMATION_TIME * 2);
+
+      return () => {
+        clearInterval(timerId.current as NodeJS.Timeout);
+      };
     }
-  }, [isTimeOver, setTimeIsUp]);
+  }, [endGame, showEndGamePopup]);
 
   if (!(catId === CategoryType.ARTISTS || catId === CategoryType.PAINTINGS)) {
     return <ErrorPage errorMessage='404' />;
@@ -152,6 +176,7 @@ const GamePage: React.FC = () => {
     setPopupType(POPUP_TYPE.INFO);
     setPagination(new Array(QUESTIONS_IN_GROUP).fill(ANSWERS_TYPE.NO_ANSWER));
     setQuestionNumber(0);
+    setEndOfGame(false);
     if (isTimerOn) {
       dispatch(resetTimer());
     }
@@ -169,33 +194,28 @@ const GamePage: React.FC = () => {
       if (isTimerOn) {
         dispatch(resetTimer());
       }
-    } else if (pagination.filter((item) => item === ANSWERS_TYPE.CORRECT).length > 0) {
-      setIsPopupActive(false);
-      setTimeout(() => {
-        setIsPopupActive(true);
-        setPopupType(POPUP_TYPE.RESULT);
-        playVictorySound();
-      }, ANIMATION_TIME);
-      dispatch(saveResultAction(pagination as string[], catId as CategoryType, Number(groupId)));
     } else {
       setIsPopupActive(false);
-      setTimeout(() => {
-        setIsPopupActive(true);
-        setPopupType(POPUP_TYPE.GAME_OVER);
-        playLoseSound();
-      }, ANIMATION_TIME);
-
-      dispatch(saveResultAction(null, catId as CategoryType, Number(groupId)));
+      setEndOfGame(true);
+      dispatch(saveResultAction(pagination as string[], catId as CategoryType, Number(groupId)));
     }
   };
 
   const onNextQuizBtnClick = () => {
-    navigate(`${AppRoute.Category}/${catId}/${Number(groupId) + 1 <= GROUP_QUANTITY ? Number(groupId) + 1 : 1}`);
+    if (Number(groupId) + 1 <= GROUP_QUANTITY) {
+      navigate(`${AppRoute.Category}/${catId}/${Number(groupId) + 1}`);
+    } else {
+      navigate(`${AppRoute.Category}/${catId}`);
+    }
     resetQuizState();
   };
 
   const onTryAgainBtnClick = () => {
     resetQuizState();
+  };
+
+  const onTryAgainNoBtnClick = () => {
+    navigate(`${AppRoute.Category}/${catId}`);
   };
 
   const onHomeBtnClick = () => {
@@ -226,20 +246,25 @@ const GamePage: React.FC = () => {
         />
       )}
 
-      <Popup
-        popupType={popupType}
-        isPopupActive={isPopupActive}
-        author={author}
-        name={name}
-        year={year}
-        imageNum={imageNum}
-        isAnwerCorrect={isAnwerCorrect}
-        correctAnswers={pagination.filter((item) => item === ANSWERS_TYPE.CORRECT).length}
-        onNextBtnClick={onNextBtnClick}
-        onNextQuizBtnClick={onNextQuizBtnClick}
-        onTryAgainBtnClick={onTryAgainBtnClick}
-        onHomeBtnClick={onHomeBtnClick}
-      />
+      <AnimatePresence>
+        {isPopupActive && (
+          <Popup
+            popupType={popupType}
+            isPopupActive={isPopupActive}
+            author={author}
+            name={name}
+            year={year}
+            imageNum={imageNum}
+            isAnwerCorrect={isAnwerCorrect}
+            correctAnswers={pagination.filter((item) => item === ANSWERS_TYPE.CORRECT).length}
+            onNextBtnClick={onNextBtnClick}
+            onNextQuizBtnClick={onNextQuizBtnClick}
+            onTryAgainBtnClick={onTryAgainBtnClick}
+            onTryAgainNoBtnClick={onTryAgainNoBtnClick}
+            onHomeBtnClick={onHomeBtnClick}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
