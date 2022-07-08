@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 import ReactDOM from 'react-dom';
 import GameResultPopup from './GameResultPopup';
 import NextQuestionPopup from './NextQuestionPopup';
@@ -16,6 +18,7 @@ type PopupProps = {
   onNextBtnClick: () => void;
   onNextQuizBtnClick: () => void;
   onTryAgainBtnClick: () => void;
+  onTryAgainNoBtnClick: () => void;
   onHomeBtnClick: () => void;
 };
 
@@ -31,12 +34,29 @@ const Popup = ({
   onNextBtnClick,
   onNextQuizBtnClick,
   onTryAgainBtnClick,
+  onTryAgainNoBtnClick,
   onHomeBtnClick,
 }: PopupProps) => {
   return ReactDOM.createPortal(
     <>
-      <div className={`overlay ${isPopupActive ? 'active' : ''}`}></div>
-      <div className={`popup ${isPopupActive ? 'active' : ''}`}>
+      <motion.div
+        key='overlay'
+        className={`overlay ${isPopupActive ? 'active' : ''}`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      ></motion.div>
+      <motion.div
+        key='popup'
+        className={`popup ${isPopupActive ? 'active' : ''}`}
+        initial={{ left: '-300%' }}
+        animate={{ left: '50%' }}
+        exit={{ left: '300%' }}
+        transition={{
+          duration: 0.3,
+        }}
+      >
         <div className='popup__content'>
           {popupType === POPUP_TYPE.INFO && (
             <NextQuestionPopup
@@ -53,10 +73,10 @@ const Popup = ({
             <GameResultPopup correctAnswers={correctAnswers} onNextQuizBtnClick={onNextQuizBtnClick} onHomeBtnClick={onHomeBtnClick} />
           )}
           {popupType === POPUP_TYPE.GAME_OVER && (
-            <GameOverPopup onTryAgainYesBtnClick={onTryAgainBtnClick} onTryAgainNoBtnClick={onNextQuizBtnClick} />
+            <GameOverPopup onTryAgainYesBtnClick={onTryAgainBtnClick} onTryAgainNoBtnClick={onTryAgainNoBtnClick} />
           )}
         </div>
-      </div>
+      </motion.div>
     </>,
     document.getElementById('portal') as HTMLElement
   );
