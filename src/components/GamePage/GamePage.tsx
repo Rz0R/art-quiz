@@ -80,19 +80,16 @@ const GamePage: React.FC = () => {
     };
   }, [catId, groupId, dispatch]);
 
-  const setTimeIsUp = useCallback(() => {
-    setPagination(replaceElementInArray(pagination, questionNumber, ANSWERS_TYPE.WRONG));
-    setIsAnswerCorrect(false);
-    setIsPopupActive(true);
-    setPopupType(POPUP_TYPE.INFO);
-    playWrongAnswerSound();
-  }, [setPagination, setIsAnswerCorrect, setIsPopupActive, playWrongAnswerSound, pagination, questionNumber]);
-
   useEffect(() => {
-    if (isTimeOver) {
-      setTimeIsUp();
+    if (isTimerOn && isTimeOver) {
+      setPagination(replaceElementInArray(pagination, questionNumber, ANSWERS_TYPE.WRONG));
+      setIsAnswerCorrect(false);
+      setIsPopupActive(true);
+      setPopupType(POPUP_TYPE.INFO);
+      playWrongAnswerSound();
     }
-  }, [isTimeOver, setTimeIsUp]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTimeOver]);
 
   const showEndGamePopup = useCallback(() => {
     setIsPopupActive(true);
