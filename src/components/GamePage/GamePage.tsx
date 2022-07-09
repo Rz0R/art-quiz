@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import useSound from 'use-sound';
 import { AnimatePresence } from 'framer-motion';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useGameSounds } from '../../hooks/useGameSounds';
 import { loadQuestionsAction, saveResultAction } from '../../store/serviceActions';
 import { playTimer, questionsLoadingIdle, resetTimer, stopTimer } from '../../store/gameState/gameState';
 import { replaceElementInArray } from '../../utils/common';
@@ -24,7 +24,6 @@ import ArtistQuiz from './ArtistQuiz';
 import PaintingQuiz from './PaintingQuiz';
 import ErrorPage from '../ErrorPage';
 import Loader from '../Loader';
-import { rightAnswerSound, wrongAnswerSound, victorySound, loseSound } from '../../consts/assetsPaths';
 
 type UserAnswersType = {
   isAnswered: boolean;
@@ -51,25 +50,7 @@ const GamePage: React.FC = () => {
   const { questions, loadingStatus, error, isTimeOver } = useAppSelector((state) => state.GAME);
   const { isVolumeOn, volumeLevel, isTimerOn } = useAppSelector((state) => state.SETTINGS);
 
-  const [playRightAnswerSound] = useSound(rightAnswerSound, {
-    volume: volumeLevel,
-    soundEnabled: isVolumeOn,
-  });
-
-  const [playWrongAnswerSound] = useSound(wrongAnswerSound, {
-    volume: volumeLevel,
-    soundEnabled: isVolumeOn,
-  });
-
-  const [playVictorySound] = useSound(victorySound, {
-    volume: volumeLevel,
-    soundEnabled: isVolumeOn,
-  });
-
-  const [playLoseSound] = useSound(loseSound, {
-    volume: volumeLevel,
-    soundEnabled: isVolumeOn,
-  });
+  const { playRightAnswerSound, playWrongAnswerSound, playVictorySound, playLoseSound } = useGameSounds(volumeLevel, isVolumeOn);
 
   useEffect(() => {
     if (catId === CategoryType.ARTISTS || catId === CategoryType.PAINTINGS) {

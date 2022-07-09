@@ -50,9 +50,9 @@ const Popup = ({
       <motion.div
         key='popup'
         className={`popup ${isPopupActive ? 'active' : ''}`}
-        initial={{ left: '-300%' }}
+        initial={{ left: '-150%' }}
         animate={{ left: '50%' }}
-        exit={{ left: '300%' }}
+        exit={{ left: '250%' }}
         transition={{
           duration: 0.3,
         }}
