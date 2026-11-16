@@ -4,9 +4,14 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    # Major upgrades need a separate migration and compatibility review.
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
     groups:
       npm-dependencies:
         patterns: ['*']
+        update-types: ['minor', 'patch']
   - package-ecosystem: github-actions
     directory: /
     schedule:
