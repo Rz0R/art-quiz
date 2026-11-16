@@ -3,38 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@reduxjs/toolkit": "^1.8.1",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "latest",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/css-modules": "^1.0.2",
-    "@types/jest": "^27.0.3",
-    "@types/node": "^16.11.14",
-    "@types/react": "^17.0.37",
+    "@reduxjs/toolkit": "^2.0.0",
     "classnames": "^2.3.1",
     "framer-motion": "^6.4.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-redux": "^8.0.1",
-    "react-router-dom": "^6.1.1",
-    "react-scripts": "5.0.0",
-    "typescript": "^4.5.4",
-    "use-sound": "^4.0.1",
-    "web-vitals": "^2.1.2"
+    "react-redux": "^9.0.0",
+    "react-router-dom": "^7.18.5",
+    "use-sound": "^4.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "lint": "eslint --fix --ext .tsx --ext .ts src/",
-    "prepare": "husky install",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "start": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "lint": "eslint src/",
+    "prepare": "husky",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "browserslist": {
     "production": [
@@ -49,18 +34,33 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.2.3",
-    "@commitlint/config-conventional": "^16.2.1",
-    "@types/react-dom": "^18.0.0",
-    "@types/react-redux": "^7.1.24",
-    "@typescript-eslint/eslint-plugin": "^5.21.0",
-    "@typescript-eslint/parser": "^5.21.0",
-    "eslint": "^8.14.0",
-    "eslint-plugin-jest": "^26.1.5",
-    "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.4.0",
-    "husky": "^7.0.4",
-    "prettier": "^2.6.2",
-    "prettier-eslint": "^14.0.1"
+    "@commitlint/cli": "^20.0.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@eslint/js": "^9.0.0",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react": "^7.37.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^16.0.0",
+    "husky": "^9.0.0",
+    "jsdom": "^27.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.9.0",
+    "vite": "^8.3.8",
+    "vitest": "^4.0.0"
+  },
+  "engines": {
+    "node": "^22.12.0 || >=24.0.0"
+  },
+  "overrides": {
+    "minimatch@>=7 <11.0.1": "^11.0.1"
   }
 }
